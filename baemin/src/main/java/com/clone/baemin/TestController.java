@@ -15,4 +15,9 @@ public class TestController {
         System.out.println(testDAO.selectUser());
         return "test";
     }
+
+    @RequestMapping(value = "/home")
+    public String home() {
+        return "home";
+    }
 }
