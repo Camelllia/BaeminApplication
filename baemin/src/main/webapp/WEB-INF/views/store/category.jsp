@@ -2,7 +2,7 @@
          pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/include/link.jsp" %>
 <link rel="stylesheet" href="/css/layout/nav.css">
-<link rel="stylesheet" href="/css/home.css">
+<link rel="stylesheet" href="/css/store/home.css">
 <script>
     $(".category li").click(function(){
         let address1 = $("#deleveryAddress1").val();
