@@ -30,4 +30,31 @@ public class UserDAO {
 
         return sqlSession.selectOne(sqlId, param);
     }
+
+    public HashMap selectUserInfo(String userEmail, String userPw) {
+        String sqlId = "selectUserInfo";
+        HashMap<String, String> param = new HashMap<>();
+        param.put("userEmail", userEmail);
+        param.put("userPw", userPw);
+
+        return sqlSession.selectOne(sqlId, param);
+    }
+
+    public int selectUserInfoCount(String userEmail, String userPw) {
+        String sqlId = "selectUserInfoCount";
+        HashMap<String, String> param = new HashMap<>();
+        param.put("userEmail", userEmail);
+        param.put("userPw", userPw);
+
+        return sqlSession.selectOne(sqlId, param);
+    }
+
+    public int insertLoginLog(String userEmail, String regIp) {
+        String sqlId = "insertLoginLog";
+        HashMap<String, String> param = new HashMap<>();
+        param.put("userEmail", userEmail);
+        param.put("regIp", regIp);
+
+        return sqlSession.insert(sqlId, param);
+    }
 }

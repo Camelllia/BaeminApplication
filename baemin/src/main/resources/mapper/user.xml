@@ -25,6 +25,21 @@
         )
     </insert>
 
+    <insert id="insertLoginLog">
+        INSERT INTO user_login_log
+        (
+            userEmail,
+            regIp,
+            regDate
+        )
+        VALUES
+        (
+            #{userEmail},
+            #{regIp},
+            NOW()
+        )
+    </insert>
+
     <select id="selectEmailCount" resultType="int">
         SELECT
             COUNT(*)
@@ -35,12 +50,26 @@
 
     <select id="selectUserInfo" resultType="HashMap">
         SELECT
-            userNickname
+            userNickname,
+            userEmail
         FROM
             user_info
         WHERE
             userEmail = #{userEmail}
-        AND userPw = #{userPw}
+        AND
+            userPw = #{userPw}
     </select>
+
+    <select id="selectUserInfoCount" resultType="int">
+        SELECT
+            COUNT(*)
+        FROM
+            user_info
+        WHERE
+            userEmail = #{userEmail}
+        AND
+            userPw = #{userPw}
+    </select>
+
 
 </mapper>

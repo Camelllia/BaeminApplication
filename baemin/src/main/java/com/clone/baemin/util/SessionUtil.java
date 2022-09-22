@@ -8,11 +8,16 @@ import javax.servlet.http.HttpSession;
 
 public class SessionUtil {
 
+    private static final String LOGIN_MEMBER_NICKNAME = "userNickname";
     private static final String LOGIN_MEMBER_EMAIL = "userEmail";
     private static final String LOGIN_MEMBER_IP= "ip";
 
     // 인스턴스화 방지
     private SessionUtil() {
+    }
+
+    public static String getLoginMemberNickname(HttpSession session) {
+        return (String) session.getAttribute(LOGIN_MEMBER_NICKNAME);
     }
 
     public static String getLoginMemberEmail(HttpSession session) {
@@ -23,9 +28,8 @@ public class SessionUtil {
         return (String) session.getAttribute(LOGIN_MEMBER_IP);
     }
 
-    public static void setLoginInfo(HttpSession session, String email, String ip) {
-        session.setAttribute(LOGIN_MEMBER_EMAIL, email);
-        session.setAttribute(LOGIN_MEMBER_IP, ip);
+    public static void setLoginInfo(HttpSession session, String userNickname) {
+        session.setAttribute(LOGIN_MEMBER_NICKNAME, userNickname);
         session.setMaxInactiveInterval(60 * 60 * 3);
     }
 

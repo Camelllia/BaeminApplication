@@ -1,7 +1,48 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/include/link.jsp" %>
+<script type="text/javascript">
+    var login = function() {
 
+        var userEmail = $("#userEmail").val();
+        var userPw = $("#userPw").val();
+    
+        if(userEmail == '') {
+            alert("이메일을 입력해주세요.");
+            return;
+        }
+
+        if(userPw == '') {
+            alert("비밀번호를 입력해주세요.");
+            return;
+        }
+
+        var param = {
+            userEmail : userEmail,
+            userPw : userPw,
+        }
+
+        $.ajax({
+            type:"POST",
+            url:"/login",
+            data:param,
+            success:function(response) {
+			
+                const result = JSON.parse(response);
+				
+                if(result.resultCode == "1") {
+                	alert("로그인");
+				} else if(result.resultCode == "-50"){
+					alert("이메일과 비밀번호를 확인해주세요.");
+                    return;
+				}
+            },
+            error:function (err) {
+                alert("로그인에 실패하였습니다.");
+            }
+        })
+    }
+</script>
 <link rel="stylesheet" href="/css/user/login.css">
 </head>
 <body>
@@ -9,12 +50,10 @@
     <div class="login_box">
         <a href="/"><img src="/img/bamin2.png" alt="이미지" class="bm_img"></a>
 
-        <form action="/login" method="post">
+            <div class="input_aera"><input type="text" id="userEmail" name="username"  value="" required placeholder="이메일을 입력해 주세요" maxlength="30" ></div>
+            <div class="input_aera"><input type="password" id="userPw" name="password" value="" required placeholder="비밀번호를 입력해 주세요" maxlength="30"></div>
 
-            <div class="input_aera"><input type="text" name="username"  value="" required placeholder="이메일을 입력해 주세요" maxlength="30" ></div>
-            <div class="input_aera"><input type="password" name="password" value="" required placeholder="비밀번호를 입력해 주세요" maxlength="30"></div>
-
-            <input type="submit" value="로그인" class="login_btn" >
+            <input value="로그인" class="login_btn" onclick="login()">
 
             <div class="box">
                 <div class="continue_login">
@@ -31,7 +70,6 @@
 <%--                    <span><a href="/find/password">비밀번호 찾기</a></span>--%>
 <%--                </div>--%>
             </div>
-        </form>
 
 <%--        <div id="oauth_login">--%>
 <%--            <div>--%>

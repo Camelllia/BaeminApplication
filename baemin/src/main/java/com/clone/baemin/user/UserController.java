@@ -2,6 +2,7 @@ package com.clone.baemin.user;
 
 import com.clone.baemin.util.AES256;
 import com.clone.baemin.util.CommonUtil;
+import com.clone.baemin.util.SessionUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,12 +12,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpSession;
+import java.util.HashMap;
+
 // ResultCode
 // 1 : 성공
 // -10 : 이메일 유효성 에러
 // -20 : 회원가입 비밀번호 비교 에러
 // -30 : 이메일 중복 에러
 // -40 : 전화번호 유효성 에러
+// -50 : 계정 미확인 에러
 
 @Controller
 public class UserController {
@@ -81,9 +86,26 @@ public class UserController {
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     @ResponseBody
-    public String login(@RequestParam("userEmail") String userEmail, @RequestParam("userPw") String userPw) {
+    public String login(@RequestParam("userEmail") String userEmail, @RequestParam("userPw") String userPw, HttpSession session) {
         JSONObject resultObj = new JSONObject();
         resultObj.put("resultCode", 1);
+
+        try {
+            if(userService.selectUserInfoCount(userEmail, aes256.encrypt(userPw)) == 0) {
+                resultObj.put("resultCode", -50);
+                return resultObj.toString();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        try {
+            HashMap userInfoMap = userService.selectUserInfo(userEmail, userPw);
+            SessionUtil.setLoginInfo(session, (String) userInfoMap.get("userNickname"));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        userService.insertLoginLog(userEmail, SessionUtil.getIp());
 
         return resultObj.toString();
     }

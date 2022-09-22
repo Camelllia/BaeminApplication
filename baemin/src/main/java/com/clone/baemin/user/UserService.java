@@ -3,6 +3,8 @@ package com.clone.baemin.user;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
+
 @Service
 public class UserService {
 
@@ -15,5 +17,17 @@ public class UserService {
 
     public int selectEmailCount(String userEmail) {
         return userDAO.selectEmailCount(userEmail);
+    }
+
+    public HashMap selectUserInfo(String userEmail, String userPw) {
+        return userDAO.selectUserInfo(userEmail, userPw);
+    }
+
+    public int selectUserInfoCount(String userEmail, String userPw) {
+        return userDAO.selectUserInfoCount(userEmail, userPw);
+    }
+
+    public int insertLoginLog(String userEmail, String regIp) {
+        return userDAO.insertLoginLog(userEmail, regIp);
     }
 }
