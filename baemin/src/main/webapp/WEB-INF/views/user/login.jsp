@@ -19,7 +19,7 @@
             <div class="box">
                 <div class="continue_login">
                     <label for="continue_login">
-                        <span>로그인 유지하기</span>
+                        <span>아이디 저장</span>
                         <input type="checkbox" id="continue_login" name="remember-me" >
                         <i class="fas fa-check-square"></i>
                     </label>

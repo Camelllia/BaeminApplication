@@ -6,6 +6,9 @@
 
         var userEmail = $("#userEmail").val();
         var userPw = $("#userPw").val();
+        var userPwCheck = $("#userPwCheck").val();
+        var userNickname = $("#userNickname").val();
+        var userPhonenum = $("#userPhonenum").val();
 
         if(userEmail == '') {
             alert("이메일을 입력해주세요.");
@@ -17,26 +20,59 @@
             return;
         }
 
+        if(userNickname == '') {
+            alert("닉네임을 입력해주세요.");
+            return;
+        }
+
+        if(userPhonenum == '') {
+            alert("전화번호를 입력해주세요.");
+            return;
+        }
+
+        if(userPw !== userPwCheck) {
+            alert("비밀번호가 일치하지 않습니다.");
+            return;
+        }
+
         var param = {
-            reporterEmail : XSSCheck(reporterEmail, 1),
-            reportPw : XSSCheck(reportPw, 1)
+            userEmail : userEmail,
+            userPw : userPw,
+            userPwCheck : userPwCheck,
+            userNickname : userNickname,
+            userPhonenum : userPhonenum
         }
 
         $.ajax({
             type:"POST",
-            url:"/selectTargetReport",
+            url:"/insertUserAccount",
             data:param,
-            success:function (response) {
-				const result = JSON.parse(response);
-				if(result.resultCode == 1) {
-                	$(".popup__report--confirm-3").append(dynamicReport);
-				} else {
-					alert("제보 찾기에 실패하였습니다.");
+            success:function(response) {
+			
+                const result = JSON.parse(response);
+				
+                if(result.resultCode == "1") {
+                	alert("정상적으로 가입되었습니다.");
+                    location.href = "/";
+				} else if(result.resultCode == "-10"){
+					alert("유효하지 않은 이메일입니다.");
+                    return;
 				}
-                
+                else if(result.resultCode == "-20"){
+					alert("비밀번호가 일치하지 않습니다.");
+                    return;
+				}
+                else if(result.resultCode == "-30"){
+					alert("동일한 이메일로 가입된 계정이 존재합니다.");
+                    return;
+				}
+                else if(result.resultCode == "-40"){
+					alert("유효하지 않은 전화번호 형식입니다.");
+                    return;
+				}
             },
             error:function (err) {
-                alert("제보 찾기에 실패하였습니다.");
+                alert("회원가입에 실패하였습니다.");
             }
         })
     }
@@ -68,11 +104,11 @@
             </div>
 
             <div class="input_aera">
-                <input type=number name="phone" value="" class="phone" id="userPhonenum" placeholder="전화번호를 010-1234-5678 형식으로 입력해 주세요" maxlength="11" >
+                <input type="text" name="phone" value="" class="phone" id="userPhonenum" placeholder="전화번호를 010-1234-5678 형식으로 입력해 주세요" maxlength="20" >
                 <span class="msg_box">${errorMsg.phone }</span>
             </div>
 
-            <input type="submit" value="회원가입" class="login_btn" onclick="join()">
+            <input value="회원가입" class="login_btn" onclick="join()">
         </form>
     </div>
 

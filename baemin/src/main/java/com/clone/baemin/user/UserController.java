@@ -42,33 +42,32 @@ public class UserController {
         return "user/join";
     }
 
-    @RequestMapping(value = "/inserUserAccount", method = RequestMethod.POST)
+    @RequestMapping(value = "/insertUserAccount", method = RequestMethod.POST)
     @ResponseBody
-    public JSONObject inserUserAccount(@RequestParam("userEmail") String userEmail, @RequestParam("userPw") String userPw,
+    public String insertUserAccount(@RequestParam("userEmail") String userEmail, @RequestParam("userPw") String userPw,
                                        @RequestParam("userNickname") String userNickname, @RequestParam("userPwCheck") String userPwCheck,
                                        @RequestParam("userPhonenum") String userPhonenum) {
-
         JSONObject resultObj = new JSONObject();
         resultObj.put("resultCode", 1);
 
         if(!CommonUtil.isValidEmailAddress(userEmail)) {
             resultObj.put("resultCode", -10);
-            return resultObj;
+            return resultObj.toString();
         }
 
         if(!CommonUtil.isValidPhoneNumber(userPhonenum)) {
             resultObj.put("resultCode", -40);
-            return resultObj;
+            return resultObj.toString();
         }
 
-        if(StringUtils.equals(userPw, userPwCheck)) {
+        if(!StringUtils.equals(userPw, userPwCheck)) {
             resultObj.put("resultCode", -20);
-            return resultObj;
+            return resultObj.toString();
         }
 
         if(userService.selectEmailCount(userEmail) > 0) {
             resultObj.put("resultCode", -30);
-            return resultObj;
+            return resultObj.toString();
         }
 
         try {
@@ -77,6 +76,15 @@ public class UserController {
             e.printStackTrace();
         }
 
-        return resultObj;
+        return resultObj.toString();
+    }
+
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    @ResponseBody
+    public String login(@RequestParam("userEmail") String userEmail, @RequestParam("userPw") String userPw) {
+        JSONObject resultObj = new JSONObject();
+        resultObj.put("resultCode", 1);
+
+        return resultObj.toString();
     }
 }

@@ -32,4 +32,15 @@
             user_info
         WHERE userEmail = #{userEmail}
     </select>
+
+    <select id="selectUserInfo" resultType="HashMap">
+        SELECT
+            userNickname
+        FROM
+            user_info
+        WHERE
+            userEmail = #{userEmail}
+        AND userPw = #{userPw}
+    </select>
+
 </mapper>
