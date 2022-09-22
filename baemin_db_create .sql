@@ -15,7 +15,6 @@ CREATE TABLE baemin_db.user_info (
  userPw     VARCHAR(100) NOT NULL,
  userPhonenum    VARCHAR(100) NOT NULL,
  userPoint    INT(11),
- regIp VARCHAR(100) NOT NULL,
  regDate   DATETIME NOT NULL DEFAULT NOW(),
   PRIMARY KEY(userIdn)
 ) ENGINE=MYISAM CHARSET=utf8;
