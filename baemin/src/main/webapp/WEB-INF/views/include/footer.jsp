@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<footer>
+<footer style="height:250px">
     <div class="box">
         <div>이름 : 김승진</div>
         <div>깃허브 : https://github.com/Camelllia</div>

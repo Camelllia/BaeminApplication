@@ -10,9 +10,6 @@
         var categoryNum = $("#categoryNum").val();
         var orderType = $("#orderType").val();
 
-        //style="color: #222222"
-        //style="color:#af8865; background: #ddd;"
-
         if(categoryNum == 100) {
             $("#ca_100").css('color', '#222222');
         } else if(categoryNum == 101) {

@@ -7,6 +7,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -38,13 +39,20 @@ public class UserController {
     }
 
     @RequestMapping(value = "/myPage", method = {RequestMethod.GET, RequestMethod.POST})
-    public String myPage() {
+    public String myPage(Model model, HttpSession session) {
+        model.addAttribute("userNickname", SessionUtil.getLoginMemberNickname(session));
         return "user/myPage";
     }
 
     @RequestMapping(value = "/join", method = {RequestMethod.GET, RequestMethod.POST})
     public String join() {
         return "user/join";
+    }
+
+    @RequestMapping(value = "/logout")
+    public String logout(HttpSession session) {
+        SessionUtil.logout(session);
+        return "redirect:/";
     }
 
     @RequestMapping(value = "/insertUserAccount", method = RequestMethod.POST)

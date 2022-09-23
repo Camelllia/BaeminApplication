@@ -9,7 +9,7 @@
         swal("업데이트 준비 중 입니다");
     })
 
-    $(".logout").click(function () {
+    $("#logoutBtn").click(function () {
         location.href = "/logout";
     })
 
@@ -23,6 +23,9 @@
 
     }
 
+    var logout = function() {
+        location.href = "/logout";
+    }
 </script>
 
 <%@ include file="/WEB-INF/views/include/header.jsp" %>
@@ -39,15 +42,15 @@
 
             <div class="grid_box">
                 <div class="login_box">
-                    <c:if test="${empty SPRING_SECURITY_CONTEXT }">
-                        <a href="/login"><span>로그인을 해주세요</span></a>
+                    <c:if test="${empty userNickname}">
+                        <a href="/"><span>로그인을 해주세요</span></a>
                     </c:if>
 
 
-                    <c:if test="${!empty SPRING_SECURITY_CONTEXT }">
+                    <c:if test="${!empty userNickname}">
                         <c:set var="nickname" value="${SPRING_SECURITY_CONTEXT.authentication.principal.user.nickname }" />
-                        <a href="/user/myInfo"><span class="nickname" data-nickname=${nickname } >${nickname }</span></a>
-                        <button type="button" class="logout">로그아웃</button>
+                        <a href="#"><span class="nickname" data-nickname=${nickname} >${userNickname} 님</span></a>
+                        <button type="button" class="logout" onclick="logout()">로그아웃</button>
                     </c:if>
                 </div>
 

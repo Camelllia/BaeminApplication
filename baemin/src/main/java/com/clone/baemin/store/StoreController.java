@@ -18,6 +18,9 @@ public class StoreController {
 
     @RequestMapping(value = "/category", method = {RequestMethod.GET, RequestMethod.POST})
     public String category(Model model, HttpSession session) {
+        if(SessionUtil.getLoginMemberNickname(session) == null) {
+            return "user/login";
+        }
         model.addAttribute("userNickname", SessionUtil.getLoginMemberNickname(session));
         return "store/category";
     }

@@ -26,12 +26,12 @@ header .admin_page_btn a {
 	<!-- <body> -->
 	<header>
 		<div id="header">
-			<a onclick="window.location.reload()"><img src="/img/baemin.jpg" alt="이미지"> </a>
+			<a href="/category"><img src="/img/baemin.jpg" alt="이미지"> </a>
 			<!-- 임시 -->
 			<div class="admin_page_btn">
 				<div>
 					${userNickname} 님
-					<a href="/admin/main">회원관리</a>
+					<a href="/memberList/orderType=0">회원관리</a>
 				</div>
 			</div>
 			<div class="menu_tab_box active">
