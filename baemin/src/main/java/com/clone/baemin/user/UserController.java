@@ -93,20 +93,15 @@ public class UserController {
         try {
             if(userService.selectUserInfoCount(userEmail, aes256.encrypt(userPw)) == 0) {
                 resultObj.put("resultCode", -50);
-                return resultObj.toString();
+            } else {
+                HashMap userInfoMap = userService.selectUserInfo(userEmail, aes256.encrypt(userPw));
+                SessionUtil.setLoginInfo(session, (String) userInfoMap.get("userNickname"));
+                userService.insertLoginLog(userEmail, SessionUtil.getIp());
             }
         } catch (Exception e) {
             e.printStackTrace();
+        } finally {
+            return resultObj.toString();
         }
-
-        try {
-            HashMap userInfoMap = userService.selectUserInfo(userEmail, userPw);
-            SessionUtil.setLoginInfo(session, (String) userInfoMap.get("userNickname"));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        userService.insertLoginLog(userEmail, SessionUtil.getIp());
-
-        return resultObj.toString();
     }
 }

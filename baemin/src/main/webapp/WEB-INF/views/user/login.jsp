@@ -1,11 +1,26 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/include/link.jsp" %>
+<script type="text/javascript" src="/js/util/cookie.js"></script>
 <script type="text/javascript">
+
+    window.onload = function () {
+        var saved_email = getCookie("saved_email");
+        if (saved_email != "" && saved_email != 'undefined' && saved_email != "" && saved_email != 'undefined') {
+            $("#userEmail").val(saved_email);
+        }
+    }
+
     var login = function() {
 
         var userEmail = $("#userEmail").val();
         var userPw = $("#userPw").val();
+
+        if($("#save_email").is(":checked")) {
+            setCookie("saved_email", userEmail);
+        } else {
+            deleteCookie("saved_email");
+        }
     
         if(userEmail == '') {
             alert("이메일을 입력해주세요.");
@@ -57,9 +72,9 @@
 
             <div class="box">
                 <div class="continue_login">
-                    <label for="continue_login">
+                    <label for="save_email">
                         <span>아이디 저장</span>
-                        <input type="checkbox" id="continue_login" name="remember-me" >
+                        <input type="checkbox" id="save_email" name="remember-me" >
                         <i class="fas fa-check-square"></i>
                     </label>
                 </div>
