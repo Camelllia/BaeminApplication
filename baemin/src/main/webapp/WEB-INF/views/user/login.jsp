@@ -46,7 +46,7 @@
                 const result = JSON.parse(response);
 				
                 if(result.resultCode == "1") {
-                	alert("로그인");
+                	location.href = "/category";
 				} else if(result.resultCode == "-50"){
 					alert("이메일과 비밀번호를 확인해주세요.");
                     return;

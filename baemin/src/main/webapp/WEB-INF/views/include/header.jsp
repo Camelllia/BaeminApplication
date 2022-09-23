@@ -17,32 +17,23 @@ header .admin_page_btn a {
 	background: #fff;
 	font-size: 13px;
 	display: block;
+	text-align: center;
 }
 </style>
 
 </head>
 <body >
 	<!-- <body> -->
-
-
 	<header>
 		<div id="header">
-			<a href="/"><img src="/img/baemin.jpg" alt="이미지"> </a>
-
-			<c:if test="${SPRING_SECURITY_CONTEXT != null }">
-				로그인중			
-			</c:if>
-
+			<a onclick="window.location.reload()"><img src="/img/baemin.jpg" alt="이미지"> </a>
 			<!-- 임시 -->
-			<c:if test="${SPRING_SECURITY_CONTEXT.authentication.principal.user.role == 'ROLE_ADMIN' }"> 
 			<div class="admin_page_btn">
 				<div>
-					<a href="/admin/main">사장님 페이지</a>
+					${userNickname} 님
+					<a href="/admin/main">회원관리</a>
 				</div>
 			</div>
-			</c:if>
-			<!-- 임시 -->
-			
 			<div class="menu_tab_box active">
 				<div class="menu_tab">
 					<span> </span>

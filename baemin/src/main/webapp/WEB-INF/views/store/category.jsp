@@ -48,7 +48,9 @@
                     <li>
                         <div>
                             <div class="img_box">
-                                <img src="/img/pizza2.png" alt="이미지">
+                                <a href="/store/categoryNum=100&orderType=0">
+                                    <img src="/img/pizza2.png" alt="이미지">
+                                </a>
                             </div>
                         </div>
                         <div class="name">피자</div>
@@ -57,7 +59,9 @@
                     <li>
                         <div>
                             <div class="img_box">
-                                <img src="/img/chicken1.png" alt="이미지">
+                                <a href="/store/categoryNum=101&orderType=0">
+                                    <img src="/img/chicken1.png" alt="이미지">
+                                </a>
                             </div>
                         </div>
                         <div class="name">치킨</div>
@@ -66,7 +70,9 @@
                     <li>
                         <div>
                             <div class="img_box">
-                                <img src="/img/hamburger4.png" alt="이미지">
+                                <a href="/store/categoryNum=102&orderType=0">
+                                    <img src="/img/hamburger4.png" alt="이미지">
+                                </a>
                             </div>
                         </div>
                         <div class="name">패스트푸드</div>
@@ -75,7 +81,9 @@
                     <li>
                         <div>
                             <div class="img_box">
-                                <img src="/img/bunsik1.png" alt="이미지">
+                                <a href="/store/categoryNum=103&orderType=0">
+                                    <img src="/img/bunsik1.png" alt="이미지">
+                                </a>
                             </div>
                         </div>
                         <div class="name">분식</div>
@@ -85,7 +93,9 @@
                     <li>
                         <div>
                             <div class="img_box">
-                                <img src="/img/dessert2.png" alt="이미지">
+                                <a href="/store/categoryNum=104&orderType=0">
+                                    <img src="/img/dessert2.png" alt="이미지">
+                                </a>
                             </div>
                         </div>
                         <div class="name">카페/디저트</div>

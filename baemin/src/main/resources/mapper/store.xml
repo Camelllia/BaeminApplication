@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="baemin.store">
+    <select id="selectStoreList" resultType="HashMap">
+        SELECT
+            storeIdn,
+            storeName,
+            minDelevery,
+            deleveryTime,
+            deleveryTip
+        FROM
+            bm_store
+        WHERE
+            categoryNum = #{categoryNum}
+        ORDER BY
+            <if test="orderType == 0">
+                storeIdn
+            </if>
+            <if test="orderType == 1">
+                deleveryTip
+            </if>
+            <if test="orderType == 2">
+                deleveryTime
+            </if>
+            <if test="orderType == 3">
+                minDelevery
+            </if>
+    </select>
+</mapper>

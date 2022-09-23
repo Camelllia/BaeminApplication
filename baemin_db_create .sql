@@ -19,4 +19,18 @@ CREATE TABLE baemin_db.user_info (
   PRIMARY KEY(userIdn)
 ) ENGINE=MYISAM CHARSET=utf8;
 
+-- 매장 정보
+CREATE TABLE baemin_db.bm_store (
+ storeIdn      INT NOT NULL AUTO_INCREMENT,
+ storeName     VARCHAR(100) NOT NULL,
+ storeAddress     VARCHAR(100) NOT NULL,
+ storePhonenum     VARCHAR(100) NOT NULL,
+ storeIntro     VARCHAR(100) NOT NULL,
+ minDelevery    INT(11),
+ deleveryTime   INT(11),
+ deleveryTip    INT(11),
+ categoryNum INT(11),
+  PRIMARY KEY(storeIdn)
+) ENGINE=MYISAM CHARSET=utf8;
+
 

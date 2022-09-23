@@ -2,10 +2,10 @@
     pageEncoding="UTF-8"%>
 <footer>
     <div class="box">
-        <div>이름</div>
-        <div>깃허브</div>
-        <div>전화번호</div>
-        <div>이메일</div>
+        <div>이름 : 김승진</div>
+        <div>깃허브 : https://github.com/Camelllia</div>
+        <div>전화번호 : 010-5661-4467</div>
+        <div>이메일 : dahyun101107@naver.com</div>
     </div>
 </footer>
 
