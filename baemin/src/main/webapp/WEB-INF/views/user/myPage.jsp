@@ -66,7 +66,7 @@
 
 
                 <div>
-                    <a class="updating" href="/myPage/coupon" onclick="return false;">
+                    <a class="updating" href="/couponList/orderType=0&stateCode=0">
 	               		  	<span class="img_box">
 	                			<img src="/img/icon22.png" alt="쿠폰함">
 	               			</span>
@@ -106,7 +106,7 @@
 
 
                 <div>
-                    <a href="/user/myReview" onclick="return loginCheck()" >
+                    <a href="/reviewList">
 							<span class="img_box">
 								<img src="/img/icon66.png" alt="리뷰관리">
 							</span>

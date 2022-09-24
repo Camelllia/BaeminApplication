@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="baemin.coupon">
+    <select id="selectCouponList" resultType="HashMap">
+        SELECT
+            couponName,
+            discountAmount,
+            DATE_FORMAT(regDate, '%Y-%m-%d') AS regDate,
+            DATE_FORMAT(endDate, '%Y-%m-%d') AS endDate
+        FROM
+            bm_coupon
+        <if test="stateCode == 1">
+        WHERE
+            endDate > NOW()
+        AND
+            useYn = 0
+        </if>
+        ORDER BY
+        <if test="orderType == 0">
+            couponIdn
+        </if>
+        <if test="orderType == 1">
+            regDate
+        </if>
+    </select>
+</mapper>

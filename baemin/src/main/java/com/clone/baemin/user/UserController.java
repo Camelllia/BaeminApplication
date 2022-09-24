@@ -1,5 +1,7 @@
 package com.clone.baemin.user;
 
+import com.clone.baemin.coupon.CouponDAO;
+import com.clone.baemin.coupon.CouponService;
 import com.clone.baemin.util.AES256;
 import com.clone.baemin.util.CommonUtil;
 import com.clone.baemin.util.SessionUtil;
@@ -8,10 +10,7 @@ import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;
@@ -31,6 +30,9 @@ public class UserController {
     UserService userService;
 
     @Autowired
+    CouponService couponService;
+
+    @Autowired
     AES256 aes256;
 
     @RequestMapping(value = "/", method = {RequestMethod.GET, RequestMethod.POST})
@@ -47,6 +49,27 @@ public class UserController {
     @RequestMapping(value = "/join", method = {RequestMethod.GET, RequestMethod.POST})
     public String join() {
         return "user/join";
+    }
+
+    @RequestMapping(value = "/orderList", method = {RequestMethod.GET, RequestMethod.POST})
+    public String orderList() {
+        return "user/orderList";
+    }
+
+    @RequestMapping(value = "/reviewList", method = {RequestMethod.GET, RequestMethod.POST})
+    public String reviewList() {
+        return "user/reviewList";
+    }
+
+    @RequestMapping(value = "/likeList", method = {RequestMethod.GET, RequestMethod.POST})
+    public String likeList() {
+        return "user/likeList";
+    }
+
+    @RequestMapping(value = "/couponList/orderType={orderType}&stateCode={stateCode}", method = {RequestMethod.GET, RequestMethod.POST})
+    public String couponList(@PathVariable("orderType") int orderType , @PathVariable("stateCode") int stateCode, Model model) {
+        model.addAttribute("couponLists", couponService.selectCouponList(orderType, stateCode));
+        return "user/couponList";
     }
 
     @RequestMapping(value = "/logout")

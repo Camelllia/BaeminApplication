@@ -21,7 +21,7 @@
                 userNickname
             </if>
             <if test="orderType == 2">
-                regDate
+                regDate DESC
             </if>
     </select>
 
