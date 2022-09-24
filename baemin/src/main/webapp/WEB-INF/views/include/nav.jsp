@@ -6,6 +6,6 @@
         <li><a href="/category"></a></li>
         <li><a href="/category"></a></li>
         <li><a href="/category"></a></li>
-        <li><a href="/category"></a></li>
+        <li><a href="/myPage"></a></li>
     </ul>
 </nav>
