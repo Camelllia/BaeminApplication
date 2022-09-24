@@ -67,8 +67,11 @@ public class UserController {
     }
 
     @RequestMapping(value = "/couponList/orderType={orderType}&stateCode={stateCode}", method = {RequestMethod.GET, RequestMethod.POST})
-    public String couponList(@PathVariable("orderType") int orderType , @PathVariable("stateCode") int stateCode, Model model) {
-        model.addAttribute("couponLists", couponService.selectCouponList(orderType, stateCode));
+    public String couponList(@PathVariable("orderType") int orderType , @PathVariable("stateCode") int stateCode,
+                             Model model, HttpSession session) {
+        model.addAttribute("couponLists", couponService.selectCouponList(orderType, stateCode, SessionUtil.getLoginMemberIdn(session)));
+        model.addAttribute("orderType", orderType);
+        model.addAttribute("stateCode", stateCode);
         return "user/couponList";
     }
 
@@ -126,7 +129,7 @@ public class UserController {
                 resultObj.put("resultCode", -50);
             } else {
                 HashMap userInfoMap = userService.selectUserInfo(userEmail, aes256.encrypt(userPw));
-                SessionUtil.setLoginInfo(session, (String) userInfoMap.get("userNickname"));
+                SessionUtil.setLoginInfo(session, (String) userInfoMap.get("userNickname"), (int) userInfoMap.get("userIdn"));
                 userService.insertLoginLog(userEmail, SessionUtil.getIp());
             }
         } catch (Exception e) {

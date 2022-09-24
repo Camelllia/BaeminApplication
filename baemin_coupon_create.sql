@@ -2,11 +2,13 @@ INSERT INTO baemin_db.bm_coupon
 (
 	couponName,
 	discountAmount,
-    userName
+    userIdn,
+    endDate
 )
 VALUES
 (
-	'리뷰이벤트 참여 할인 쿠폰',
-	2000,
-    '김승진'
+	'크리스마스 기념 할인 쿠폰',
+	5000,
+    20,
+    '2023-09-22 22:03:07'
 )

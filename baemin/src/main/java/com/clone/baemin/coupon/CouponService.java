@@ -12,7 +12,7 @@ public class CouponService {
     @Autowired
     CouponDAO couponDAO;
 
-    public List<HashMap> selectCouponList(int orderType, int stateCode) {
-        return couponDAO.selectCouponList(orderType, stateCode);
+    public List<HashMap> selectCouponList(int orderType, int stateCode, int userIdn) {
+        return couponDAO.selectCouponList(orderType, stateCode, userIdn);
     }
 }

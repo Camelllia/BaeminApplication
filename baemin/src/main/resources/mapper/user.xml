@@ -51,7 +51,8 @@
     <select id="selectUserInfo" resultType="HashMap">
         SELECT
             userNickname,
-            userEmail
+            userEmail,
+            userIdn
         FROM
             user_info
         WHERE

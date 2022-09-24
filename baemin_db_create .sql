@@ -38,7 +38,7 @@ CREATE TABLE baemin_db.bm_coupon (
  couponIdn      INT NOT NULL AUTO_INCREMENT,
  couponName     VARCHAR(100) NOT NULL,
  discountAmount     INT(11) NOT NULL,
- userName 	VARCHAR(100) NOT NULL,
+ userIdn 	INT(11) NOT NULL,
  useYn INT(11) NOT NULL DEFAULT 0,
  regDate	DATETIME NOT NULL DEFAULT NOW(),
  endDate    DATETIME NOT NULL DEFAULT NOW(),

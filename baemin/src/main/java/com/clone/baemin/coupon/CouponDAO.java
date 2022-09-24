@@ -13,9 +13,10 @@ public class CouponDAO {
     @Autowired
     SqlSession sqlSession;
 
-    public List<HashMap> selectCouponList(int orderType, int stateCode) {
+    public List<HashMap> selectCouponList(int orderType, int stateCode, int userIdn) {
         String sqlId = "selectCouponList";
         HashMap<String, Integer> param = new HashMap<>();
+        param.put("userIdn", userIdn);
         param.put("orderType", orderType);
         param.put("stateCode", stateCode);
         return sqlSession.selectList(sqlId, param);

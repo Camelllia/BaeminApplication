@@ -12,6 +12,8 @@ public class SessionUtil {
     private static final String LOGIN_MEMBER_EMAIL = "userEmail";
     private static final String LOGIN_MEMBER_IP= "ip";
 
+    private static final String LOGIN_MEMBER_IDN= "userIdn";
+
     // 인스턴스화 방지
     private SessionUtil() {
     }
@@ -28,8 +30,13 @@ public class SessionUtil {
         return (String) session.getAttribute(LOGIN_MEMBER_IP);
     }
 
-    public static void setLoginInfo(HttpSession session, String userNickname) {
+    public static int getLoginMemberIdn(HttpSession session) {
+        return (int) session.getAttribute(LOGIN_MEMBER_IDN);
+    }
+
+    public static void setLoginInfo(HttpSession session, String userNickname, int userIdn) {
         session.setAttribute(LOGIN_MEMBER_NICKNAME, userNickname);
+        session.setAttribute(LOGIN_MEMBER_IDN, userIdn);
         session.setMaxInactiveInterval(60 * 60 * 3);
     }
 

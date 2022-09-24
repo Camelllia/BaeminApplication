@@ -4,11 +4,12 @@
 <script type="text/javascript">
     window.onload = function () {
         var orderType = $("#orderType").val();
-        //style="background: rgba(163, 159, 159, 0.425);"
+        var stateCode = $("#stateCode").val();
 
         if(orderType == 1) {
             $("#ot_1").css('background', 'rgba(163, 159, 159, 0.425)');
-        } else if(orderType == 2) {
+        }
+        if(stateCode == 1) {
             $("#ot_2").css('background', 'rgba(163, 159, 159, 0.425)');
         }
     }
@@ -29,17 +30,14 @@
 </style>
 <main>
     <input type="hidden" value="${orderType}" id="orderType"/>
+    <input type="hidden" value="${stateCode}" id="stateCode"/>
     <section>
         <div class="today">
   				<span>
-  					<span>쿠폰목록</span>
-  					<span id="today"></span>
+  					<span>쿠폰목록</span>	
   				</span>
-
-            <!-- <button>상세보기</button> -->
-
+                <button style="float: right;" class="year_btn" onclick="location.href='/myPage'">마이페이지</button>
         </div>
-
     </section>
 
     <section class="detail today_detail">
@@ -62,8 +60,9 @@
 
     <section class="graph_section" onselectstart="return false;" >
         <div class="box">
-            <button class="year_btn"  id="ot_1" onclick="location.href='/memberList/orderType=1'">지급일순</button>
-            <button class="month_btn" id="ot_2" onclick="location.href='/memberList/orderType=2'">유효한 쿠폰만</button>
+            <button class="year_btn"  id="ot_1" onclick="location.href='/couponList/orderType=1&stateCode=0'">지급일순</button>
+            <button class="month_btn" id="ot_2" onclick="location.href='/couponList/orderType=0&stateCode=1'">유효한 쿠폰만</button>
+            <button class="month_btn" id="ot_3" onclick="location.href='/couponList/orderType=1&stateCode=1'">모두 선택</button>
             <!-- <button class="week_btn">이번 주 매출</button>
             <input type="month"name="date" id="date">
             <button class="other_month_search">검색</button> -->
@@ -102,29 +101,15 @@
                     <div></div>
                     <div></div>
                 </div>
-            </div>
-
+            </div> 
         </div>
     </section>
-
-    <section class="detail other_detail">
-        <div>
-            <h3 class="sales_today_detail_title">
-                <span id="other_detail_date"></span>
-                <span>
-						<button class="sort_name reverse">이름순</button>
-						<button class="sort_price reverse">가격순</button>
-					</span>
-            </h3>
-            <div class="sales_today_detail">
-                <div>메뉴</div>
-                <div>수량</div>
-                <div>가격</div>
-            </div>
-        </div>
-    </section>
-
+     
 </main>
+<!-- 하단 메뉴 -->
+<%@ include file="/WEB-INF/views/include/nav.jsp" %>
+<!-- 하단 메뉴 -->  
+
 
 <script src="/js/admin/admin.js"></script>
 </body>

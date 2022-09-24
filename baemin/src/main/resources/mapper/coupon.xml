@@ -11,8 +11,10 @@
             DATE_FORMAT(endDate, '%Y-%m-%d') AS endDate
         FROM
             bm_coupon
-        <if test="stateCode == 1">
         WHERE
+            userIdn = #{userIdn}
+        <if test="stateCode == 1">
+        AND
             endDate > NOW()
         AND
             useYn = 0
