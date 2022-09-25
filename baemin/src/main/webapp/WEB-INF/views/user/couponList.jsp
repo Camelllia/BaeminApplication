@@ -62,7 +62,8 @@
         <div class="box">
             <button class="year_btn"  id="ot_1" onclick="location.href='/couponList/orderType=1&stateCode=0'">지급일순</button>
             <button class="month_btn" id="ot_2" onclick="location.href='/couponList/orderType=0&stateCode=1'">유효한 쿠폰만</button>
-            <button class="month_btn" id="ot_3" onclick="location.href='/couponList/orderType=1&stateCode=1'">모두 선택</button>
+            <button class="month_btn" id="ot_3" onclick="location.href='/couponList/orderType=0&stateCode=0'">모두 해제</button>
+            <button class="month_btn" id="ot_4" onclick="location.href='/couponList/orderType=1&stateCode=1'">모두 선택</button>
             <!-- <button class="week_btn">이번 주 매출</button>
             <input type="month"name="date" id="date">
             <button class="other_month_search">검색</button> -->
@@ -77,6 +78,7 @@
                     <th>할인금액</th>
                     <th>지급일</th>
                     <th>만료일</th>
+                    <th>사용여부</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -86,6 +88,14 @@
                         <td>${couponList.discountAmount}원</td>
                         <td>${couponList.regDate}</td>
                         <td>${couponList.endDate}</td>
+                        <td>
+                            <c:if test="${couponList.useYn eq 0}">
+                                미사용
+                            </c:if>
+                            <c:if test="${couponList.useYn eq 1}">
+                                사용완료
+                            </c:if>
+                        </td>
                     </tr>
                 </c:forEach>
                 </tbody>

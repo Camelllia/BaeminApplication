@@ -8,7 +8,8 @@
             couponName,
             discountAmount,
             DATE_FORMAT(regDate, '%Y-%m-%d') AS regDate,
-            DATE_FORMAT(endDate, '%Y-%m-%d') AS endDate
+            DATE_FORMAT(endDate, '%Y-%m-%d') AS endDate,
+            useYn
         FROM
             bm_coupon
         WHERE
