@@ -16,7 +16,7 @@
 			
 			<a href="#">
 				<span>
-<%--					<span>평점 ${storeList.score }</span>--%>
+<%--					<span>평점 ${storeList.score}</span>--%>
 <%--					--%>
 <%--					<span class="score_box">--%>
 <%--						<c:forEach begin="0" end="4" var="i">--%>

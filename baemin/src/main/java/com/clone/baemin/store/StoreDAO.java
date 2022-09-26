@@ -21,4 +21,12 @@ public class StoreDAO {
 
         return sqlSession.selectList(sqlId, param);
     }
+
+    public HashMap selectTargetStoreInfo(int storeIdn) {
+        String sqlId = "selectTargetStoreInfo";
+        HashMap<String, Integer> param = new HashMap<>();
+        param.put("storeIdn", storeIdn);
+
+        return sqlSession.selectOne(sqlId, param);
+    }
 }

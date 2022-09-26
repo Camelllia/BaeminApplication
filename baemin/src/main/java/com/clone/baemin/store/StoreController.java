@@ -25,6 +25,15 @@ public class StoreController {
         return "store/category";
     }
 
+    @RequestMapping(value = "/store/detail/{storeIdn}", method = {RequestMethod.GET, RequestMethod.POST})
+    public String detail(@PathVariable("storeIdn") int storeIdn, Model model, HttpSession session) {
+        if(SessionUtil.getLoginMemberNickname(session) == null) {
+            return "user/login";
+        }
+        model.addAttribute("storeInfo", storeService.selectTargetStoreInfo(storeIdn));
+        return "store/detail";
+    }
+
     @RequestMapping(value = "/store/categoryNum={categoryNum}&orderType={orderType}", method = {RequestMethod.GET, RequestMethod.POST})
     public String store(@PathVariable("categoryNum") int categoryNum, @PathVariable("orderType") int orderType, Model model) {
         model.addAttribute("storeList", storeService.selectStoreList(categoryNum, orderType));
@@ -32,10 +41,4 @@ public class StoreController {
         model.addAttribute("orderType", orderType);
         return "store/store";
     }
-
-//    @RequestMapping(value = "/store/detail/menu/{storeIdn}", method = {RequestMethod.GET, RequestMethod.POST})
-//    public String menu(@PathVariable("storeIdn") int storeIdn, Model model) {
-//        model.addAttribute("storeList", storeService.selectStoreList(categoryNum));
-//        return "store/store";
-//    }
 }

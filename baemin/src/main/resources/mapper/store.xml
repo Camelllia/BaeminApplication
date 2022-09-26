@@ -29,4 +29,18 @@
                 minDelevery
             </if>
     </select>
+
+    <select id="selectTargetStoreInfo" resultType="HashMap">
+        SELECT
+            storeIdn,
+            storeName,
+            storeIntro,
+            minDelevery,
+            deleveryTime,
+            deleveryTip
+        FROM
+            bm_store
+        WHERE
+            storeIdn = #{storeIdn}
+    </select>
 </mapper>

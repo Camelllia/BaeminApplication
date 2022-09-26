@@ -15,4 +15,8 @@ public class StoreService {
     public List<HashMap> selectStoreList(int categoryNum, int orderType) {
         return storeDAO.selectStoreList(categoryNum, orderType);
     }
+
+    public HashMap selectTargetStoreInfo(int storeIdn) {
+        return storeDAO.selectTargetStoreInfo(storeIdn);
+    }
 }
