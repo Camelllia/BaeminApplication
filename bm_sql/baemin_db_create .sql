@@ -30,6 +30,7 @@ CREATE TABLE baemin_db.bm_store (
  deleveryTime   INT(11),
  deleveryTip    INT(11),
  categoryNum INT(11),
+ imgPath VARCHAR(100) NOT NULL,
   PRIMARY KEY(storeIdn)
 ) ENGINE=MYISAM CHARSET=utf8;
 

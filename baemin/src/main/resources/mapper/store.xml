@@ -9,7 +9,8 @@
             storeName,
             minDelevery,
             deleveryTime,
-            deleveryTip
+            deleveryTip,
+            imgPath
         FROM
             bm_store
         WHERE
