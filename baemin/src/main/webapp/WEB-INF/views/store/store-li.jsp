@@ -7,7 +7,7 @@
 		<%-- <a href="${store_admin }/detail/${storeList.id }"> --%>
 		
 		<div class="img_box">
-			<a href="#"><img src="${storeList.imgPath}" alt="이미지"></a>
+			<a href="/store/detail/${storeList.storeIdn}"><img src="${storeList.imgPath}" alt="이미지"></a>
 		</div>
 
 		<div class="info_box">

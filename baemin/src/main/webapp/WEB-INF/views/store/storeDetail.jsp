@@ -298,7 +298,7 @@
 									 </c:choose>
 								</c:forEach>
 								
-								<span><fm:formatDate value="${reviewList.regiDate }" pattern="yyyy-MM-dd" /> </span>
+								<span><fm:formatDate value="${reviewList.regDate }" pattern="yyyy-MM-dd" /> </span>
 							</div>
 						</div>
 					</div> 
