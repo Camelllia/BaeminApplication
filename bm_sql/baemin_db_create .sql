@@ -46,3 +46,17 @@ CREATE TABLE baemin_db.bm_coupon (
   PRIMARY KEY(couponIdn)
 ) ENGINE=MYISAM CHARSET=utf8;
 
+-- 리뷰 테이블
+CREATE TABLE baemin_db.bm_review (
+ reviewIdn      INT NOT NULL AUTO_INCREMENT,
+ reviewTitle     VARCHAR(100) NOT NULL,
+ reviewContent    VARCHAR(100) NOT NULL,
+ reviewScore    INT(11) NOT NULL,
+ imgPath     VARCHAR(100),
+ storeIdn    INT(11) NOT NULL,
+ userIdn   INT(11) NOT NULL,
+ userNickname    VARCHAR(100) NOT NULL,
+ regDate DATETIME NOT NULL DEFAULT NOW(),
+  PRIMARY KEY(reviewIdn)
+) ENGINE=MYISAM CHARSET=utf8;
+

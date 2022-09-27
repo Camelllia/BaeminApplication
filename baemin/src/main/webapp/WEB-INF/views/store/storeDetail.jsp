@@ -58,7 +58,7 @@
     
 	<!-- 장바구니 -->    
     <aside id="cart">
-        <div class="cart">	
+        <div class="cart">
             <h2>장바구니</h2>
             <i class="far fa-trash-alt deleteAll" ></i>
             
@@ -80,6 +80,7 @@
             <div class="order_btn_box">
             	<div class="total">장바구니가 비었습니다.</div>
 	            <button class="order_btn" disabled>주문하기</button>
+				<h2>리뷰작성</h2>
             </div>
         </div>
         
