@@ -1,10 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fm" uri="http://java.sun.com/jsp/jstl/fmt" %>  
+<%@ taglib prefix="fm" uri="http://java.sun.com/jsp/jstl/fmt" %>
  <div id="wrap">
+	<input type="hidden" value="${storeInfo.storeIdn}"/>
     <nav>
-    	<c:set var="info" value="${store.storeInfo }" />
+    	<c:set var="info" value="${store.storeInfo}" />
         <h1 id="store_name" data-store_name="${storeInfo.storeName }" >${info.storeName }</h1>
         <%-- <div id="is_open" data-is_open="${store.storeInfo.isOpen }"></div> --%>
 		<div class="inf">
@@ -80,7 +81,7 @@
             <div class="order_btn_box">
             	<div class="total">장바구니가 비었습니다.</div>
 	            <button class="order_btn" disabled>주문하기</button>
-				<h2>리뷰작성</h2>
+				<h2 onclick="location.href='/review/form/${storeInfo.storeIdn}'">리뷰작성</h2>
             </div>
         </div>
         

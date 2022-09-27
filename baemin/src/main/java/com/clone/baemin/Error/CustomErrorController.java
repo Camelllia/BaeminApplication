@@ -1,4 +1,4 @@
-package com.clone.baemin.Error;
+package com.clone.baemin.error;
 
 import org.springframework.boot.web.servlet.error.ErrorController;
 import org.springframework.http.HttpStatus;

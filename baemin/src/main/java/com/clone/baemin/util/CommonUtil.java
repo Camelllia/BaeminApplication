@@ -26,4 +26,12 @@ public class CommonUtil {
             return false;
         }
     }
+
+    public static boolean isVaildReviewScore(int reviewScore) {
+        if(reviewScore > 5) {
+            return false;
+        } else {
+            return true;
+        }
+    }
 }

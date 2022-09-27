@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="baemin.review">
+
+    <insert id="insertReview">
+        INSERT INTO user_login_log
+        (
+            reviewTitle,
+            reviewContent,
+            reviewScore,
+            imgPath,
+            storeIdn,
+            userIdn,
+            userNickname
+        )
+        VALUES
+        (
+            #{reviewTitle},
+            #{reviewContent},
+            #{reviewScore},
+            #{imgPath},
+            #{storeIdn},
+            #{userIdn},
+            #{userNickname}
+        )
+    </insert>
+</mapper>
