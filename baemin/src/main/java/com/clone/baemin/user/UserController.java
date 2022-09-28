@@ -1,6 +1,5 @@
 package com.clone.baemin.user;
 
-import com.clone.baemin.coupon.CouponDAO;
 import com.clone.baemin.coupon.CouponService;
 import com.clone.baemin.util.AES256;
 import com.clone.baemin.util.CommonUtil;

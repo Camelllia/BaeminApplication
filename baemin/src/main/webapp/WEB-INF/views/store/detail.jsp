@@ -19,6 +19,7 @@
 <!-- 푸터 -->
 
 <script type="text/javascript" src="/js/store/storeDetail.js"></script>
+
 </script>
 </body>
 </html>
