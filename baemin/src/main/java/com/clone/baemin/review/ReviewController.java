@@ -49,7 +49,7 @@ public class ReviewController {
         System.out.println(storeIdn);
 
         try {
-            
+
         } catch (Exception e) {
             e.printStackTrace();
         }
