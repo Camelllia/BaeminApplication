@@ -35,7 +35,7 @@ public class ReviewController {
         return "review/form";
     }
 
-    @RequestMapping(value = "/review/form", method = RequestMethod.POST)
+    @RequestMapping(value = "/insertReview", method = RequestMethod.POST)
     @ResponseBody
     public String reviewForm(@RequestParam("reviewTitle") String reviewTitle, @RequestParam("reviewContent") String reviewContent,
                              @RequestParam("reviewScore") int reviewScore, @RequestParam(value = "imgFile", required = false) MultipartFile imgFile,

@@ -1,14 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/include/link.jsp" %>
-<script src="/js/util/XSSCheck.js"></script>
 <script type="text/javascript">
     var insertReview = function() {
         var reviewTitle = $("#reviewTitle").val();
         var reviewContent = $("#reviewContent").val();
         var reviewScore = $("#reviewScore").val();
         var storeIdn = $("#storeIdn").val();
-        const imageInput = $("#reviewFile")[0];
+        //const imageInput = $("#reviewFile")[0];
 
         if(storeIdn == '') {
             location.href = "/category";
@@ -34,32 +33,32 @@
         var param = {
             reviewTitle : reviewTitle,
             reviewContent : reviewContent,
-            reviewScore : reviewScore,
+            reviewScore : reviewScore
             //imgFile : imageInput.files
         }
 
         $.ajax({
             type:"POST",
-            url:"/review/form",
-            //processData: false,
-            //contentType: false,
+            url:"/insertReview",
+            processData: false,
+            contentType: false,
             data:param,
             success:function(response) {
-
-                //alert(response);
 			
-                // const result = JSON.parse(response);
-				
-                // if(result.resultCode == "1") {
-                // 	alert("정상적으로 작성되었습니다.");
-                //     location.href = "/";
-				// } else if(result.resultCode == "-10"){
-				// 	alert("리뷰 점수를 올바르게 입력해주세요.");
-                //     return;
-				// } else if(result.resultCode == "-20"){
-				// 	alert("리뷰 제목 및 내용을 입력해주세요.");
-                //     return;
-				// }
+                console.log(response);
+
+                const result = JSON.parse(response);
+                
+                if(result.resultCode == "1") {
+                	alert("정상적으로 작성되었습니다.");
+                    location.href = "/";
+				} else if(result.resultCode == "-10"){
+					alert("리뷰 점수를 올바르게 입력해주세요.");
+                    return;
+				} else if(result.resultCode == "-20"){
+					alert("리뷰 제목 및 내용을 입력해주세요.");
+                    return;
+				}
             },
             error:function (err) {
                 alert("회원가입에 실패하였습니다.");
@@ -129,7 +128,7 @@
             <div class="input_aera">
                 <div class="input-file">
                     <input type="text" readonly="readonly" class="file-name" />
-                    <label for="reviewFile" class="file-label">파일 업로드</label>
+                    <label for="reviewFile" class="file-label">사진 업로드</label>
                     <input type="file" name="" id="reviewFile" class="file-upload" />
                   </div>
             </div>
@@ -139,7 +138,8 @@
                 <span class="msg_box">${errorMsg.phone }</span>
             </div> -->
 
-            <input value="리뷰작성" class="login_btn" onclick="insertReview()"/>
+            <input value="리뷰작성" class="login_btn" onclick="insertReview();"/>
+            <input value="돌아가기" class="login_btn" onclick="location.href='/store/detail/${storeIdn}'"/>
         </form>
     </div>
 

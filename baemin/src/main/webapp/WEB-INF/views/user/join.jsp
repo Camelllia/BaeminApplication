@@ -104,7 +104,7 @@
             </div>
 
             <div class="input_aera">
-                <input type="text" name="phone" value="" class="phone" id="userPhonenum" placeholder="전화번호를 010-1234-5678 형식으로 입력해 주세요" maxlength="20" >
+                <input type="text" name="phone" value="" class="phone" id="userPhonenum" placeholder="전화번호를 '010-1234-5678' 형식으로 입력해 주세요" maxlength="20" >
                 <span class="msg_box">${errorMsg.phone }</span>
             </div>
 

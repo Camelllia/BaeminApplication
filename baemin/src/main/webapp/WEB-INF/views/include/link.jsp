@@ -32,3 +32,6 @@
 
     <!-- 파비콘 -->
     <link href="/img/baemin_favicon.png" rel="shortcut icon" type="image/x-icon">
+
+    <!-- XSS 체크 -->
+    <script src="/js/util/XSSCheck.js"></script>
