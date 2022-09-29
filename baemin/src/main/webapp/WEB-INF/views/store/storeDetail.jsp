@@ -127,6 +127,7 @@
                     </div>
 	             </li>
 	        </c:forEach>
+			<button onclick="location.href='/review/form/${storeInfo.storeIdn}'">리뷰작성</button>
         </ul>
 		<!-- 메뉴 탭 -->	
 	
@@ -198,6 +199,7 @@
 					</div>
 				</div>	
 			</li>
+			
 	    </ul>
 		<!-- 메뉴 탭 -->    
 	

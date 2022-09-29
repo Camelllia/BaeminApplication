@@ -1,5 +1,7 @@
 package com.clone.baemin.util;
 
+import org.apache.commons.lang3.StringUtils;
+
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import java.util.regex.Matcher;
@@ -27,11 +29,11 @@ public class CommonUtil {
         }
     }
 
-    public static boolean isVaildReviewScore(int reviewScore) {
-        if(reviewScore > 5) {
-            return false;
-        } else {
+    public static boolean isVaildExtension (String extension) {
+        if(StringUtils.equals(".png", extension) || StringUtils.equals(".PNG", extension)) {
             return true;
+        } else {
+            return false;
         }
     }
 }

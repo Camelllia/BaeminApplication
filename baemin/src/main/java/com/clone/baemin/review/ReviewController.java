@@ -18,6 +18,8 @@ import javax.servlet.http.HttpSession;
 * 1 : 성공
 * -10 : 리뷰 점수 유효성 에러
 * -20 : 리뷰 제목 or 리뷰 내용 유효성 에러
+* -30 : 매장 정보 미확인 에러
+* -40 : 파일 확장자 유효성 에러
 * */
 
 
@@ -39,20 +41,34 @@ public class ReviewController {
     @RequestMapping(value = "/insertReview", method = RequestMethod.POST)
     @ResponseBody
     public String insertReview(@RequestParam("reviewTitle") String reviewTitle, @RequestParam("reviewContent") String reviewContent,
-                               @RequestParam("reviewScore") String reviewScore, @RequestParam("storeIdn") String storeIdn) {
+                               @RequestParam("reviewScore") String reviewScore, @RequestParam("storeIdn") String storeIdn,
+                               @RequestParam(value = "imgFile", required = false) MultipartFile imgFile, @RequestParam(value = "fileName", required = false) String fileName,
+                               HttpSession session) {
         JSONObject resultObj = new JSONObject();
         resultObj.put("resultCode", 1);
 
-        System.out.println(reviewTitle);
-        System.out.println(reviewContent);
-        System.out.println(reviewScore);
-        System.out.println(storeIdn);
-
-        try {
-
-        } catch (Exception e) {
-            e.printStackTrace();
+        if(Integer.valueOf(reviewScore) > 5 || Integer.valueOf(reviewScore) < 0) {
+            resultObj.put("resultCode", -10);
+            resultObj.toString();
         }
+        if(StringUtils.isBlank(reviewTitle) || StringUtils.isBlank(reviewContent)) {
+            resultObj.put("resultCode", -20);
+            return resultObj.toString();
+        }
+        if(StringUtils.isBlank(storeIdn)) {
+            resultObj.put("resultCode", -30);
+            return resultObj.toString();
+        }
+
+        if(imgFile != null) {
+            String extension = fileName.substring(fileName.lastIndexOf("."), fileName.length());
+            if(!CommonUtil.isVaildExtension(extension)) {
+                resultObj.put("resultCode", -40);
+                return resultObj.toString();
+            }
+        }
+
+        //reviewService.insertReview(reviewTitle, reviewContent, Integer.valueOf(reviewScore), "", Integer.valueOf(storeIdn), SessionUtil.getLoginMemberIdn(session), SessionUtil.getLoginMemberNickname(session));
 
         return resultObj.toString();
     }
