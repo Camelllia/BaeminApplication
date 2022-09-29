@@ -210,12 +210,13 @@
 			<li>
 				<div class="score_info">
 					<div>
-						<div class="score">${info.score }</div>
+						<!-- 리뷰 별점 평균(자연수) -->
+						<div class="score">${scoreMap.averageScore}</div>
 							   
 						<div>
 							<c:forEach begin="0" end="4" var="i">
 								 <c:choose>
-									   <c:when test="${info.score > i }">
+									   <c:when test="${scoreMap.averageScore > i }">
 										   <i class="far fas fa-star"></i>
 									   </c:when>
 									   <c:otherwise>
@@ -232,66 +233,64 @@
 							
 							<div class="graph_box">
 								<div class="graph_background"></div>
-								<div class="graph score5" data-score5="${info.score5 }"></div>
+								<div class="graph score5" data-score5="${scoreMap.fiveScore}"></div>
 							</div>
-							
-							<div class="review_count">${info.score5 }</div>
+							<!-- 5점짜리 평균 -->
+							<div class="review_count">${scoreMap.fiveScore}</div>
 						</div>
 						
 						<div> 
 							<div>4점</div>
 							<div class="graph_box">
 								<div class="graph_background"></div>
-								<div class="graph score4" data-score4="${info.score4 }"></div>
+								<div class="graph score4" data-score4="${scoreMap.fourScore}"></div>
 							</div>
-							<div class="review_count">${info.score4 }</div>
+							<div class="review_count">${scoreMap.fourScore}</div>
 						</div>
 							
 						<div> 
 							<div>3점</div>
 							<div class="graph_box">
 								<div class="graph_background"></div>
-								<div class="graph score3" data-score3="${info.score3 }"></div>
+								<div class="graph score3" data-score3="${scoreMap.threeScore}"></div>
 							</div>
-							<div class="review_count">${info.score3 }</div>
+							<div class="review_count">${scoreMap.threeScore}</div>
 						</div>
 						
 						<div> 
 							<div>2점</div>
 							<div class="graph_box">
 								<div class="graph_background"></div>
-								<div class="graph score2" data-score2="${info.score2 }"></div>
+								<div class="graph score2" data-score2="${scoreMap.twoScore}"></div>
 							</div>
-							<div class="review_count">${info.score2 }</div>
+							<div class="review_count">${scoreMap.twoScore}</div>
 						</div>
 						
 						<div> 
 							<div>1점</div>
 							<div class="graph_box">
 								<div class="graph_background"></div>
-								<div class="graph score1" data-score1="${info.score1 }"></div>
+								<div class="graph score1" data-score1="${scoreMap.oneScore} }"></div>
 							</div>
-							<div class="review_count">${info.score1 }</div>
+							<div class="review_count">${scoreMap.oneScore}</div>
 						</div>
 					</div>
 				
 				</div>
 			</li>
 			 
-			 
-			 
-			<c:forEach items="${store.reviewList }" var="reviewList">
+			<c:forEach items="${reviewLists}" var="reviewList">
 			<li>
 				<div class="client">
 					
 					<div class="review_header">
 						<div>
-							<div class="nickname">${reviewList.nickname }</div>
+							<div class="nickname">${reviewList.reviewTitle}</div>
 							<div>
 								
 								<c:forEach begin="0" end="4" var="i">
 									<c:choose>
-										   <c:when test="${Math.round(reviewList.score) > i }">
+										   <c:when test="${reviewList.reviewScore > i }">
 											   <i class="far fas fa-star"></i>
 										   </c:when>
 										   <c:otherwise>
@@ -300,14 +299,14 @@
 									 </c:choose>
 								</c:forEach>
 								
-								<span><fm:formatDate value="${reviewList.regDate }" pattern="yyyy-MM-dd" /> </span>
+								<span>${reviewList.regDate }</span>
 							</div>
 						</div>
 					</div> 
 						
 					<div>
-						<c:if test="${!empty reviewList.reviewImg }">
-							<div><img src="${reviewList.reviewImg }" alt="이미지" class="review_img"></div>
+						<c:if test="${!empty reviewList.imgPath }">
+							<div><img src="/upload/${reviewList.imgPath }" alt="이미지" class="review_img"></div>
 						</c:if>
 						<div>${reviewList.reviewContent } </div>
 					</div>

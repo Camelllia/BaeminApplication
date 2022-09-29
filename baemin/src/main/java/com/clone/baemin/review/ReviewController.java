@@ -10,7 +10,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.io.File;
+import java.util.UUID;
 
 /*
 *
@@ -43,7 +47,7 @@ public class ReviewController {
     public String insertReview(@RequestParam("reviewTitle") String reviewTitle, @RequestParam("reviewContent") String reviewContent,
                                @RequestParam("reviewScore") String reviewScore, @RequestParam("storeIdn") String storeIdn,
                                @RequestParam(value = "imgFile", required = false) MultipartFile imgFile, @RequestParam(value = "fileName", required = false) String fileName,
-                               HttpSession session) {
+                               HttpServletRequest request, HttpSession session) {
         JSONObject resultObj = new JSONObject();
         resultObj.put("resultCode", 1);
 
@@ -66,10 +70,22 @@ public class ReviewController {
                 resultObj.put("resultCode", -40);
                 return resultObj.toString();
             }
+
+            UUID uuid = UUID.randomUUID();
+            String newFileName = uuid.toString() + extension;
+            ServletContext servletContext = request.getSession().getServletContext();
+            String uploadPath = servletContext.getRealPath("/upload/") + newFileName;
+
+            try {
+                imgFile.transferTo(new File(uploadPath));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            reviewService.insertReview(reviewTitle, reviewContent, Integer.valueOf(reviewScore), newFileName, Integer.valueOf(storeIdn), SessionUtil.getLoginMemberIdn(session), SessionUtil.getLoginMemberNickname(session));
+        } else {
+            reviewService.insertReview(reviewTitle, reviewContent, Integer.valueOf(reviewScore), "", Integer.valueOf(storeIdn), SessionUtil.getLoginMemberIdn(session), SessionUtil.getLoginMemberNickname(session));
         }
-
-        //reviewService.insertReview(reviewTitle, reviewContent, Integer.valueOf(reviewScore), "", Integer.valueOf(storeIdn), SessionUtil.getLoginMemberIdn(session), SessionUtil.getLoginMemberNickname(session));
-
         return resultObj.toString();
     }
 }

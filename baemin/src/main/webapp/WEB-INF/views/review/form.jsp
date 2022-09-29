@@ -45,9 +45,11 @@
         formData.append("reviewContent", reviewContent);
         formData.append("reviewScore", reviewScore);
         formData.append("storeIdn", storeIdn);
-        formData.append("imgFile", imgFile);
-        formData.append("fileName", imgFile.name);
-
+        if(imgFile != undefined) {
+            formData.append("imgFile", imgFile);
+            formData.append("fileName", imgFile.name);
+        }
+        
         $.ajax({
             type:"POST",
             url:"/insertReview",
@@ -58,6 +60,10 @@
 
                 const result = JSON.parse(response);
 
+                if(result.resultCode == "1") {
+                    alert("정상적으로 등록되었습니다.");
+                    location.href = "/store/detail/"+storeIdn;
+                }
                 if(result.resultCode == "-10") {
                     alert("리뷰 점수는 5점 이하로 입력해주세요");
                     return;

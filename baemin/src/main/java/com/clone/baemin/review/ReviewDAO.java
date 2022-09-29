@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
+import java.util.List;
 
 @Component
 public class ReviewDAO {
@@ -26,5 +27,14 @@ public class ReviewDAO {
         param.put("userNickname", userNickname);
 
         return sqlSession.insert(sqlId, param);
+    }
+
+    public List<HashMap> selectReviewList(int storeIdn) {
+        String sqlId= "selectReviewList";
+
+        HashMap<String, Integer> param = new HashMap<>();
+        param.put("storeIdn", storeIdn);
+
+        return sqlSession.selectList(sqlId, param);
     }
 }

@@ -5,7 +5,7 @@
 <mapper namespace="baemin.review">
 
     <insert id="insertReview">
-        INSERT INTO user_login_log
+        INSERT INTO bm_review
         (
             reviewTitle,
             reviewContent,
@@ -26,4 +26,20 @@
             #{userNickname}
         )
     </insert>
+
+    <select id="selectReviewList" resultType="HashMap">
+        SELECT
+            reviewIdn,
+            reviewTitle,
+            reviewContent,
+            reviewScore,
+            imgPath,
+            DATE_FORMAT(regDate, '%Y-%m-%d') AS regDate
+        FROM
+            bm_review
+        WHERE
+            storeIdn = #{storeIdn}
+        ORDER BY
+            regDate desc
+    </select>
 </mapper>
