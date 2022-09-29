@@ -31,12 +31,11 @@
            		<span><i class="fas fa-heart" ></i> 찜 </span>
                    	
                     
-                <span class="likes_count" data-count=0 >0</span>
+                <span class="likes_count" data-count=0 >7</span>
                   
 			</div>
                	<div>
-               		<span class="store_review_count" data-review_count="0"> 리뷰 0</span>
-               		<span>사장님 댓글 0</span>
+               		<span>리뷰 0</span>
             	</div>
                 
                	<div id="min_delevery" data-min_delevery="${storeInfo.minDelevery}">최소주문금액 <fm:formatNumber value="${storeInfo.minDelevery}" pattern="###,###" />원</div>
@@ -58,9 +57,9 @@
     
     
 	<!-- 장바구니 -->    
-    <aside id="cart">
+    <!-- <aside id="cart">
         <div class="cart">
-            <h2>장바구니</h2>
+            <h2>옵션</h2>
             <i class="far fa-trash-alt deleteAll" ></i>
             
             <div class="cart_list">
@@ -80,17 +79,17 @@
             
             <div class="order_btn_box">
             	<div class="total">장바구니가 비었습니다.</div>
-	            <button class="order_btn" disabled>주문하기</button>
+	            <button class="order_btn" disabled>리뷰작성</button>
 				<h2 onclick="location.href='/review/form/${storeInfo.storeIdn}'">리뷰작성</h2>
             </div>
         </div>
         
     </aside>
-    <div class="alarm">장바구니에 담았습니다</div>
+    <div class="alarm">장바구니에 담았습니다</div> -->
 	<!-- 장바구니 -->    
 	   
 
-	<main>
+	<main style=" margin-left: auto; margin-right: auto;">
 		<div class="offset"></div>
         <ul class="tab ">
             <li class="select">메뉴</li>
@@ -130,8 +129,7 @@
 	        </c:forEach>
         </ul>
 		<!-- 메뉴 탭 -->	
-		
-		
+	
 		<!-- 정보 탭 -->
 	    <ul class="info" >
 			<li>
@@ -171,12 +169,12 @@
 					</div>
 					
 					<div class="info_detail">
-						<div>${info.storeName }</div>
+						<div>${storeInfo.storeName}</div>
 						<div>
-							<span><fm:formatNumber value="${info.openingTime }" minIntegerDigits="2" />시 ~</span>
-							<span><fm:formatNumber value="${info.closingTime }" minIntegerDigits="2" />시 </span>
+							<span><fm:formatNumber value="${info.openingTime }" minIntegerDigits="2" />3시 ~</span>
+							<span><fm:formatNumber value="${info.closingTime }" minIntegerDigits="2" />15시 </span>
 						</div>
-						<div>${info.storePhone }</div>
+						<div>${storeInfo.storePhonenum}</div>
 						
 					</div>
 				</div>
@@ -186,7 +184,7 @@
 				<div>
 					<h2>가계 통계</h2>
 					<div class="info_detail_title">
-						<div>최근 주문수</div>
+						<div>전체 주문수</div>
 						<div>전체 리뷰 수</div>
 						<div>찜</div>
 					</div>
@@ -342,14 +340,6 @@
 		</ul>
 	</main>
 </div>
-
-	
-	<input type="hidden" value="${info.id }" id="store_id">
-	<input type="hidden" value="${info.category }" id="store_category">  
-	<input type="hidden" value="${info.openingTime }" id="store_opening_time"> 
-	<input type="hidden" value="${info.closingTime }" id="store_closing_time"> 
-	
-	<input type="hidden" value="${BMaddress.address2 }" id="delevery_address">
 	
 	
 	

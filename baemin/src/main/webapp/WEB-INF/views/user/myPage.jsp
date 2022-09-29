@@ -13,14 +13,8 @@
         location.href = "/logout";
     })
 
-    function loginCheck(){
-        const nickname = $(".nickname").data("nickname");
-        if(!nickname) {
-            swal("로그인 후 이용 가능합니다");
-            return false;
-        }
-        return true;
-
+    var ready = function() {
+        alert("준비중입니다.");
     }
 
     var logout = function() {
@@ -76,7 +70,7 @@
 
 
                 <div>
-                    <a class="updating" href="/myPage/gift" onclick="return false;">
+                    <a class="updating" href="#" onclick="ready()">
 	                 		<span class="img_box">
 	                 			<img src="/img/icon33.png" alt="선물함">
 	                 		</span>
@@ -86,7 +80,7 @@
 
 
                 <div>
-                    <a href="/likes/store">
+                    <a href="#" onclick="ready()">
 							<span class="img_box">
 								<img src="/img/icon44.png" alt="찜한가게">
 							</span>
