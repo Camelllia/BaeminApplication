@@ -60,15 +60,6 @@ public class UserController {
         return "user/likeList";
     }
 
-    @RequestMapping(value = "/couponList/orderType={orderType}&stateCode={stateCode}", method = {RequestMethod.GET, RequestMethod.POST})
-    public String couponList(@PathVariable("orderType") int orderType , @PathVariable("stateCode") int stateCode,
-                             Model model, HttpSession session) {
-        model.addAttribute("couponLists", couponService.selectCouponList(orderType, stateCode, SessionUtil.getLoginMemberIdn(session)));
-        model.addAttribute("orderType", orderType);
-        model.addAttribute("stateCode", stateCode);
-        return "user/couponList";
-    }
-
     @RequestMapping(value = "/logout")
     public String logout(HttpSession session) {
         SessionUtil.logout(session);

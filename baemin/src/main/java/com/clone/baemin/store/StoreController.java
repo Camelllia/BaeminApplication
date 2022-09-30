@@ -38,7 +38,7 @@ public class StoreController {
         }
         model.addAttribute("storeInfo", storeService.selectTargetStoreInfo(storeIdn));
 
-        List<HashMap> reviewLists = reviewService.selectReviewList(storeIdn);
+        List<HashMap> reviewLists = reviewService.selectStoreReviewList(storeIdn);
 
         int totalScore = 0;
         int oneScore = 0;

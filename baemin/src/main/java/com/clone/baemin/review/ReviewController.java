@@ -24,6 +24,7 @@ import java.util.UUID;
 * -20 : 리뷰 제목 or 리뷰 내용 유효성 에러
 * -30 : 매장 정보 미확인 에러
 * -40 : 파일 확장자 유효성 에러
+* -50 : 리뷰 정보 파라미터 유효성 에러
 * */
 
 
@@ -43,7 +44,8 @@ public class ReviewController {
     }
 
     @RequestMapping(value = "/reviewList", method = {RequestMethod.GET, RequestMethod.POST})
-    public String reviewList() {
+    public String reviewList(Model model, HttpSession session) {
+        model.addAttribute("reviewLists", reviewService.selectUserReviewList(SessionUtil.getLoginMemberIdn(session)));
         return "review/reviewList";
     }
 
@@ -91,6 +93,22 @@ public class ReviewController {
         } else {
             reviewService.insertReview(reviewTitle, reviewContent, Integer.valueOf(reviewScore), "", Integer.valueOf(storeIdn), SessionUtil.getLoginMemberIdn(session), SessionUtil.getLoginMemberNickname(session));
         }
+        return resultObj.toString();
+    }
+
+    @RequestMapping(value = "/deleteReview", method = RequestMethod.POST)
+    @ResponseBody
+    public String deleteTargetReview(@RequestParam("reviewIdn") int reviewIdn) {
+        JSONObject resultObj = new JSONObject();
+        resultObj.put("resultCode", 1);
+
+        if(Integer.valueOf(reviewIdn) == null) {
+            resultObj.put("resultCode", -50);
+            resultObj.toString();
+        }
+
+        reviewService.deleteTargetReview(reviewIdn);
+
         return resultObj.toString();
     }
 }

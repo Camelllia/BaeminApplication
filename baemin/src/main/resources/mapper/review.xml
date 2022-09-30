@@ -42,4 +42,27 @@
         ORDER BY
             regDate desc
     </select>
+
+    <select id="selectUserReviewList" resultType="HashMap">
+        SELECT
+            A.reviewIdn,
+            A.reviewTitle,
+            A.reviewContent,
+            A.reviewScore,
+            DATE_FORMAT(A.regDate, '%Y-%m-%d') AS regDate,
+            (SELECT storeName FROM bm_store WHERE storeIdn = A.storeIdn) AS storeName
+        FROM
+            bm_review AS A
+        WHERE
+            userIdn = #{userIdn}
+        ORDER BY
+            A.regDate DESC
+    </select>
+
+    <delete id="deleteTargetReview">
+        DELETE FROM
+            bm_review
+        WHERE
+            reviewIdn = #{reviewIdn}
+    </delete>
 </mapper>

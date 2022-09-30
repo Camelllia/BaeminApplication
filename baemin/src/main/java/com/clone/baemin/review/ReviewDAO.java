@@ -4,6 +4,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.nio.channels.Pipe;
 import java.util.HashMap;
 import java.util.List;
 
@@ -29,12 +30,30 @@ public class ReviewDAO {
         return sqlSession.insert(sqlId, param);
     }
 
-    public List<HashMap> selectReviewList(int storeIdn) {
+    public List<HashMap> selectStoreReviewList(int storeIdn) {
         String sqlId= "selectStoreReviewList";
 
         HashMap<String, Integer> param = new HashMap<>();
         param.put("storeIdn", storeIdn);
 
         return sqlSession.selectList(sqlId, param);
+    }
+
+    public List<HashMap> selectUserReviewList(int userIdn) {
+        String sqlId = "selectUserReviewList";
+
+        HashMap<String, Integer> param = new HashMap<>();
+        param.put("userIdn", userIdn);
+
+        return sqlSession.selectList(sqlId, param);
+    }
+
+    public int deleteTargetReview(int reviewIdn) {
+        String sqlId = "deleteTargetReview";
+
+        HashMap<String, Integer> param = new HashMap<>();
+        param.put("reviewIdn", reviewIdn);
+
+        return sqlSession.delete(sqlId, param);
     }
 }

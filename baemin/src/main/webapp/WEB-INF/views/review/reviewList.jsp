@@ -12,8 +12,43 @@
             $("#ot_2").css('background', 'rgba(163, 159, 159, 0.425)');
         }
     }
+
+    var deleteReview = function(reviewIdn) {
+        
+        if(reviewIdn == "") {
+            alert("미확인된 리뷰입니다.");
+            location.href = location.href;
+        }
+
+        var param = {
+            reviewIdn : reviewIdn
+        } 
+
+        $.ajax({
+            type:"POST",
+            url:"/deleteReview",
+            data:param,
+            success:function(response) {
+			
+                const result = JSON.parse(response);
+				
+                if(result.resultCode == "1") {
+                	alert("삭제되었습니다.");
+                    location.href = location.href;
+				} else if(result.resultCode == "-50"){
+					alert("미확인된 리뷰입니다.");
+                    location.href = location.href;
+				}
+            },
+            error:function (err) {
+                alert("리뷰 삭제에 실패하였습니다.");
+            }
+        })
+    }
 </script>
+<link rel="stylesheet" href="/css/modal.css">
 <link rel="stylesheet" href="/css/admin/admin.css" >
+<link rel="stylesheet" href="/css/store/detail.css">
 <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
 <%@ include file="/WEB-INF/views/include/header.jsp" %>
 <style>
@@ -32,7 +67,7 @@
     <section>
         <div class="today">
   				<span>
-  					<span>리뷰목록</span>
+  					<span>리뷰 관리</span>
   					<span id="today"></span>
   				</span>
 
@@ -74,21 +109,34 @@
             <table>
                 <thead>
                 <tr>
-                    <th>닉네임</th>
-                    <th>이메일</th>
-                    <th>전화번호</th>
-                    <th>포인트</th>
-                    <th>가입일</th>
+                    <th>제목</th>
+                    <th>내용</th>
+                    <th>별점</th>
+                    <th>가게명</th>
+                    <th>등록일</th>
+                    <th>옵션</th>
                 </tr>
                 </thead>
                 <tbody>
-                <c:forEach var="memberList" items="${memberLists}" varStatus="status">
+                <c:forEach var="reviewList" items="${reviewLists}" varStatus="status">
                     <tr>
-                        <td>${memberList.userNickname}</td>
-                        <td>${memberList.userEmail}</td>
-                        <td>${memberList.userPhonenum}</td>
-                        <td>${memberList.userPoint}P</td>
-                        <td>${memberList.regDate}</td>
+                        <td>${reviewList.reviewTitle}</td>
+                        <td>${reviewList.reviewContent}</td>
+                        <td>
+                            <c:forEach begin="0" end="4" var="i">
+									<c:choose>
+										<c:when test="${reviewList.reviewScore > i }">
+											<i class="far fas fa-star"></i>
+										</c:when>
+									<c:otherwise>
+										<i class="far fa-star"></i>
+									</c:otherwise>
+								</c:choose>
+							</c:forEach>
+                        </td>
+                        <td>${reviewList.storeName}</td>
+                        <td>${reviewList.regDate}</td>
+                        <td><button class="sort_name reverse" onclick="deleteReview(${reviewList.reviewIdn});">삭제</button></td>
                     </tr>
                 </c:forEach>
                 </tbody>

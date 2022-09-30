@@ -17,7 +17,15 @@ public class ReviewService {
         return reviewDAO.insertReview(reviewTitle, reviewContent, reviewScore, imgPath, storeIdn, userIdn, userNickname);
     }
 
-    public List<HashMap> selectReviewList(int storeIdn) {
-        return reviewDAO.selectReviewList(storeIdn);
+    public List<HashMap> selectStoreReviewList(int storeIdn) {
+        return reviewDAO.selectStoreReviewList(storeIdn);
+    }
+
+    public List<HashMap> selectUserReviewList(int userIdn) {
+        return reviewDAO.selectUserReviewList(userIdn);
+    }
+
+    public int deleteTargetReview(int reviewIdn) {
+        return reviewDAO.deleteTargetReview(reviewIdn);
     }
 }
