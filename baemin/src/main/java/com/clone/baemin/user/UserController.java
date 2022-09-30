@@ -55,11 +55,6 @@ public class UserController {
         return "user/orderList";
     }
 
-    @RequestMapping(value = "/reviewList", method = {RequestMethod.GET, RequestMethod.POST})
-    public String reviewList() {
-        return "user/reviewList";
-    }
-
     @RequestMapping(value = "/likeList", method = {RequestMethod.GET, RequestMethod.POST})
     public String likeList() {
         return "user/likeList";

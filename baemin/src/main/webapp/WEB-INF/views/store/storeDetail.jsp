@@ -35,7 +35,7 @@
                   
 			</div>
                	<div>
-               		<span>리뷰 0</span>
+               		<span>리뷰 ${storeInfo.reviewCount}</span>
             	</div>
                 
                	<div id="min_delevery" data-min_delevery="${storeInfo.minDelevery}">최소주문금액 <fm:formatNumber value="${storeInfo.minDelevery}" pattern="###,###" />원</div>

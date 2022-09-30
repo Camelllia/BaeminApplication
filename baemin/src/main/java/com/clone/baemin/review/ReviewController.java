@@ -42,6 +42,11 @@ public class ReviewController {
         return "review/form";
     }
 
+    @RequestMapping(value = "/reviewList", method = {RequestMethod.GET, RequestMethod.POST})
+    public String reviewList() {
+        return "review/reviewList";
+    }
+
     @RequestMapping(value = "/insertReview", method = RequestMethod.POST)
     @ResponseBody
     public String insertReview(@RequestParam("reviewTitle") String reviewTitle, @RequestParam("reviewContent") String reviewContent,

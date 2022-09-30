@@ -38,7 +38,8 @@
             storeIntro,
             minDelevery,
             deleveryTime,
-            deleveryTip
+            deleveryTip,
+            (SELECT COUNT(*) FROM bm_review WHERE storeIdn = #{storeIdn}) AS reviewCount
         FROM
             bm_store
         WHERE

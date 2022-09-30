@@ -27,7 +27,7 @@
         )
     </insert>
 
-    <select id="selectReviewList" resultType="HashMap">
+    <select id="selectStoreReviewList" resultType="HashMap">
         SELECT
             reviewIdn,
             reviewTitle,

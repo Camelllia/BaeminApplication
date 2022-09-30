@@ -30,7 +30,7 @@ public class ReviewDAO {
     }
 
     public List<HashMap> selectReviewList(int storeIdn) {
-        String sqlId= "selectReviewList";
+        String sqlId= "selectStoreReviewList";
 
         HashMap<String, Integer> param = new HashMap<>();
         param.put("storeIdn", storeIdn);
