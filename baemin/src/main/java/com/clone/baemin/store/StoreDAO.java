@@ -29,4 +29,12 @@ public class StoreDAO {
 
         return sqlSession.selectOne(sqlId, param);
     }
+
+    public List<HashMap> selectStoreMenuList(int storeIdn) {
+        String sqlId = "selectStoreMenuList";
+        HashMap<String, Integer> param = new HashMap<>();
+        param.put("storeIdn", storeIdn);
+
+        return sqlSession.selectList(sqlId, param);
+    }
 }

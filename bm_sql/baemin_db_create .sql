@@ -60,3 +60,14 @@ CREATE TABLE baemin_db.bm_review (
   PRIMARY KEY(reviewIdn)
 ) ENGINE=MYISAM CHARSET=utf8;
 
+-- 메뉴 테이블
+CREATE TABLE baemin_db.bm_menu (
+ menuIdn      INT NOT NULL AUTO_INCREMENT,
+ menuName     VARCHAR(100) NOT NULL,
+ menuPrice INT(11) NOT NULL,
+ imgPath     VARCHAR(100),
+ storeIdn    INT(11) NOT NULL,
+ regDate DATETIME NOT NULL DEFAULT NOW(),
+  PRIMARY KEY(menuIdn)
+) ENGINE=MYISAM CHARSET=utf8;
+

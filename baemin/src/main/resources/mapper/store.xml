@@ -34,6 +34,7 @@
         SELECT
             storeIdn,
             storeName,
+            storeAddress,
             storePhonenum,
             storeIntro,
             minDelevery,
@@ -42,6 +43,19 @@
             (SELECT COUNT(*) FROM bm_review WHERE storeIdn = #{storeIdn}) AS reviewCount
         FROM
             bm_store
+        WHERE
+            storeIdn = #{storeIdn}
+    </select>
+
+    <select id="selectStoreMenuList" resultType="HashMap">
+        SELECT
+            menuIdn,
+            menuName,
+            menuPrice,
+            imgPath,
+            regDate
+        FROM
+            bm_menu
         WHERE
             storeIdn = #{storeIdn}
     </select>

@@ -37,6 +37,7 @@ public class StoreController {
             return "user/login";
         }
         model.addAttribute("storeInfo", storeService.selectTargetStoreInfo(storeIdn));
+        model.addAttribute("menuLists", storeService.selectStoreMenuList(storeIdn));
 
         List<HashMap> reviewLists = reviewService.selectStoreReviewList(storeIdn);
 

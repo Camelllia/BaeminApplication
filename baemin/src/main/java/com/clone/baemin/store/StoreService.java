@@ -19,4 +19,8 @@ public class StoreService {
     public HashMap selectTargetStoreInfo(int storeIdn) {
         return storeDAO.selectTargetStoreInfo(storeIdn);
     }
+
+    public List<HashMap> selectStoreMenuList(int storeIdn) {
+        return storeDAO.selectStoreMenuList(storeIdn);
+    }
 }
