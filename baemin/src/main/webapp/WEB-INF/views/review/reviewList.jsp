@@ -97,8 +97,8 @@
 
     <section class="graph_section" onselectstart="return false;" >
         <div class="box">
-            <button class="year_btn"  id="ot_1" onclick="location.href='/memberList/orderType=1'">이름순</button>
-            <button class="month_btn" id="ot_2" onclick="location.href='/memberList/orderType=2'">가입일순</button>
+            <!-- <button class="year_btn"  id="ot_1" onclick="location.href='/memberList/orderType=1'">이름순</button>
+            <button class="month_btn" id="ot_2" onclick="location.href='/memberList/orderType=2'">가입일순</button> -->
             <!-- <button class="week_btn">이번 주 매출</button>
             <input type="month"name="date" id="date">
             <button class="other_month_search">검색</button> -->
@@ -161,10 +161,10 @@
         <div>
             <h3 class="sales_today_detail_title">
                 <span id="other_detail_date"></span>
-                <span>
-						<button class="sort_name reverse">이름순</button>
-						<button class="sort_price reverse">가격순</button>
-					</span>
+                <!-- <span>
+					<button class="sort_name reverse">이름순</button>
+					<button class="sort_price reverse">가격순</button>
+				</span> -->
             </h3>
             <div class="sales_today_detail">
                 <div>메뉴</div>
