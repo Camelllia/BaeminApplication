@@ -45,6 +45,7 @@
 
     <select id="selectUserReviewList" resultType="HashMap">
         SELECT
+            FORMAT(@ROWNUM := @ROWNUM+1, 0) AS rowNum,
             A.reviewIdn,
             A.reviewTitle,
             A.reviewContent,
@@ -52,7 +53,8 @@
             DATE_FORMAT(A.regDate, '%Y-%m-%d') AS regDate,
             (SELECT storeName FROM bm_store WHERE storeIdn = A.storeIdn) AS storeName
         FROM
-            bm_review AS A
+            bm_review AS A,
+            (SELECT @ROWNUM := 0) B
         WHERE
             userIdn = #{userIdn}
         ORDER BY

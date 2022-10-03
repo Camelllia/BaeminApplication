@@ -109,6 +109,7 @@
             <table>
                 <thead>
                 <tr>
+                    <th>NO</th>
                     <th>제목</th>
                     <th>내용</th>
                     <th>별점</th>
@@ -120,6 +121,7 @@
                 <tbody>
                 <c:forEach var="reviewList" items="${reviewLists}" varStatus="status">
                     <tr>
+                        <td>${reviewList.rowNum}</td>
                         <td>${reviewList.reviewTitle}</td>
                         <td>${reviewList.reviewContent}</td>
                         <td>

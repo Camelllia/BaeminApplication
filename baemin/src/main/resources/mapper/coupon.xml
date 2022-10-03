@@ -5,13 +5,15 @@
 <mapper namespace="baemin.coupon">
     <select id="selectCouponList" resultType="HashMap">
         SELECT
+            FORMAT(@ROWNUM := @ROWNUM+1, 0) AS rowNum,
             couponName,
             discountAmount,
             DATE_FORMAT(regDate, '%Y-%m-%d') AS regDate,
             DATE_FORMAT(endDate, '%Y-%m-%d') AS endDate,
             useYn
         FROM
-            bm_coupon
+            bm_coupon,
+        (SELECT @ROWNUM := 0) A
         WHERE
             userIdn = #{userIdn}
         <if test="stateCode == 1">

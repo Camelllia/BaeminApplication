@@ -74,6 +74,7 @@
             <table>
                 <thead>
                 <tr>
+                    <th>NO</th>
                     <th>쿠폰명</th>
                     <th>할인금액</th>
                     <th>지급일</th>
@@ -84,6 +85,7 @@
                 <tbody>
                 <c:forEach var="couponList" items="${couponLists}" varStatus="status">
                     <tr>
+                        <td>${couponList.rowNum}</td>
                         <td>${couponList.couponName}</td>
                         <td>${couponList.discountAmount}원</td>
                         <td>${couponList.regDate}</td>
