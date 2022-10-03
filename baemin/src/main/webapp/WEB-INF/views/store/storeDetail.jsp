@@ -114,8 +114,9 @@
 	                <div class="menu_box">
 	                    <div>
 							<h2>${menuList.menuName } </h2>
-   		                    <fm:formatNumber value="${menuList.menuPrice}" pattern="###,###" />원
+   		                    <fm:formatNumber value="${menuList.menuPrice}" pattern="###,###" />원 
 		                </div>
+		                
                     	<div>
 							<img src="/upload/${menuList.imgPath }" alt="이미지">
 							<button>장바구니에 담기</button> 
@@ -229,9 +230,16 @@
 						<div> 
 							<div>5점</div>
 							
-							<div class="graph_box">
+							<div class="">
 								<div class="graph_background"></div>
-								<div class="graph score5" data-score5="${scoreMap.fiveScore}"></div>
+								<!-- <div class="graph score5" data-score5="${scoreMap.fiveScore}"></div> -->
+								<c:forEach begin="0" end="4" var="i">
+									<c:choose>
+										   <c:when test="${5 > i }">
+											   <i class="far fas fa-star"></i>
+										   </c:when>
+									 </c:choose>
+								</c:forEach>
 							</div>
 							<!-- 5점짜리 평균 -->
 							<div class="review_count">${scoreMap.fiveScore}</div>
@@ -239,36 +247,64 @@
 						
 						<div> 
 							<div>4점</div>
-							<div class="graph_box">
+							<div class="">
 								<div class="graph_background"></div>
-								<div class="graph score4" data-score4="${scoreMap.fourScore}"></div>
+								<!-- <div class="graph score4" data-score4="${scoreMap.fourScore}"></div> -->
+								<c:forEach begin="0" end="4" var="i">
+									<c:choose>
+										   <c:when test="${4 > i }">
+											   <i class="far fas fa-star"></i>
+										   </c:when>
+									 </c:choose>
+								</c:forEach>
 							</div>
 							<div class="review_count">${scoreMap.fourScore}</div>
 						</div>
 							
 						<div> 
 							<div>3점</div>
-							<div class="graph_box">
+							<div class="">
 								<div class="graph_background"></div>
-								<div class="graph score3" data-score3="${scoreMap.threeScore}"></div>
+								<!-- <div class="graph score3" data-score3="${scoreMap.threeScore}"></div> -->
+								<c:forEach begin="0" end="4" var="i">
+									<c:choose>
+										   <c:when test="${3 > i }">
+											   <i class="far fas fa-star"></i>
+										   </c:when>
+									 </c:choose>
+								</c:forEach>
 							</div>
 							<div class="review_count">${scoreMap.threeScore}</div>
 						</div>
 						
 						<div> 
 							<div>2점</div>
-							<div class="graph_box">
+							<div class="">
 								<div class="graph_background"></div>
-								<div class="graph score2" data-score2="${scoreMap.twoScore}"></div>
+								<!-- <div class="graph score2" data-score2="${scoreMap.twoScore}"></div> -->
+								<c:forEach begin="0" end="4" var="i">
+									<c:choose>
+										   <c:when test="${2 > i }">
+											   <i class="far fas fa-star"></i>
+										   </c:when>
+									 </c:choose>
+								</c:forEach>
 							</div>
 							<div class="review_count">${scoreMap.twoScore}</div>
 						</div>
 						
 						<div> 
 							<div>1점</div>
-							<div class="graph_box">
+							<div class="">
 								<div class="graph_background"></div>
-								<div class="graph score1" data-score1="${scoreMap.oneScore} }"></div>
+								<!-- <div class="graph score1" data-score1="${scoreMap.oneScore} }"></div> -->
+								<c:forEach begin="0" end="4" var="i">
+									<c:choose>
+										   <c:when test="${1 > i }">
+											   <i class="far fas fa-star"></i>
+										   </c:when>
+									 </c:choose>
+								</c:forEach>
 							</div>
 							<div class="review_count">${scoreMap.oneScore}</div>
 						</div>

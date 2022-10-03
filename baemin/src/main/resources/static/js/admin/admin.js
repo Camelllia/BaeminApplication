@@ -5,7 +5,7 @@ $(document).ready(function(){
 
 
     const dateInput = document.getElementById("date");
-    //dateInput.valueAsDate = new Date();
+    dateInput.valueAsDate = new Date();
 
 // getDetail이 true일때 상세보기 가능
     let getDetail = true;
