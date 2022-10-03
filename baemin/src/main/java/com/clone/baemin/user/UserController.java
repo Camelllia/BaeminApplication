@@ -50,11 +50,6 @@ public class UserController {
         return "user/join";
     }
 
-    @RequestMapping(value = "/orderList", method = {RequestMethod.GET, RequestMethod.POST})
-    public String orderList() {
-        return "user/orderList";
-    }
-
     @RequestMapping(value = "/likeList", method = {RequestMethod.GET, RequestMethod.POST})
     public String likeList() {
         return "user/likeList";

@@ -71,3 +71,16 @@ CREATE TABLE baemin_db.bm_menu (
   PRIMARY KEY(menuIdn)
 ) ENGINE=MYISAM CHARSET=utf8;
 
+-- 주문 테이블
+CREATE TABLE baemin_db.bm_order (
+ orderIdn      INT NOT NULL AUTO_INCREMENT,
+ orderAddress     VARCHAR(100) NOT NULL,
+ orderPrice INT(11) NOT NULL,
+ paymentType INT(11) NOT NULL,
+ storeIdn    INT(11) NOT NULL,
+ userIdn INT(11) NOT NULL,
+ regDate DATETIME NOT NULL DEFAULT NOW(),
+  PRIMARY KEY(orderIdn)
+) ENGINE=MYISAM CHARSET=utf8;
+
+

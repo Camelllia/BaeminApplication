@@ -90,7 +90,7 @@
 
 
                 <div>
-                    <a href="/orderList">
+                    <a href="/orderList/orderType=0">
 							<span class="img_box">
 								<img src="/img/icon55.png" alt="주문내역">
 							</span>

@@ -6,10 +6,10 @@
         var orderType = $("#orderType").val();
         //style="background: rgba(163, 159, 159, 0.425);"
 
-        if(orderType == 1) {
+        if(orderType == 0) {
+            $("#ot_0").css('background', 'rgba(163, 159, 159, 0.425)');
+        } else if(orderType == 1) {
             $("#ot_1").css('background', 'rgba(163, 159, 159, 0.425)');
-        } else if(orderType == 2) {
-            $("#ot_2").css('background', 'rgba(163, 159, 159, 0.425)');
         }
     }
 </script>
@@ -62,8 +62,8 @@
 
     <section class="graph_section" onselectstart="return false;" >
         <div class="box">
-            <button class="year_btn"  id="ot_1" onclick="location.href='/memberList/orderType=1'">이름순</button>
-            <button class="month_btn" id="ot_2" onclick="location.href='/memberList/orderType=2'">가입일순</button>
+            <button class="year_btn"  id="ot_0" onclick="location.href='/orderList/orderType=0'">주문일순</button>
+            <button class="year_btn"  id="ot_1" onclick="location.href='/orderList/orderType=1'">주문금액순</button>
             <!-- <button class="week_btn">이번 주 매출</button>
             <input type="month"name="date" id="date">
             <button class="other_month_search">검색</button> -->
@@ -74,21 +74,30 @@
             <table>
                 <thead>
                 <tr>
-                    <th>닉네임</th>
-                    <th>이메일</th>
-                    <th>전화번호</th>
-                    <th>포인트</th>
-                    <th>가입일</th>
+                    <th>NO</th>
+                    <th>주문하신 가게명</th>
+                    <th>주문금액</th>
+                    <th>배달받으신 곳</th>
+                    <th>결제형식</th>
+                    <th>결제일</th>
                 </tr>
                 </thead>
                 <tbody>
-                <c:forEach var="memberList" items="${memberLists}" varStatus="status">
+                <c:forEach var="orderList" items="${orderLists}" varStatus="status">
                     <tr>
-                        <td>${memberList.userNickname}</td>
-                        <td>${memberList.userEmail}</td>
-                        <td>${memberList.userPhonenum}</td>
-                        <td>${memberList.userPoint}P</td>
-                        <td>${memberList.regDate}</td>
+                        <td>${orderList.rowNum}</td>
+                        <td>${orderList.storeName}</td>
+                        <td>${orderList.orderPrice}</td>
+                        <td>${orderList.orderAddress}</td>
+                        <td>
+                            <c:if test="${orderList.paymentType eq 0}">
+                                배민페이
+                            </c:if>
+                            <c:if test="${orderList.paymentType eq 1}">
+                                현장결제
+                            </c:if>
+                        </td>
+                        <td>${orderList.regDate}</td>
                     </tr>
                 </c:forEach>
                 </tbody>
