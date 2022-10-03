@@ -83,4 +83,14 @@ CREATE TABLE baemin_db.bm_order (
   PRIMARY KEY(orderIdn)
 ) ENGINE=MYISAM CHARSET=utf8;
 
+-- 장바구니 테이블
+CREATE TABLE baemin_db.bm_basket (
+ basketIdn      INT NOT NULL AUTO_INCREMENT,
+ menuName     VARCHAR(100) NOT NULL,
+ menuPrice INT(11) NOT NULL,
+ storeIdn    INT(11) NOT NULL,
+ userIdn INT(11) NOT NULL,
+ regDate DATETIME NOT NULL DEFAULT NOW(),
+  PRIMARY KEY(basketIdn)
+) ENGINE=MYISAM CHARSET=utf8;
 

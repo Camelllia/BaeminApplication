@@ -40,7 +40,8 @@
             minDelevery,
             deleveryTime,
             deleveryTip,
-            (SELECT COUNT(*) FROM bm_review WHERE storeIdn = #{storeIdn}) AS reviewCount
+            (SELECT COUNT(*) FROM bm_review WHERE storeIdn = #{storeIdn}) AS reviewCount,
+            (SELECT COUNT(*) FROM bm_order WHERE storeIdn = #{storeIdn}) AS orderCount
         FROM
             bm_store
         WHERE

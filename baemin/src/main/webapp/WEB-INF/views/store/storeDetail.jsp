@@ -114,10 +114,12 @@
 	                <div class="menu_box">
 	                    <div>
 							<h2>${menuList.menuName } </h2>
-   		                    <fm:formatNumber value="${menuList.menuPrice}" pattern="###,###" />원 
+   		                    <fm:formatNumber value="${menuList.menuPrice}" pattern="###,###" />원
 		                </div>
-		                
-                    	<div><img src="/upload/${menuList.imgPath }" alt="이미지"></div>
+                    	<div>
+							<img src="/upload/${menuList.imgPath }" alt="이미지">
+							<button>장바구니에 담기</button> 
+						</div>
                     </div>
 	             </li>
 	        </c:forEach>
@@ -189,7 +191,7 @@
 					</div>
 					
 					<div class="info_detail">
-						<div>1111</div>
+						<div>${storeInfo.orderCount}</div>
 						<div>${storeInfo.reviewCount}</div>
 						<div>7</div> 
 					</div>
