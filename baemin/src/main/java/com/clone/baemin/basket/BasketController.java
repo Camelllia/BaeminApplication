@@ -1,5 +1,6 @@
 package com.clone.baemin.basket;
 
+import com.clone.baemin.user.UserDAO;
 import com.clone.baemin.util.SessionUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.json.simple.JSONObject;
@@ -28,8 +29,10 @@ public class BasketController {
     BasketService basketService;
 
     @RequestMapping(value = "/basketList/{storeIdn}", method = {RequestMethod.GET, RequestMethod.POST})
-    public String list(@PathVariable("storeIdn") int storeIdn, Model model) {
+    public String list(@PathVariable("storeIdn") int storeIdn, Model model, HttpSession session) {
         model.addAttribute("storeIdn", storeIdn);
+        model.addAttribute("basketLists", basketService.selectUserBasketList(SessionUtil.getLoginMemberIdn(session), storeIdn));
+        model.addAttribute("basketTotalPrice", basketService.selectBasketTotalPrice(SessionUtil.getLoginMemberIdn(session), storeIdn));
         return "basket/list";
     }
 
@@ -44,6 +47,22 @@ public class BasketController {
         }
 
         basketService.insertBasket(menuName, menuPrice, storeIdn, SessionUtil.getLoginMemberIdn(session));
+
+        return resultObj.toString();
+    }
+
+    @RequestMapping(value = "/deleteBasket", method = RequestMethod.POST)
+    @ResponseBody
+    public String deleteBasket(@RequestParam("basketIdn") int basketIdn) {
+        JSONObject resultObj = new JSONObject();
+        resultObj.put("resultCode" , 1);
+
+        if(StringUtils.isBlank(Integer.toString(basketIdn))) {
+            resultObj.put("resultCode", -20);
+            return resultObj.toString();
+        }
+
+        basketService.deleteBasket(basketIdn);
 
         return resultObj.toString();
     }

@@ -16,8 +16,8 @@ public class OrderController {
     @Autowired
     OrderService orderService;
 
-    @RequestMapping(value = "/order", method = {RequestMethod.GET, RequestMethod.POST})
-    public String order() {
+    @RequestMapping(value = "/order/{storeIdn}", method = {RequestMethod.GET, RequestMethod.POST})
+    public String order(@PathVariable("storeIdn") int storeIdn) {
         return "/order/order";
     }
 

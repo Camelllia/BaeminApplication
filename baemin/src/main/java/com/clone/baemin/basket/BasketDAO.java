@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
+import java.util.List;
 
 @Component
 public class BasketDAO {
@@ -22,5 +23,34 @@ public class BasketDAO {
         param.put("userIdn", userIdn);
 
         return sqlSession.insert(sqlId, param);
+    }
+
+    public List<HashMap> selectUserBasketList(int userIdn, int storeIdn) {
+        String sqlId = "selectUserBasketList";
+
+        HashMap<String, Integer> param = new HashMap<>();
+        param.put("userIdn", userIdn);
+        param.put("storeIdn", storeIdn);
+
+        return sqlSession.selectList(sqlId, param);
+    }
+
+    public int deleteTargetBasket(int basketIdn) {
+        String sqlId = "deleteTargetBasket";
+
+        HashMap<String, Integer> param = new HashMap<>();
+        param.put("basketIdn", basketIdn);
+
+        return sqlSession.delete(sqlId, param);
+    }
+
+    public int selectBasketTotalPrice(int userIdn, int storeIdn) {
+        String sqlId = "selectBasketTotalPrice";
+
+        HashMap<String, Integer> param = new HashMap<>();
+        param.put("userIdn", userIdn);
+        param.put("storeIdn", storeIdn);
+
+        return sqlSession.selectOne(sqlId, param);
     }
 }

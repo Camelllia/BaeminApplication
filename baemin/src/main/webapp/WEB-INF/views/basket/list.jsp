@@ -13,20 +13,20 @@
         }
     }
 
-    var deleteReview = function(reviewIdn) {
+    var deleteBasket = function(basketIdn) {
         
-        if(reviewIdn == "") {
-            alert("미확인된 리뷰입니다.");
+        if(basketIdn == "") {
+            alert("미확인된 상품입니다.");
             location.href = location.href;
         }
 
         var param = {
-            reviewIdn : reviewIdn
+            basketIdn : basketIdn
         } 
 
         $.ajax({
             type:"POST",
-            url:"/deleteReview",
+            url:"/deleteBasket",
             data:param,
             success:function(response) {
 			
@@ -35,13 +35,13 @@
                 if(result.resultCode == "1") {
                 	alert("삭제되었습니다.");
                     location.href = location.href;
-				} else if(result.resultCode == "-50"){
-					alert("미확인된 리뷰입니다.");
+				} else if(result.resultCode == "-20"){
+					alert("미확인된 상품입니다.");
                     location.href = location.href;
 				}
             },
             error:function (err) {
-                alert("리뷰 삭제에 실패하였습니다.");
+                alert("상품 삭제에 실패하였습니다.");
             }
         })
     }
@@ -120,11 +120,13 @@
                 <tbody>
                 <c:forEach var="basketList" items="${basketLists}" varStatus="status">
                     <tr>
-                        <td>${reviewList.rowNum}</td>
-                        <td>${reviewList.reviewTitle}</td>
-                        <td>${reviewList.reviewContent}</td>
-                        <td>${reviewList.reviewContent}</td>
-                        <td><button class="sort_name reverse" onclick="deleteReview(${reviewList.reviewIdn});">삭제</button></td>
+                        <td>${basketList.rowNum}</td>
+                        <td>${basketList.storeName}</td>
+                        <td>${basketList.menuName}</td>
+                        <td>${basketList.menuPrice}</td>
+                        <td>
+                            <button class="sort_name reverse" onclick="deleteBasket(${basketList.basketIdn});">X</button>
+                        </td>
                     </tr>
                 </c:forEach>
                 </tbody>
@@ -142,10 +144,13 @@
                     <div></div>
                     <div></div>
                 </div>
+                
             </div>
 
         </div>
         <div class="login_box">
+            <h2>총 결제 금액 : <fm:formatNumber value="${basketTotalPrice}" pattern="###,###"/>원</h2>
+            <input value="주문하기" class="login_btn" onclick="location.href='/order/${storeIdn}'" style="width: 100%; text-align: center;">
             <input value="돌아가기" class="login_btn" onclick="location.href='/store/detail/${storeIdn}'" style="width: 100%; text-align: center;">
         </div>
     </section>

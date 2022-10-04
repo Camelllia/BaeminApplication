@@ -19,4 +19,51 @@
             #{userIdn}
         )
     </insert>
+
+    <select id="selectUserBasketList" resultType="HashMap">
+        SELECT
+            A.*,
+            (SELECT storeName FROM bm_store WHERE storeIdn = A.storeIdn) AS storeName,
+            FORMAT(@ROWNUM := @ROWNUM+1, 0) AS rowNum
+        FROM
+            (SELECT
+                basketIdn,
+                menuName,
+                menuPrice,
+                storeIdn
+             FROM
+                bm_basket
+             WHERE
+                userIdn = #{userIdn}
+             AND
+                 storeIdn = #{storeIdn}
+             ORDER BY
+                regDate DESC
+            LIMIT
+                18446744073709551615
+            ) AS A,
+            (SELECT
+                @ROWNUM := 0
+            ) AS B
+    </select>
+
+    <delete id="deleteTargetBasket">
+        DELETE
+            FROM
+                bm_basket
+            WHERE
+                basketIdn = #{basketIdn}
+    </delete>
+
+    <select id="selectBasketTotalPrice" resultType="int">
+        SELECT
+            SUM(menuPrice)
+        FROM
+            bm_basket
+        WHERE
+            storeIdn = #{storeIdn}
+        And
+            userIdn = #{userIdn}
+    </select>
+
 </mapper>
