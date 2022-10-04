@@ -101,7 +101,7 @@
 			
 		<!-- 메뉴 탭 -->	
         <ul class="menu">
-			<c:if test="${not empty memberLists}">
+			<c:if test="${not empty menuLists}">
 				<c:forEach items="${menuLists}" var="menuList" >
 					<li>
 						<!-- <c:if test="${adminPage && SPRING_SECURITY_CONTEXT.authentication.principal.user.role == 'ROLE_ADMIN' }">
