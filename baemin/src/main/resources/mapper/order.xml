@@ -5,25 +5,33 @@
 <mapper namespace="baemin.order">
     <select id="selectUserOrderList" resultType="HashMap">
         SELECT
-            FORMAT(@ROWNUM := @ROWNUM+1, 0) AS rowNum,
-            A.orderIdn,
-            A.orderAddress,
-            A.orderPrice,
-            A.paymentType,
-            DATE_FORMAT(A.regDate, '%Y-%m-%d') AS regDate,
-            (SELECT storeName FROM bm_store WHERE storeIdn = A.storeIdn) AS storeName
+            A.*,
+            (SELECT storeName FROM bm_store WHERE storeIdn = A.storeIdn) AS storeName,
+            FORMAT(@ROWNUM := @ROWNUM+1, 0) AS rowNum
         FROM
-            bm_order AS A,
-            (SELECT @ROWNUM := 0) B
-        WHERE
-            userIdn = #{userIdn}
-        ORDER BY
-            <if test="orderType == 0">
-                A.regDate DESC
-            </if>
-            <if test="orderType == 1">
-                A.orderPrice DESC
-            </if>
+            (SELECT
+                 orderIdn,
+                 orderAddress,
+                 orderPrice,
+                 paymentType,
+                 storeIdn,
+                 DATE_FORMAT(regDate, '%Y-%m-%d') AS regDate
+             FROM
+                 bm_order
+             WHERE
+                 userIdn = #{userIdn}
+             ORDER BY
+                 <if test="orderType == 0">
+                     regDate DESC
+                 </if>
+                <if test="orderType == 1">
+                    orderPrice DESC
+                </if>
+                 LIMIT 18446744073709551615
+            ) AS A,
+            (SELECT
+                 @ROWNUM := 0
+            ) AS B
     </select>
 
 </mapper>
