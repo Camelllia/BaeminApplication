@@ -101,29 +101,35 @@
 			
 		<!-- 메뉴 탭 -->	
         <ul class="menu">
-			<c:forEach items="${menuLists}" var="menuList" >
-	            <li>
-		            <!-- <c:if test="${adminPage && SPRING_SECURITY_CONTEXT.authentication.principal.user.role == 'ROLE_ADMIN' }">
-		                <label class="menu_delete_label">
-		                	<i class="fas fa-check-square" ></i>
-		                	<input type="checkbox" class="menu_delete_checkbox" name="deleteNumber" value="${foodList.id }">
-	                	</label>
-	                </c:if>
-	                -->
+			<c:if test="${not empty memberLists}">
+				<c:forEach items="${menuLists}" var="menuList" >
+					<li>
+						<!-- <c:if test="${adminPage && SPRING_SECURITY_CONTEXT.authentication.principal.user.role == 'ROLE_ADMIN' }">
+							<label class="menu_delete_label">
+								<i class="fas fa-check-square" ></i>
+								<input type="checkbox" class="menu_delete_checkbox" name="deleteNumber" value="${foodList.id }">
+							</label>
+						</c:if>
+						-->
 
-	                <div class="menu_box">
-	                    <div>
-							<h2>${menuList.menuName } </h2>
-   		                    <fm:formatNumber value="${menuList.menuPrice}" pattern="###,###" />원 
-		                </div>
-		                
-                    	<div>
-							<img src="/upload/${menuList.imgPath }" alt="이미지">
-							<button>장바구니에 담기</button> 
+						<div class="menu_box">
+							<div>
+								<h2>${menuList.menuName } </h2>
+								<fm:formatNumber value="${menuList.menuPrice}" pattern="###,###" />원 
+							</div>
+							
+							<div>
+								<img src="/upload/${menuList.imgPath }" alt="이미지">
+								<button>장바구니에 담기</button> 
+							</div>
 						</div>
-                    </div>
-	             </li>
-	        </c:forEach>
+					</li>
+	        	</c:forEach>
+			</c:if>
+			<c:if test="${empty menuLists }">
+					<img class="temp_img" alt="이미지" src="/img/temp2.png">
+					<style>main .box {background: #F6F6F6; width: 40%; }</style>
+			</c:if>
         </ul>
 		<!-- 메뉴 탭 -->	
 
@@ -238,6 +244,9 @@
 										   <c:when test="${5 > i }">
 											   <i class="far fas fa-star"></i>
 										   </c:when>
+										   <c:otherwise>
+											   <i class="far fa-star"></i>
+										   </c:otherwise>
 									 </c:choose>
 								</c:forEach>
 							</div>
@@ -255,6 +264,9 @@
 										   <c:when test="${4 > i }">
 											   <i class="far fas fa-star"></i>
 										   </c:when>
+										   <c:otherwise>
+											   <i class="far fa-star"></i>
+										   </c:otherwise>
 									 </c:choose>
 								</c:forEach>
 							</div>
@@ -271,6 +283,9 @@
 										   <c:when test="${3 > i }">
 											   <i class="far fas fa-star"></i>
 										   </c:when>
+										   <c:otherwise>
+											   <i class="far fa-star"></i>
+										   </c:otherwise>
 									 </c:choose>
 								</c:forEach>
 							</div>
@@ -287,6 +302,9 @@
 										   <c:when test="${2 > i }">
 											   <i class="far fas fa-star"></i>
 										   </c:when>
+										   <c:otherwise>
+											   <i class="far fa-star"></i>
+										   </c:otherwise>
 									 </c:choose>
 								</c:forEach>
 							</div>
@@ -303,6 +321,9 @@
 										   <c:when test="${1 > i }">
 											   <i class="far fas fa-star"></i>
 										   </c:when>
+										   <c:otherwise>
+											   <i class="far fa-star"></i>
+										   </c:otherwise>
 									 </c:choose>
 								</c:forEach>
 							</div>
@@ -313,65 +334,70 @@
 				</div>
 			</li>
 			 
-			<c:forEach items="${reviewLists}" var="reviewList">
-			<li>
-				<div class="client">
-					
-					<div class="review_header">
-						<div>
-							<div class="nickname">${reviewList.reviewTitle}</div>
+			<c:if test="${not empty reviewLists}">
+				<c:forEach items="${reviewLists}" var="reviewList">
+					<li>
+						<div class="client">
+							
+							<div class="review_header">
+								<div>
+									<div class="nickname">${reviewList.reviewTitle}</div>
+									<div>
+										
+										<c:forEach begin="0" end="4" var="i">
+											<c:choose>
+												<c:when test="${reviewList.reviewScore > i }">
+													<i class="far fas fa-star"></i>
+												</c:when>
+												<c:otherwise>
+													<i class="far fa-star"></i>
+												</c:otherwise>
+											</c:choose>
+										</c:forEach>
+										
+										<span>${reviewList.regDate }</span>
+									</div>
+								</div>
+							</div> 
+								
 							<div>
-								
-								<c:forEach begin="0" end="4" var="i">
-									<c:choose>
-										   <c:when test="${reviewList.reviewScore > i }">
-											   <i class="far fas fa-star"></i>
-										   </c:when>
-										   <c:otherwise>
-											   <i class="far fa-star"></i>
-										   </c:otherwise>
-									 </c:choose>
-								</c:forEach>
-								
-								<span>${reviewList.regDate }</span>
+								<c:if test="${!empty reviewList.imgPath }">
+									<div><img src="/upload/${reviewList.imgPath }" alt="이미지" class="review_img"></div>
+								</c:if>
+								<div>${reviewList.reviewContent } </div>
 							</div>
 						</div>
-					</div> 
 						
-					<div>
-						<c:if test="${!empty reviewList.imgPath }">
-							<div><img src="/upload/${reviewList.imgPath }" alt="이미지" class="review_img"></div>
-						</c:if>
-						<div>${reviewList.reviewContent } </div>
-					</div>
-				</div>
-				
-				
-				<div class="boss">
-					<c:if test="${!empty reviewList.bossComment }">	
-						<div class="boss_comment_box">
-							<div class="nickname">사장님</div>
-							<div class="boss_comment">${reviewList.bossComment }</div>
-						</div>
-					</c:if>
-				</div>
-				
-				
-				 <div class="boss input">
-						<div class="boss_comment_box">
-						 <div class="nickname">사장님</div>
-						<div class="boss_comment">
-							<textarea class="comment_area" spellcheck="false"></textarea>
+						
+						<div class="boss">
+							<c:if test="${!empty reviewList.bossComment }">	
+								<div class="boss_comment_box">
+									<div class="nickname">사장님</div>
+									<div class="boss_comment">${reviewList.bossComment }</div>
+								</div>
+							</c:if>
 						</div>
 						
-						<div>
-							<button class="boss_comment_btn reply" >댓글 달기</button>
-							<input type="hidden" value="${reviewList.orderNum }" class="order_num">
+						
+						<div class="boss input">
+								<div class="boss_comment_box">
+								<div class="nickname">사장님</div>
+								<div class="boss_comment">
+									<textarea class="comment_area" spellcheck="false"></textarea>
+								</div>
+								
+								<div>
+									<button class="boss_comment_btn reply" >댓글 달기</button>
+									<input type="hidden" value="${reviewList.orderNum }" class="order_num">
+								</div>
+							</div>
 						</div>
-					</div>
-				   </div>
-			</li>
-			</c:forEach>
+					</li>
+				</c:forEach>
+			</c:if>
+			<c:if test="${empty reviewLists}">
+				<h1 style="text-align: center;">등록된 리뷰가 없습니다.</h2>
+			</c:if>
 		</ul>
 		<button class="login_btn" onclick="location.href='/review/form/${storeInfo.storeIdn}'"
 		style="width: 100%; height: 50px; font-size: 20px;">리뷰작성</button>

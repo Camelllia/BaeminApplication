@@ -71,7 +71,11 @@ public class StoreController {
         }
 
         HashMap<String, Integer> scoreMap = new HashMap<>();
-        scoreMap.put("averageScore", totalScore / reviewLists.size());
+        if(reviewLists.size() == 0) {
+            scoreMap.put("averageScore", 0);
+        } else {
+            scoreMap.put("averageScore", totalScore / reviewLists.size());
+        }
         scoreMap.put("oneScore", oneScore);
         scoreMap.put("twoScore", twoScore);
         scoreMap.put("threeScore", threeScore);
