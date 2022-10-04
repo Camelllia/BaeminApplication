@@ -8,4 +8,8 @@ public class BasketService {
 
     @Autowired
     BasketDAO basketDAO;
+
+    public int insertBasket(String menuName, int menuPrice, int storeIdn, int userIdn) {
+        return basketDAO.insertBasket(menuName, menuPrice, storeIdn, userIdn);
+    }
 }

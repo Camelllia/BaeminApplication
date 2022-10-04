@@ -27,7 +27,8 @@
                 <if test="orderType == 1">
                     orderPrice DESC
                 </if>
-                 LIMIT 18446744073709551615
+                 LIMIT
+                    18446744073709551615
             ) AS A,
             (SELECT
                  @ROWNUM := 0

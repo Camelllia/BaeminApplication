@@ -13,7 +13,7 @@ public class AdminController {
     AdminService adminService;
 
     @RequestMapping("/memberList/orderType={orderType}")
-    public String admin(@PathVariable("orderType") int orderType, Model model) {
+    public String list(@PathVariable("orderType") int orderType, Model model) {
         model.addAttribute("memberLists", adminService.selectMemberList(orderType));
         return "/admin/list";
     }

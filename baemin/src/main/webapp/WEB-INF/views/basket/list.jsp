@@ -6,14 +6,49 @@
         var orderType = $("#orderType").val();
         //style="background: rgba(163, 159, 159, 0.425);"
 
-        if(orderType == 0) {
-            $("#ot_0").css('background', 'rgba(163, 159, 159, 0.425)');
-        } else if(orderType == 1) {
+        if(orderType == 1) {
             $("#ot_1").css('background', 'rgba(163, 159, 159, 0.425)');
+        } else if(orderType == 2) {
+            $("#ot_2").css('background', 'rgba(163, 159, 159, 0.425)');
         }
     }
+
+    var deleteReview = function(reviewIdn) {
+        
+        if(reviewIdn == "") {
+            alert("미확인된 리뷰입니다.");
+            location.href = location.href;
+        }
+
+        var param = {
+            reviewIdn : reviewIdn
+        } 
+
+        $.ajax({
+            type:"POST",
+            url:"/deleteReview",
+            data:param,
+            success:function(response) {
+			
+                const result = JSON.parse(response);
+				
+                if(result.resultCode == "1") {
+                	alert("삭제되었습니다.");
+                    location.href = location.href;
+				} else if(result.resultCode == "-50"){
+					alert("미확인된 리뷰입니다.");
+                    location.href = location.href;
+				}
+            },
+            error:function (err) {
+                alert("리뷰 삭제에 실패하였습니다.");
+            }
+        })
+    }
 </script>
+<link rel="stylesheet" href="/css/modal.css">
 <link rel="stylesheet" href="/css/admin/admin.css" >
+<link rel="stylesheet" href="/css/store/detail.css">
 <link rel="stylesheet" href="/css/user/login.css">
 <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
 <%@ include file="/WEB-INF/views/include/header.jsp" %>
@@ -33,7 +68,7 @@
     <section>
         <div class="today">
   				<span>
-  					<span>주문목록</span>
+  					<span>장바구니</span>
   					<span id="today"></span>
   				</span>
 
@@ -63,8 +98,8 @@
 
     <section class="graph_section" onselectstart="return false;" >
         <div class="box">
-            <button class="year_btn"  id="ot_0" onclick="location.href='/orderList/orderType=0'">주문일순</button>
-            <button class="year_btn"  id="ot_1" onclick="location.href='/orderList/orderType=1'">주문금액순</button>
+            <!-- <button class="year_btn"  id="ot_1" onclick="location.href='/memberList/orderType=1'">이름순</button>
+            <button class="month_btn" id="ot_2" onclick="location.href='/memberList/orderType=2'">가입일순</button> -->
             <!-- <button class="week_btn">이번 주 매출</button>
             <input type="month"name="date" id="date">
             <button class="other_month_search">검색</button> -->
@@ -76,34 +111,27 @@
                 <thead>
                 <tr>
                     <th>NO</th>
-                    <th>주문하신 가게명</th>
-                    <th>주문금액</th>
-                    <th>배달받으신 곳</th>
-                    <th>결제형식</th>
-                    <th>결제일</th>
+                    <th>가게명</th>
+                    <th>메뉴명</th>
+                    <th>가격</th>
+                    <th>옵션</th>
                 </tr>
                 </thead>
                 <tbody>
-                <c:forEach var="orderList" items="${orderLists}" varStatus="status">
+                <c:forEach var="basketList" items="${basketLists}" varStatus="status">
                     <tr>
-                        <td>${orderList.rowNum}</td>
-                        <td>${orderList.storeName}</td>
-                        <td>${orderList.orderPrice}</td>
-                        <td>${orderList.orderAddress}</td>
-                        <td>
-                            <c:if test="${orderList.paymentType eq 0}">
-                                배민페이
-                            </c:if>
-                            <c:if test="${orderList.paymentType eq 1}">
-                                현장결제
-                            </c:if>
-                        </td>
-                        <td>${orderList.regDate}</td>
+                        <td>${reviewList.rowNum}</td>
+                        <td>${reviewList.reviewTitle}</td>
+                        <td>${reviewList.reviewContent}</td>
+                        <td>${reviewList.reviewContent}</td>
+                        <td><button class="sort_name reverse" onclick="deleteReview(${reviewList.reviewIdn});">삭제</button></td>
                     </tr>
                 </c:forEach>
                 </tbody>
             </table>
+           
             <div class="graph_box">
+                
                 <ul>
                 </ul>
 
@@ -118,7 +146,7 @@
 
         </div>
         <div class="login_box">
-            <input value="돌아가기" class="login_btn" onclick="location.href='/myPage'" style="width: 100%; text-align: center;">
+            <input value="돌아가기" class="login_btn" onclick="location.href='/store/detail/${storeIdn}'" style="width: 100%; text-align: center;">
         </div>
     </section>
 
@@ -126,10 +154,10 @@
         <div>
             <h3 class="sales_today_detail_title">
                 <span id="other_detail_date"></span>
-                <span>
-						<button class="sort_name reverse">이름순</button>
-						<button class="sort_price reverse">가격순</button>
-					</span>
+                <!-- <span>
+					<button class="sort_name reverse">이름순</button>
+					<button class="sort_price reverse">가격순</button>
+				</span> -->
             </h3>
             <div class="sales_today_detail">
                 <div>메뉴</div>

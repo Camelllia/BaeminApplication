@@ -5,29 +5,38 @@
 <mapper namespace="baemin.coupon">
     <select id="selectCouponList" resultType="HashMap">
         SELECT
-            FORMAT(@ROWNUM := @ROWNUM+1, 0) AS rowNum,
-            couponName,
-            discountAmount,
-            DATE_FORMAT(regDate, '%Y-%m-%d') AS regDate,
-            DATE_FORMAT(endDate, '%Y-%m-%d') AS endDate,
-            useYn
+            A.*,
+            FORMAT(@ROWNUM := @ROWNUM+1, 0) AS rowNum
         FROM
-            bm_coupon,
-        (SELECT @ROWNUM := 0) A
-        WHERE
-            userIdn = #{userIdn}
-        <if test="stateCode == 1">
-        AND
-            endDate > NOW()
-        AND
-            useYn = 0
-        </if>
-        ORDER BY
-        <if test="orderType == 0">
-            couponIdn
-        </if>
-        <if test="orderType == 1">
-            regDate
-        </if>
+            (SELECT
+                couponName,
+                discountAmount,
+                DATE_FORMAT(regDate, '%Y-%m-%d') AS regDate,
+                DATE_FORMAT(endDate, '%Y-%m-%d') AS endDate,
+                useYn
+            FROM
+                bm_coupon
+            WHERE
+                userIdn = 1
+            <if test="stateCode == 1">
+                AND
+                endDate > NOW()
+                AND
+                useYn = 0
+            </if>
+            ORDER BY
+                <if test="orderType == 0">
+                    couponIdn
+                </if>
+                <if test="orderType == 1">
+                    regDate DESC
+                </if>
+            LIMIT
+                18446744073709551615
+            ) AS A,
+            (SELECT
+                 @ROWNUM := 0
+             ) AS B
     </select>
 </mapper>
+

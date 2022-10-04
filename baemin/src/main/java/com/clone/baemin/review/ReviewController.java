@@ -44,9 +44,9 @@ public class ReviewController {
     }
 
     @RequestMapping(value = "/reviewList", method = {RequestMethod.GET, RequestMethod.POST})
-    public String reviewList(Model model, HttpSession session) {
+    public String list(Model model, HttpSession session) {
         model.addAttribute("reviewLists", reviewService.selectUserReviewList(SessionUtil.getLoginMemberIdn(session)));
-        return "review/reviewList";
+        return "review/list";
     }
 
     @RequestMapping(value = "/insertReview", method = RequestMethod.POST)

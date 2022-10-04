@@ -4,7 +4,7 @@
 <%@ taglib prefix="fm" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <link rel="stylesheet" href="/css/user/login.css">
  <div id="wrap">
-	<input type="hidden" value="${storeInfo.storeIdn}"/>
+	<input type="hidden" value="${storeIdn}" id="storeIdn"/>
     <nav>
     	<c:set var="info" value="${store.storeInfo}" />
         <h1 id="store_name" data-store_name="${storeInfo.storeName }" >${info.storeName }</h1>
@@ -102,7 +102,7 @@
 		<!-- 메뉴 탭 -->	
         <ul class="menu">
 			<c:if test="${not empty menuLists}">
-				<c:forEach items="${menuLists}" var="menuList" >
+				<c:forEach items="${menuLists}" var="menuList" varStatus="vs">
 					<li>
 						<!-- <c:if test="${adminPage && SPRING_SECURITY_CONTEXT.authentication.principal.user.role == 'ROLE_ADMIN' }">
 							<label class="menu_delete_label">
@@ -114,13 +114,14 @@
 
 						<div class="menu_box">
 							<div>
-								<h2>${menuList.menuName } </h2>
-								<fm:formatNumber value="${menuList.menuPrice}" pattern="###,###" />원 
+								<h2 id="menuName${vs.index}">${menuList.menuName}</h2>
+								<fm:formatNumber value="${menuList.menuPrice}" pattern="###,###"/>원
+								<input type="hidden" value="${menuList.menuPrice}" id="menuPrice${vs.index}"/>
 							</div>
 							
 							<div>
 								<img src="/upload/${menuList.imgPath }" alt="이미지">
-								<button>장바구니에 담기</button> 
+								<button onclick="insertBasket(${vs.index})">장바구니에 담기</button> 
 							</div>
 						</div>
 					</li>
@@ -399,8 +400,13 @@
 				<h1 style="text-align: center;">등록된 리뷰가 없습니다.</h2>
 			</c:if>
 		</ul>
-		<button class="login_btn" onclick="location.href='/review/form/${storeInfo.storeIdn}'"
-		style="width: 100%; height: 50px; font-size: 20px;">리뷰작성</button>
+		<div class="login_box">
+            <button class="login_btn" onclick="location.href='/basketList/${storeInfo.storeIdn}'" style="width: 100%; height: 50px; font-size: 20px;">장바구니</button>
+        </div>
+		<div class="login_box">
+			<button class="login_btn" onclick="location.href='/review/form/${storeInfo.storeIdn}'" style="width: 100%; height: 50px; font-size: 20px;">리뷰작성</button>
+        </div>
+		
 	</main>
 </div>
 	

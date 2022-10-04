@@ -36,6 +36,8 @@ public class StoreController {
         if(SessionUtil.getLoginMemberNickname(session) == null) {
             return "user/login";
         }
+
+        model.addAttribute("storeIdn", storeIdn);
         model.addAttribute("storeInfo", storeService.selectTargetStoreInfo(storeIdn));
         model.addAttribute("menuLists", storeService.selectStoreMenuList(storeIdn));
 

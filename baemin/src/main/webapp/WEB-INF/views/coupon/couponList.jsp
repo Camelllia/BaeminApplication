@@ -15,6 +15,7 @@
     }
 </script>
 <link rel="stylesheet" href="/css/admin/admin.css" >
+<link rel="stylesheet" href="/css/user/login.css">
 <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
 <%@ include file="/WEB-INF/views/include/header.jsp" %>
 <style>
@@ -114,6 +115,9 @@
                     <div></div>
                 </div>
             </div> 
+        </div>
+        <div class="login_box">
+            <input value="돌아가기" class="login_btn" onclick="location.href='/myPage'" style="width: 100%; text-align: center;">
         </div>
     </section>
      
