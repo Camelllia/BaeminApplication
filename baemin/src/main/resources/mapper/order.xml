@@ -35,4 +35,23 @@
             ) AS B
     </select>
 
+    <insert id="insertOrder">
+        INSERT INTO bm_order
+        (
+            orderAddress,
+            orderPrice,
+            paymentType,
+            storeIdn,
+            userIdn
+        )
+        VALUES
+        (
+            #{orderAddress},
+            #{orderPrice},
+            #{paymentType},
+            #{storeIdn},
+            #{userIdn}
+        )
+    </insert>
+
 </mapper>

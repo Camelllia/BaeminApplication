@@ -15,4 +15,8 @@ public class OrderService {
     public List<HashMap> selectUserOrderList(int userIdn, int orderType) {
         return orderDAO.selectUserOrderList(userIdn, orderType);
     }
+
+    public int insertOrder(String orderAddress, int orderPrice, int paymentType, int storeIdn, int userIdn) {
+        return orderDAO.insertOrder(orderAddress, orderPrice, paymentType, storeIdn, userIdn);
+    }
 }
