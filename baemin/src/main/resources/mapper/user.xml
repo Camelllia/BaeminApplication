@@ -71,6 +71,4 @@
         AND
             userPw = #{userPw}
     </select>
-
-
 </mapper>

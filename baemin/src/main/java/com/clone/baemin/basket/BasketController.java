@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
 
 /*
  *
@@ -30,9 +31,11 @@ public class BasketController {
 
     @RequestMapping(value = "/basketList/{storeIdn}", method = {RequestMethod.GET, RequestMethod.POST})
     public String list(@PathVariable("storeIdn") int storeIdn, Model model, HttpSession session) {
+
         model.addAttribute("storeIdn", storeIdn);
         model.addAttribute("basketLists", basketService.selectUserBasketList(SessionUtil.getLoginMemberIdn(session), storeIdn));
-        model.addAttribute("basketTotalPrice", basketService.selectBasketTotalPrice(SessionUtil.getLoginMemberIdn(session), storeIdn));
+        model.addAttribute("baksetInfo", basketService.selectBasketTotalPrice(SessionUtil.getLoginMemberIdn(session), storeIdn));
+
         return "basket/list";
     }
 

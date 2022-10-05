@@ -55,14 +55,16 @@
                 basketIdn = #{basketIdn}
     </delete>
 
-    <select id="selectBasketTotalPrice" resultType="int">
+    <select id="selectBasketInfo" resultType="HashMap">
         SELECT
-            SUM(menuPrice)
+            SUM(menuPrice) AS totalPrice,
+            (SELECT deleveryTip FROM bm_store WHERE storeIdn = #{storeIdn}) AS deleveryTip,
+            (SELECT userPoint FROM user_info WHERE userIdn = #{userIdn}) AS userPoint
         FROM
             bm_basket
         WHERE
             storeIdn = #{storeIdn}
-        And
+        AND
             userIdn = #{userIdn}
     </select>
 

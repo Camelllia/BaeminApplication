@@ -149,7 +149,7 @@
 
         </div>
         <div class="login_box">
-            <h2>총 결제 금액 : <fm:formatNumber value="${basketTotalPrice}" pattern="###,###"/>원</h2>
+            <h2>총 결제 금액 : <fm:formatNumber value="${baksetInfo.totalPrice}" pattern="###,###"/>원</h2>
             <input value="주문하기" class="login_btn" onclick="location.href='/order/${storeIdn}'" style="width: 100%; text-align: center;">
             <input value="돌아가기" class="login_btn" onclick="location.href='/store/detail/${storeIdn}'" style="width: 100%; text-align: center;">
         </div>

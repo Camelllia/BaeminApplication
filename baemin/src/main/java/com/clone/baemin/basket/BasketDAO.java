@@ -44,8 +44,8 @@ public class BasketDAO {
         return sqlSession.delete(sqlId, param);
     }
 
-    public int selectBasketTotalPrice(int userIdn, int storeIdn) {
-        String sqlId = "selectBasketTotalPrice";
+    public HashMap<String, String> selectBasketTotalPrice(int userIdn, int storeIdn) {
+        String sqlId = "selectBasketInfo";
 
         HashMap<String, Integer> param = new HashMap<>();
         param.put("userIdn", userIdn);

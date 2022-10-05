@@ -2,7 +2,7 @@
          pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/include/link.jsp" %>
 <script type="text/javascript">
-    var join = function() {
+    var order = function() {
 
         var userEmail = $("#userEmail").val();
         var userPw = $("#userPw").val();
@@ -120,19 +120,19 @@
             </div>
 
             <div class="input_aera">
-                <input type="number" class="password1" name="password" id="userPw" maxlength="20"  placeholder="사용하실 포인트를 입력해주세요 - 사용 가능 금액 : 5000P">
+                <input type="number" class="password1" name="orderPrice" id="orderPrice" maxlength="20"  placeholder="사용하실 포인트를 입력해주세요 - 사용 가능 금액 : ${basketInfo.userPoint}P">
             </div>
 
             <div class="input_aera">
                 <input type="password" class="password2" maxlength="20" id="userPwCheck" placeholder="배달 받으실 주소를 선택해주세요">
-                <span class="msg_box">${errorMsg.password }</span>
             </div>
 
             <div class="input_aera">
-                <h2>주문금액 : 52000&nbsp;&nbsp;배달팁 : 2000</h2>
+                <h2>주문금액 : <fm:formatNumber value="${basketInfo.totalPrice}" pattern="###,###" />원&nbsp;&nbsp;배달팁 : <fm:formatNumber value="${basketInfo.deleveryTip}" pattern="###,###" />원</h2>
+                <h2>총 결제금액 : <fm:formatNumber value="${basketInfo.paymentPrice}" pattern="###,###" />원</h2>
             </div>
 
-            <input value="주문하기" class="login_btn" style="text-align: center;" onclick="join()">
+            <input value="주문하기" class="login_btn" style="text-align: center;" onclick="order()">
         </form>
     </div>
 
