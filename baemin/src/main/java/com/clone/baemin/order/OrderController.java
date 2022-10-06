@@ -25,7 +25,9 @@ public class OrderController {
     public String order(@PathVariable("storeIdn") int storeIdn, Model model, HttpSession session) {
 
         HashMap<String, String> baksetInfoMap = basketService.selectBasketTotalPrice(SessionUtil.getLoginMemberIdn(session), storeIdn);
-        baksetInfoMap.put("paymentPrice", String.valueOf(Integer.parseInt(String.valueOf(baksetInfoMap.get("totalPrice"))) + Integer.parseInt(String.valueOf(baksetInfoMap.get("deleveryTip")))));
+        if(baksetInfoMap != null) {
+            baksetInfoMap.put("paymentPrice", String.valueOf(Integer.parseInt(String.valueOf(baksetInfoMap.get("totalPrice"))) + Integer.parseInt(String.valueOf(baksetInfoMap.get("deleveryTip")))));
+        }
 
         model.addAttribute("basketInfo", baksetInfoMap);
         return "/order/order";

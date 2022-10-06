@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/include/link.jsp" %>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script type="text/javascript">
     var order = function() {
 
@@ -76,6 +77,14 @@
             }
         })
     }
+
+    var kakaoAddress = function() {
+            new daum.Postcode({
+                oncomplete: function(data) {
+                    $("#userAddressMain").val(data.address);
+                }
+            }).open();
+    }
 </script>
 <style>
     .select {
@@ -124,7 +133,11 @@
             </div>
 
             <div class="input_aera">
-                <input type="password" class="password2" maxlength="20" id="userPwCheck" placeholder="배달 받으실 주소를 선택해주세요">
+                <div class="select">
+                    <input type="text" class="password2" maxlength="20" id="userAddressMain" placeholder="주소를 선택해주세요" disabled>
+                    <input type="radio" id="select3" name="shop" onclick="kakaoAddress()"><label for="select3">주소찾기</label>
+                </div>
+                <input type="text" class="password2" maxlength="20" id="userAddressDetail" placeholder="상세 주소를 입력해주세요">
             </div>
 
             <div class="input_aera">
