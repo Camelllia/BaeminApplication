@@ -50,7 +50,7 @@
 
 
                 <div>
-                    <a href="/user/point" onclick="return loginCheck();">
+                    <a href="/point">
 	                       	<span class="img_box">
 	                       		<img src="/img/icon11.png" alt="포인트">
 	                       	</span>

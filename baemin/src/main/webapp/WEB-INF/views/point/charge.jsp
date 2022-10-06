@@ -12,6 +12,7 @@
         var IMP = window.IMP;
         IMP.init('imp63445053');
         var money = $("#chargePoint").val();
+        var userIdn = $("#userIdn").val();
         
         if(money == '') {
             alert("금액을 입력해주세요.");
@@ -21,7 +22,7 @@
         IMP.request_pay({
             pg : 'kakaopay',
             pay_method : 'card', //생략 가능
-            merchant_uid: "order_no_0003", // 상점에서 관리하는 주문 번호
+            merchant_uid: "order_"+ new Date().getTime(), // 주문 번호
             name : '주문명 : 결제',
             amount : money,
             buyer_email : 'iamport@siot.do',
@@ -39,7 +40,7 @@
                 // msg += '카드 승인번호 : ' + rsp.apply_num;
                 $.ajax({
                     type: "POST", 
-                    url: "/point/charge", //충전 금액값을 보낼 url 설정
+                    url: "/point/charge/"+userIdn, //충전 금액값을 보낼 url 설정
                     data: {
                         "amount" : money
                     },
@@ -60,9 +61,10 @@
     <main>
         <div class="login_box">
             <a href="/"><img src="/img/bamin2.png" alt="이미지" class="bm_img"></a>
-
+                <input type="hidden" value="${userIdn}" id="userIdn">
                 <div class="input_aera"><input type="number" id="chargePoint" name="chargePoint"  value="" required placeholder="충전할 금액을 입력해 주세요" maxlength="30" ></div>
                 <input value="포인트 충전하기" class="login_btn" onclick="charge_point()" style="text-align: center;">
+                <input value="돌아가기" class="login_btn" onclick="location.href='/myPage'" style="text-align: center;">
 
                 <!-- <div class="box">
                     <div class="continue_login">

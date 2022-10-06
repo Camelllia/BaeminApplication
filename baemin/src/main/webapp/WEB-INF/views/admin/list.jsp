@@ -74,6 +74,7 @@
             <table>
                 <thead>
                   <tr>
+                    <th>NO</th>
                     <th>닉네임</th>
                     <th>이메일</th>
                     <th>전화번호</th>
@@ -84,6 +85,7 @@
                 <tbody>
                     <c:forEach var="memberList" items="${memberLists}" varStatus="status">
                         <tr>
+                            <td>${memberList.rowNum}</td>
                             <td>${memberList.userNickname}</td>
                             <td>${memberList.userEmail}</td>
                             <td>${memberList.userPhonenum}</td>

@@ -35,7 +35,10 @@ public class UserController {
     AES256 aes256;
 
     @RequestMapping(value = "/", method = {RequestMethod.GET, RequestMethod.POST})
-    public String main() {
+    public String main(HttpSession session) {
+        if(StringUtils.isNoneBlank(String.valueOf(SessionUtil.getLoginMemberIdn(session)))) {
+            return "/category";
+        }
         return "user/login";
     }
 
