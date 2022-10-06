@@ -50,11 +50,6 @@ public class UserController {
         return "user/join";
     }
 
-    @RequestMapping(value = "/likeList", method = {RequestMethod.GET, RequestMethod.POST})
-    public String likeList() {
-        return "user/likeList";
-    }
-
     @RequestMapping(value = "/logout")
     public String logout(HttpSession session) {
         SessionUtil.logout(session);
