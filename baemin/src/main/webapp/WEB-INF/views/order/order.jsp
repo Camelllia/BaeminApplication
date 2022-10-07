@@ -3,6 +3,13 @@
 <%@ include file="/WEB-INF/views/include/link.jsp" %>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script type="text/javascript">
+
+    var pointHolder;
+
+    window.onload = function() {
+        pointHolder = $("#orderPrice").attr("placeholder");
+    }
+
     var order = function() {
 
         var userEmail = $("#userEmail").val();
@@ -85,34 +92,19 @@
                 }
             }).open();
     }
+
+    var selectPointPayType = function() {
+        $("#orderPrice").attr("disabled", false);
+        $("#orderPrice").attr("placeholder", pointHolder);
+    }
+
+    var selectDirectPayType = function() {
+        $("#orderPrice").attr("disabled", true);
+        $("#orderPrice").attr("placeholder", "현장에서 결제해주세요");
+
+    }
 </script>
-<style>
-    .select {
-    padding: 15px 10px;
-}
-.select input[type=radio]{
-    display: none;
-}
-.select input[type=radio]+label{
-    display: inline-block;
-    cursor: pointer;
-    height: 24px;
-    width: 90px;
-    border: 1px solid #333;
-    line-height: 24px;
-    text-align: center;
-    font-weight:bold;
-    font-size:13px;
-}
-.select input[type=radio]+label{
-    background-color: #fff;
-    color: #333;
-}
-.select input[type=radio]:checked+label{
-    background-color: #333;
-    color: #fff;
-}
-</style>
+<link rel="stylesheet" href="/css/order/select.css">
 <link rel="stylesheet" href="/css/user/login.css">
 </head>
 <body>
@@ -123,8 +115,8 @@
             <div class="input_aera">
                 <div class="select">
                     <h2 style="display: inline;">결제 방식 선택 : </h2> 
-                    <input type="radio" id="select" name="shop"><label for="select">배민페이</label>
-                    <input type="radio" id="select2" name="shop"><label for="select2">현장결제</label>
+                    <input type="radio" id="select" name="shop" onclick="selectPointPayType()"><label for="select">배민페이</label>
+                    <input type="radio" id="select2" name="shop" onclick="selectDirectPayType()"><label for="select2">현장결제</label>
                </div>
             </div>
 

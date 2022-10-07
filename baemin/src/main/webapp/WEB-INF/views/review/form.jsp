@@ -86,43 +86,7 @@
         })
     }
 </script>
-<style>
-    /* input file type */
-.input-file {
-  display: inline-block;
-}
-
-.input-file [type="file"] {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  border: 0 none;
-}
-.input-file .file-label {
-  display: inline-block;
-  min-width: 53px;
-  height: 27px;
-  line-height: 24px;
-  padding: 0 10px;
-  border-radius: 2px;
-  font-size: 13px;
-  background-color: #333;
-  color: #fff;
-  text-align: center;
-}
-.input-file .file-name {
-  width: 300px;
-  background: #f5f5f5;
-  height: 27px;
-  line-height: 26px;
-  text-indent: 5px;
-  border: 1px solid #bbb;
-}
-</style>
+<link rel="stylesheet" href="/css/review/input.css">
 <link rel="stylesheet" href="/css/user/login.css">
 </head>
 <body>

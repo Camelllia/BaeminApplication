@@ -4,18 +4,7 @@
 <link rel="stylesheet" href="/css/layout/nav.css">
 <link rel="stylesheet" href="/css/store/home.css">
 <script>
-    $(".category li").click(function(){
-        let address1 = $("#deleveryAddress1").val();
-        if(!address1) {
-            swal("배달 받으실 주소를 입력해 주세요");
-            return false;
-        }
-
-        const index = $(this).index();
-
-        location.href = "/store/" + (100+index) + "/" +address1;
-    })
-
+   
 </script>
 
 <%@ include file="/WEB-INF/views/include/header.jsp" %>

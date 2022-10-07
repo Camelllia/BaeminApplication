@@ -22,6 +22,6 @@ public class CouponController {
         model.addAttribute("couponLists", couponService.selectCouponList(orderType, stateCode, SessionUtil.getLoginMemberIdn(session)));
         model.addAttribute("orderType", orderType);
         model.addAttribute("stateCode", stateCode);
-        return "coupon/couponList";
+        return "coupon/list";
     }
 }

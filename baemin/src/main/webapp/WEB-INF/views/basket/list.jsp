@@ -50,19 +50,9 @@
 <link rel="stylesheet" href="/css/admin/admin.css" >
 <link rel="stylesheet" href="/css/store/detail.css">
 <link rel="stylesheet" href="/css/user/login.css">
+<link rel="stylesheet" href="/css/basket/table.css">
 <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
 <%@ include file="/WEB-INF/views/include/header.jsp" %>
-<style>
-    table {
-        width: 100%;
-        border: 1px solid #444444;
-        border-collapse: collapse;
-    }
-    th, td {
-        border: 1px solid #444444;
-        text-align: center;
-    }
-</style>
 <main>
     <input type="hidden" value="${orderType}" id="orderType"/>
     <section>
