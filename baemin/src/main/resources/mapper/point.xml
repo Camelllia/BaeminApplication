@@ -11,4 +11,14 @@
         WHERE
             userIdn = #{userIdn}
     </update>
+
+    <update id="updateUserPoint">
+        UPDATE
+            user_info as A
+        SET
+            userPoint = A.userPoint - #{paymentPrice}
+        WHERE
+            userIdn = #{userIdn}
+    </update>
+
 </mapper>

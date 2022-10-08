@@ -12,4 +12,8 @@ public class PointService {
     public int chargeUserPoint(int chargePoint, int userIdn) {
         return pointDAO.chargeUserPoint(chargePoint, userIdn);
     }
+
+    public int updateUserPoint(int paymentPrice, int userIdn) {
+        return pointDAO.updateUserPoint(paymentPrice, userIdn);
+    }
 }

@@ -21,4 +21,14 @@ public class PointDAO {
 
         return sqlSession.update(sqlId, param);
     }
+
+    public int updateUserPoint(int paymentPrice, int userIdn) {
+        String sqlId = "updateUserPoint";
+
+        HashMap<String, Integer> param = new HashMap<>();
+        param.put("paymentPrice", paymentPrice);
+        param.put("userIdn", userIdn);
+
+        return sqlSession.update(sqlId, param);
+    }
 }
