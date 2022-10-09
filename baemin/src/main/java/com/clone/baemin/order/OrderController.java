@@ -1,6 +1,7 @@
 package com.clone.baemin.order;
 
 import com.clone.baemin.basket.BasketService;
+import com.clone.baemin.coupon.CouponService;
 import com.clone.baemin.point.PointService;
 import com.clone.baemin.user.UserService;
 import com.clone.baemin.util.SessionUtil;
@@ -35,6 +36,9 @@ public class OrderController {
     @Autowired
     PointService pointService;
 
+    @Autowired
+    CouponService couponService;
+
     @RequestMapping(value = "/order/{storeIdn}", method = {RequestMethod.GET, RequestMethod.POST})
     public String order(@PathVariable("storeIdn") int storeIdn, Model model, HttpSession session) {
 
@@ -44,6 +48,7 @@ public class OrderController {
         }
 
         model.addAttribute("basketInfo", baksetInfoMap);
+        model.addAttribute("couponLists", couponService.selectVaildCouponList(SessionUtil.getLoginMemberIdn(session)));
         model.addAttribute("storeIdn", storeIdn);
         return "/order/order";
     }
@@ -59,17 +64,24 @@ public class OrderController {
     public String createOrder(@RequestParam("kakaoAddress") String kakaoAddress, @RequestParam(value = "detailAddress") String detailAddress,
                               @RequestParam("paymentType") int paymentType, @RequestParam("storeIdn") int storeIdn,
                               @RequestParam(value = "paymentPoint") int paymentPoint, @RequestParam("orderPrice") int orderPrice,
+                              @RequestParam("discountAmount") int discountAmount, @RequestParam("couponIdn") int couponIdn,
                               HttpSession session) {
         JSONObject resultObj = new JSONObject();
         resultObj.put("resultCode", -10);
 
         if(StringUtils.isNoneBlank(kakaoAddress, detailAddress, String.valueOf(orderPrice),String.valueOf(paymentType), String.valueOf(paymentPoint), String.valueOf(storeIdn))) {
-            if((paymentPoint - orderPrice) < 0) {
+            if((paymentPoint - (orderPrice - discountAmount)) < 0) {
                 resultObj.put("resultCode", -20);
                 return resultObj.toString();
             }
+
             resultObj.put("resultCode", 1);
-            pointService.updateUserPoint(orderPrice, SessionUtil.getLoginMemberIdn(session));
+            int paymentPrice = (orderPrice - discountAmount) > 0 ? (orderPrice - discountAmount) : 0;
+            if(paymentType == 1) {
+                paymentPrice = 0;
+            }
+            couponService.updateCouponUseYn(couponIdn);
+            pointService.updateUserPoint(paymentPrice, SessionUtil.getLoginMemberIdn(session));
             orderService.insertOrder(kakaoAddress + detailAddress, orderPrice, paymentType, storeIdn, SessionUtil.getLoginMemberIdn(session));
         }
 

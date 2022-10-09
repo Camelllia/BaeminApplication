@@ -17,6 +17,8 @@
         var paymentPoint = $("#paymentPoint").val();
         var orderPrice = $("#orderPrice").val();
         var storeIdn = $("#storeIdn").val();
+        var discountAmount = $("#couponAmount").val();
+        var couponIdn = $("#couponIdn").val();
         var paymentType;
 
         if($('input:radio[id=select2]').is(':checked')) {
@@ -45,7 +47,9 @@
             paymentPoint : paymentPoint,
             orderPrice : orderPrice,
             paymentType : paymentType,
-            storeIdn : storeIdn
+            storeIdn : storeIdn,
+            discountAmount : discountAmount,
+            couponIdn : couponIdn
         }
 
         $.ajax({
@@ -58,6 +62,7 @@
 				
                 if(result.resultCode == "1") {
                 	alert("주문 성공");
+                    location.href = location.href;
 				} else if(result.resultCode == "-10") {
                     alert("입력되지 않은 필드가 있습니다.");
                     return;
@@ -101,6 +106,24 @@
         paymentCode = 1;
 
     }
+
+    var selectCoupon = function() {
+        var couponName = $("#couponState option:selected").text();
+        var discountValue = $("#couponState option:selected").val();
+        var couponIdn = $("#couponState > option:selected").attr("value2");
+        if(couponIdn == undefined) {
+            couponIdn = 0;
+        }
+        $("#selectCouponName").val(couponName);
+        var discountAmount = discountValue.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+        $("#couponDisplay").html("할인금액 : " + discountAmount + "원");
+        var totalPrice = $("#orderPrice").val();
+        totalPrice = totalPrice - discountValue;
+        var dispalyTotalPrice = totalPrice.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+        $("#totalDisplay").html("총 결제금액 : " + dispalyTotalPrice + "원");
+        $("#couponAmount").val(discountValue);
+        $("#couponIdn").val(couponIdn);
+    }
 </script>
 <link rel="stylesheet" href="/css/order/select.css">
 <link rel="stylesheet" href="/css/user/login.css">
@@ -128,14 +151,27 @@
             <div class="input_aera">
                 <div class="select">
                     <input type="text" class="password2" maxlength="20" id="userAddressMain" placeholder="주소를 선택해주세요" disabled>
+                    <input type="text" class="password2" maxlength="20" id="detailAddress" placeholder="상세 주소를 입력해주세요">
                     <input type="radio" id="kakaoAddress" name="shop" onclick="selectKakaoAddress()"><label for="kakaoAddress">주소찾기</label>
                 </div>
-                <input type="text" class="password2" maxlength="20" id="detailAddress" placeholder="상세 주소를 입력해주세요">
+            </div>
+
+            <div class="input_aera">
+                <input type="text" class="password2" maxlength="20" id="selectCouponName" placeholder="쿠폰을 선택해주세요" disabled>
+                <select name="coupon" id="couponState" class="pl" onchange="selectCoupon()">
+                    <option value="0" selected>미선택</option>
+                    <c:forEach items="${couponLists}" var="couponList">
+                        <option value="${couponList.discountAmount}" value2="${couponList.couponIdn}">${couponList.couponName}</option>    
+                    </c:forEach>
+                </select>
             </div>
 
             <div class="input_aera">
                 <h2>주문금액 : <fm:formatNumber value="${basketInfo.totalPrice}" pattern="###,###" />원&nbsp;&nbsp;배달팁 : <fm:formatNumber value="${basketInfo.deleveryTip}" pattern="###,###" />원</h2>
-                <h2>총 결제금액 : <fm:formatNumber value="${basketInfo.paymentPrice}" pattern="###,###" />원</h2>
+                <h2 id="couponDisplay">할인금액 : 0원</h2>
+                <input type="hidden" value="0" id="couponAmount">
+                <input type="hidden" value="0" id="couponIdn">
+                <h2 id="totalDisplay">총 결제금액 : <fm:formatNumber value="${basketInfo.paymentPrice}" pattern="###,###" />원</h2>
             </div>
 
             <input value="주문하기" class="login_btn" style="text-align: center;" onclick="order()">

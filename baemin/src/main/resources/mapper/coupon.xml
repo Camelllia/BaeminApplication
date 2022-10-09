@@ -17,7 +17,7 @@
             FROM
                 bm_coupon
             WHERE
-                userIdn = 1
+                userIdn = #{userIdn}
             <if test="stateCode == 1">
                 AND
                 endDate > NOW()
@@ -38,5 +38,31 @@
                  @ROWNUM := 0
              ) AS B
     </select>
+
+    <select id="selectVaildCouponList" resultType="HashMap">
+        SELECT
+            couponIdn,
+            couponName,
+            discountAmount
+        FROM
+            bm_coupon
+        WHERE
+            userIdn = #{userIdn}
+        AND
+            endDate > NOW()
+        AND
+            useYn = 0
+        ORDER BY
+            regDate DESC
+    </select>
+
+    <update id="updateCouponUseYn">
+        UPDATE
+            bm_coupon
+        SET
+            useYn = 1
+        WHERE
+            couponIdn = #{couponIdn}
+    </update>
 </mapper>
 
