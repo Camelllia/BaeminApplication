@@ -57,4 +57,19 @@
         </selectKey>
     </insert>
 
+    <select id="selectTargetOrder" resultType="HashMap">
+        SELECT
+            A.orderAddress,
+            A.orderPrice,
+            A.paymentType,
+            A.regDate,
+            (SELECT storeName FROM bm_store WHERE storeIdn = A.storeIdn) AS storeName
+        FROM
+            bm_order AS A
+        WHERE
+            orderIdn = #{orderIdn}
+        AND
+            userIdn = #{userIdn}
+    </select>
+
 </mapper>

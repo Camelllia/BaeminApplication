@@ -20,4 +20,8 @@ public class OrderService {
         orderDAO.insertOrder(param);
         return (Integer) param.get("orderIdn");
     }
+
+    public HashMap selectTargetOrder(int orderIdn, int userIdn) {
+        return orderDAO.selectTargetOrder(orderIdn, userIdn);
+    }
 }

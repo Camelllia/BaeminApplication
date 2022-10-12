@@ -27,4 +27,12 @@ public class OrderDAO {
         String sqlId = "insertOrder";
         return sqlSession.insert(sqlId, param);
     }
+
+    public HashMap selectTargetOrder(int orderIdn, int userIdn) {
+        String sqlId = "selectTargetOrder";
+        HashMap<String, Integer> param = new HashMap<>();
+        param.put("orderIdn", orderIdn);
+        param.put("userIdn", userIdn);
+        return sqlSession.selectOne(sqlId, param);
+    }
 }
