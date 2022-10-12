@@ -62,7 +62,7 @@
 				
                 if(result.resultCode == "1") {
                 	alert("주문 성공");
-                    location.href = location.href;
+                    location.href = "/order/receipt/"+result.orderIdn;
 				} else if(result.resultCode == "-10") {
                     alert("입력되지 않은 필드가 있습니다.");
                     return;

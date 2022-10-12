@@ -35,7 +35,7 @@
             ) AS B
     </select>
 
-    <insert id="insertOrder">
+    <insert id="insertOrder" parameterType="HashMap">
         INSERT INTO bm_order
         (
             orderAddress,
@@ -52,6 +52,9 @@
             #{storeIdn},
             #{userIdn}
         )
+        <selectKey keyProperty="orderIdn" resultType="int" order="AFTER">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
     </insert>
 
 </mapper>

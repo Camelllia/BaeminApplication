@@ -59,6 +59,11 @@ public class OrderController {
         return "order/list";
     }
 
+    @RequestMapping(value = "/order/receipt/{orderIdn}", method = {RequestMethod.GET, RequestMethod.POST})
+    public String receipt(@PathVariable("orderIdn") int orderIdn, Model model, HttpSession session) {
+        return "order/receipt";
+    }
+
     @RequestMapping(value = "/createOrder", method = RequestMethod.POST)
     @ResponseBody
     public String createOrder(@RequestParam("kakaoAddress") String kakaoAddress, @RequestParam(value = "detailAddress") String detailAddress,
@@ -85,7 +90,17 @@ public class OrderController {
             }
             couponService.updateCouponUseYn(couponIdn);
             pointService.updateUserPoint(paymentPrice, SessionUtil.getLoginMemberIdn(session));
-            orderService.insertOrder(kakaoAddress + detailAddress, orderPrice, paymentType, storeIdn, SessionUtil.getLoginMemberIdn(session));
+
+            HashMap<String, Object> param = new HashMap<>();
+            param.put("orderAddress", kakaoAddress + detailAddress);
+            param.put("orderPrice", orderPrice);
+            param.put("paymentType", paymentType);
+            param.put("storeIdn", storeIdn);
+            param.put("userIdn", SessionUtil.getLoginMemberIdn(session));
+
+            int orderIdn = orderService.insertOrder(param);
+
+            resultObj.put("orderIdn", orderIdn);
         }
 
         return resultObj.toString();

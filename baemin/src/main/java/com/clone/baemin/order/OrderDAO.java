@@ -23,16 +23,8 @@ public class OrderDAO {
         return sqlSession.selectList(sqlId, param);
     }
 
-    public int insertOrder(String orderAddress, int orderPrice, int paymentType, int storeIdn, int userIdn) {
+    public int insertOrder(HashMap<String, Object> param) {
         String sqlId = "insertOrder";
-
-        HashMap<String, Object> param = new HashMap<>();
-        param.put("orderAddress", orderAddress);
-        param.put("orderPrice", orderPrice);
-        param.put("paymentType", paymentType);
-        param.put("storeIdn", storeIdn);
-        param.put("userIdn", userIdn);
-
         return sqlSession.insert(sqlId, param);
     }
 }
