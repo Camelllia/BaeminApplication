@@ -31,4 +31,12 @@ public class PointDAO {
 
         return sqlSession.update(sqlId, param);
     }
+
+    public int selectUserPoint(int userIdn) {
+        String sqlId = "selectUserPoint";
+        HashMap<String, Integer> param = new HashMap<>();
+        param.put("userIdn", userIdn);
+
+        return sqlSession.selectOne(sqlId, param);
+    }
 }

@@ -21,4 +21,13 @@
             userIdn = #{userIdn}
     </update>
 
+    <select id="selectUserPoint" resultType="int">
+        SELECT
+            userPoint
+        FROM
+            user_info
+        WHERE
+            userIdn = #{userIdn}
+    </select>
+
 </mapper>

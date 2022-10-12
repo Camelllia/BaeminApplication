@@ -70,11 +70,14 @@ public class OrderController {
         resultObj.put("resultCode", -10);
 
         if(StringUtils.isNoneBlank(kakaoAddress, detailAddress, String.valueOf(orderPrice),String.valueOf(paymentType), String.valueOf(paymentPoint), String.valueOf(storeIdn))) {
+            if(paymentPoint > pointService.selectUserPoint(SessionUtil.getLoginMemberIdn(session))) {
+                resultObj.put("resultCode", -20);
+                return resultObj.toString();
+            }
             if((paymentPoint - (orderPrice - discountAmount)) < 0) {
                 resultObj.put("resultCode", -20);
                 return resultObj.toString();
             }
-
             resultObj.put("resultCode", 1);
             int paymentPrice = (orderPrice - discountAmount) > 0 ? (orderPrice - discountAmount) : 0;
             if(paymentType == 1) {
