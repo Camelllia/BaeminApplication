@@ -13,13 +13,13 @@ public class OrderDAO {
     @Autowired
     SqlSession sqlSession;
 
-    public List<HashMap> selectUserOrderList(int userIdn, int orderType) {
+    public List<HashMap> selectUserOrderList(int userIdn, int orderType, int limit, int offset) {
         String sqlId = "selectUserOrderList";
-
         HashMap<String, Integer> param = new HashMap<>();
         param.put("userIdn", userIdn);
         param.put("orderType", orderType);
-
+        param.put("limit", limit);
+        param.put("offset", offset);
         return sqlSession.selectList(sqlId, param);
     }
 
@@ -32,6 +32,13 @@ public class OrderDAO {
         String sqlId = "selectTargetOrder";
         HashMap<String, Integer> param = new HashMap<>();
         param.put("orderIdn", orderIdn);
+        param.put("userIdn", userIdn);
+        return sqlSession.selectOne(sqlId, param);
+    }
+
+    public int selectOrderTotalCount(int userIdn) {
+        String sqlId = "selectOrderTotalCount";
+        HashMap<String, Integer> param = new HashMap<>();
         param.put("userIdn", userIdn);
         return sqlSession.selectOne(sqlId, param);
     }

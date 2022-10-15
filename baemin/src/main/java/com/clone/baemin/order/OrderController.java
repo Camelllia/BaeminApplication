@@ -52,15 +52,25 @@ public class OrderController {
         return "/order/order";
     }
 
-    @RequestMapping(value = "/orderList/orderType={orderType}", method = {RequestMethod.GET, RequestMethod.POST})
-    public String list(@PathVariable("orderType") int orderType, Model model, HttpSession session) {
-        model.addAttribute("orderLists", orderService.selectUserOrderList(SessionUtil.getLoginMemberIdn(session), orderType));
+    @RequestMapping(value = "/orderList/orderType={orderType}&pageNum={pageNum}", method = {RequestMethod.GET, RequestMethod.POST})
+    public String list(@PathVariable("orderType") int orderType, @PathVariable("pageNum") int pageNum, Model model, HttpSession session) {
+
+        int totalCount = orderService.selectOrderTotalCount(SessionUtil.getLoginMemberIdn(session));
+        final int displayCount = 10;
+        int totalPageNum = totalCount % displayCount != 0 ? (totalCount / displayCount) + 1 : (totalCount / displayCount);
+        int limit = pageNum * displayCount;
+        int offset = pageNum != 0 ? limit - displayCount : 0;
+
+        model.addAttribute("curPageNum", pageNum);
+        model.addAttribute("totalPageNum", totalPageNum);
+        model.addAttribute("orderLists", orderService.selectUserOrderList(SessionUtil.getLoginMemberIdn(session), orderType, limit, offset));
         return "order/list";
     }
 
     @RequestMapping(value = "/order/receipt/{orderIdn}", method = {RequestMethod.GET, RequestMethod.POST})
     public String receipt(@PathVariable("orderIdn") int orderIdn, Model model, HttpSession session) {
         model.addAttribute("orderInfo", orderService.selectTargetOrder(orderIdn, SessionUtil.getLoginMemberIdn(session)));
+        System.out.println(orderService.selectTargetOrder(orderIdn, SessionUtil.getLoginMemberIdn(session)));
         return "order/receipt";
     }
 

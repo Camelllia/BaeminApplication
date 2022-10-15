@@ -12,8 +12,8 @@ public class OrderService {
     @Autowired
     OrderDAO orderDAO;
 
-    public List<HashMap> selectUserOrderList(int userIdn, int orderType) {
-        return orderDAO.selectUserOrderList(userIdn, orderType);
+    public List<HashMap> selectUserOrderList(int userIdn, int orderType, int limit, int offset) {
+        return orderDAO.selectUserOrderList(userIdn, orderType, limit, offset);
     }
 
     public int insertOrder(HashMap<String, Object> param) {
@@ -23,5 +23,9 @@ public class OrderService {
 
     public HashMap selectTargetOrder(int orderIdn, int userIdn) {
         return orderDAO.selectTargetOrder(orderIdn, userIdn);
+    }
+
+    public int selectOrderTotalCount(int userIdn) {
+        return orderDAO.selectOrderTotalCount(userIdn);
     }
 }

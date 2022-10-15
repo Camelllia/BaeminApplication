@@ -31,16 +31,11 @@
 <main>
     <input type="hidden" value="${orderType}" id="orderType"/>
     <section>
-        <div class="today">
-  				<span>
-  					<span>주문목록</span>
-  					<span id="today"></span>
-  				</span>
-
-            <!-- <button>상세보기</button> -->
-
+        <div>
+  			<span>
+                <h2 style="text-align: center;">주문목록</h2>
+  			</span>
         </div>
-
     </section>
 
     <section class="detail today_detail">
@@ -63,8 +58,8 @@
 
     <section class="graph_section" onselectstart="return false;" >
         <div class="box">
-            <button class="year_btn"  id="ot_0" onclick="location.href='/orderList/orderType=0'">주문일순</button>
-            <button class="year_btn"  id="ot_1" onclick="location.href='/orderList/orderType=1'">주문금액순</button>
+            <button class="year_btn"  id="ot_0" onclick="location.href='/orderList/orderType=0&pageNum=${curPageNum}'">주문일순</button>
+            <button class="year_btn"  id="ot_1" onclick="location.href='/orderList/orderType=1&pageNum=${curPageNum}'">주문금액순</button>
             <!-- <button class="week_btn">이번 주 매출</button>
             <input type="month"name="date" id="date">
             <button class="other_month_search">검색</button> -->

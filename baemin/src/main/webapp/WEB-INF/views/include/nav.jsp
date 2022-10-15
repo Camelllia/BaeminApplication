@@ -5,7 +5,7 @@
         <li><a href="/category"></a></li>
         <li><a href="/category"></a></li>
         <li><a href="/category"></a></li>
-        <li><a href="/orderList/orderType=0"></a></li>
+        <li><a href="/orderList/orderType=0&pageNum=1"></a></li>
         <li><a href="/myPage"></a></li>
     </ul>
 </nav>

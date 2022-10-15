@@ -33,6 +33,10 @@
             (SELECT
                  @ROWNUM := 0
             ) AS B
+        LIMIT
+            #{limit}
+        OFFSET
+            #{offset}
     </select>
 
     <insert id="insertOrder" parameterType="HashMap">
@@ -59,16 +63,32 @@
 
     <select id="selectTargetOrder" resultType="HashMap">
         SELECT
-            A.orderAddress,
-            A.orderPrice,
-            A.paymentType,
-            A.regDate,
+            A.*,
             (SELECT storeName FROM bm_store WHERE storeIdn = A.storeIdn) AS storeName
         FROM
-            bm_order AS A
+            (SELECT
+                 storeIdn,
+                 FORMAT(orderPrice, 0) as orderPrice,
+                 paymentType,
+                 orderAddress,
+                 DATE_FORMAT(regDate, '%Y-%m-%d %H:%i:%s') AS regDate,
+                 orderIdn,
+                 userIdn
+             FROM
+                 bm_order
+             ) AS A
         WHERE
-            orderIdn = #{orderIdn}
+            A.orderIdn = #{orderIdn}
         AND
+            A.userIdn = #{userIdn}
+    </select>
+
+    <select id="selectOrderTotalCount" resultType="int">
+        SELECT
+            COUNT(*)
+        FROM
+            bm_order
+        WHERE
             userIdn = #{userIdn}
     </select>
 
