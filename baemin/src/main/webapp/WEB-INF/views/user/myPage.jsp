@@ -54,7 +54,7 @@
 	                       	<span class="img_box">
 	                       		<img src="/img/icon11.png" alt="포인트">
 	                       	</span>
-                        <span>포인트</span>
+                        <span>포인트 충전</span>
                     </a>
                 </div>
 
@@ -80,11 +80,11 @@
 
 
                 <div>
-                    <a href="#" onclick="ready()">
+                    <a href="/store/insert">
 							<span class="img_box">
 								<img src="/img/icon44.png" alt="찜한가게">
 							</span>
-                        <span>찜한가게</span>
+                        <span>매장등록</span>
                     </a>
                 </div>
 

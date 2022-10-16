@@ -2,16 +2,23 @@ package com.clone.baemin.store;
 
 import com.clone.baemin.review.ReviewService;
 import com.clone.baemin.util.SessionUtil;
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.List;
+
+/*
+ *
+ * ResultCode
+ * 1 : 성공
+ * -10 : 리뷰 점수 유효성 에러
+ * */
 
 @Controller
 public class StoreController {
@@ -95,5 +102,23 @@ public class StoreController {
         model.addAttribute("categoryNum", categoryNum);
         model.addAttribute("orderType", orderType);
         return "store/store";
+    }
+
+    @RequestMapping(value = "/store/insert", method = {RequestMethod.GET, RequestMethod.POST})
+    public String insert() {
+        return "store/insert";
+    }
+
+    @RequestMapping(value = "/createStore", method = RequestMethod.POST)
+    @ResponseBody
+    public String createStore(@RequestParam("storeName") String storeName, @RequestParam("storeAddress") String storeAddress,
+                              @RequestParam("storePhonenum") String storePhonenum, @RequestParam("storeIntro") String storeIntro,
+                              @RequestParam("minDelevery") String minDelevery, @RequestParam("categoryNum") String categoryNum,
+                              @RequestParam("deleveryTip") String deleveryTip, @RequestParam("deleveryTime") String deleveryTime,
+                              @RequestParam("imgFile") MultipartFile imgFile, @RequestParam("fileName") String fileName) {
+        JSONObject resultObj = new JSONObject();
+        resultObj.put("resultCode", 1);
+
+        return resultObj.toString();
     }
 }
