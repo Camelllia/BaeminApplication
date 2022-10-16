@@ -1,0 +1,16 @@
+.page_box {display: flex; justify-content: center; margin: 20px 0; }
+
+.page_box li { border: 1px solid #999; border-right: none; width: 35px; height: 35px; text-align: center; line-height: 35px; }
+
+.page_box li:last-child { border-right: 1px solid #999; }
+
+.page_box li a { display: block; width: 100%; height: 100%; }
+
+.now_page { background: #30DAD9; color: #fff; cursor: default; }
+
+.now_page:hover { color: #fff; }
+
+@media(max-width :767px) {
+    .page_box { margin-top: 20px; }
+    .page_box li { width: 25px; height: 25px; line-height: 25px; font-size: 12px; }
+}

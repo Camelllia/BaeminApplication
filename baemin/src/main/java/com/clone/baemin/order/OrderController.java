@@ -56,7 +56,7 @@ public class OrderController {
     public String list(@PathVariable("orderType") int orderType, @PathVariable("pageNum") int pageNum, Model model, HttpSession session) {
 
         int totalCount = orderService.selectOrderTotalCount(SessionUtil.getLoginMemberIdn(session));
-        final int displayCount = 10;
+        final int displayCount = 15;
         int totalPageNum = totalCount % displayCount != 0 ? (totalCount / displayCount) + 1 : (totalCount / displayCount);
         int limit = pageNum * displayCount;
         int offset = pageNum != 0 ? limit - displayCount : 0;
