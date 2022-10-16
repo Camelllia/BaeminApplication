@@ -60,4 +60,31 @@
         WHERE
             storeIdn = #{storeIdn}
     </select>
+
+    <insert id="insertStore">
+        INSERT INTO bm_store
+        (
+            storeName,
+            storeAddress,
+            storeIntro,
+            storePhonenum,
+            minDelevery,
+            deleveryTip,
+            deleveryTime,
+            categoryNum,
+            imgPath
+        )
+        VALUES
+        (
+            #{storeName},
+            #{storeAddress},
+            #{storeIntro},
+            #{storePhonenum},
+            #{minDelevery},
+            #{deleveryTip},
+            #{deleveryTime},
+            #{categoryNum},
+            #{imgPath}
+        )
+    </insert>
 </mapper>
