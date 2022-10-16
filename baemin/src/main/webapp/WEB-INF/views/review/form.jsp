@@ -95,6 +95,8 @@
         <a href="/"><img src="/img/bamin2.png" alt="이미지" class="bm_img"></a>
         <form id="reviewForm" enctype="multipart/form-data" name="reviewForm">
             <input type="hidden" id="storeIdn" value="${storeIdn}"/>
+
+            <h2>배달의 민족 리뷰작성</h2>
             <div class="input_aera">
                 <input type="text" name="email" class="email" id="reviewTitle" placeholder="리뷰 제목을 입력해 주세요" >
                 <span class="msg_box">${errorMsg.email }</span>

@@ -70,7 +70,6 @@ public class OrderController {
     @RequestMapping(value = "/order/receipt/{orderIdn}", method = {RequestMethod.GET, RequestMethod.POST})
     public String receipt(@PathVariable("orderIdn") int orderIdn, Model model, HttpSession session) {
         model.addAttribute("orderInfo", orderService.selectTargetOrder(orderIdn, SessionUtil.getLoginMemberIdn(session)));
-        System.out.println(orderService.selectTargetOrder(orderIdn, SessionUtil.getLoginMemberIdn(session)));
         return "order/receipt";
     }
 

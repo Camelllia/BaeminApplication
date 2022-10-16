@@ -37,6 +37,7 @@
               <input type="text" class="email" value="주문일시 : ${orderInfo.regDate}" disabled>                    
             </div>
 
+            <input value="리뷰작성" class="login_btn" onclick="location.href='/review/form/${orderInfo.storeIdn}'" style="text-align : center">
             <input value="확인" class="login_btn" onclick="location.href='/category'" style="text-align : center">
     </div>
 

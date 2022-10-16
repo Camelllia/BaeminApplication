@@ -47,12 +47,12 @@
 
 
 	<!-- 모바일 카트 -->
-   	<div class="m_cart_img">
+   	<!-- <div class="m_cart_img">
    		<div class="m_cart_img_box">
    			<i class="fas fa-shopping-cart"></i>
    			<span class="m_cart_count"></span>
    		</div>
-   	</div>
+   	</div> -->
   	<!-- 모바일 카트 -->
     
     
