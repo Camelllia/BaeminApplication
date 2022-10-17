@@ -37,4 +37,18 @@ public class StoreDAO {
 
         return sqlSession.selectList(sqlId, param);
     }
+
+    public int insertStore(String storeName, String storeAddress, String storeIntro, String storePhonenum, int minDelevery, int deleveryTip, int deleveryTime, int categoryNum, String imgPath) {
+        String sqlId = "insertStore";
+        HashMap<String, Object> param = new HashMap<>();
+        param.put("storeName", storeName);
+        param.put("storeAddress", storeAddress);
+        param.put("storeIntro", storeIntro);
+        param.put("storePhonenum", storePhonenum);
+        param.put("deleveryTip", deleveryTip);
+        param.put("deleveryTime", deleveryTime);
+        param.put("categoryNum", categoryNum);
+        param.put("imgPath", imgPath);
+        return sqlSession.insert(sqlId, param);
+    }
 }

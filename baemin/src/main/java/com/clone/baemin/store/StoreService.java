@@ -23,4 +23,8 @@ public class StoreService {
     public List<HashMap> selectStoreMenuList(int storeIdn) {
         return storeDAO.selectStoreMenuList(storeIdn);
     }
+
+    public int insertStore(String storeName, String storeAddress, String storeIntro, String storePhonenum, int minDelevery, int deleveryTip, int deleveryTime, int categoryNum, String imgPath) {
+        return storeDAO.insertStore(storeName, storeAddress, storeIntro, storePhonenum, minDelevery, deleveryTip, deleveryTime, categoryNum, imgPath);
+    }
 }
