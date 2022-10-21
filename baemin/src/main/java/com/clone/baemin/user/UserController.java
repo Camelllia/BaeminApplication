@@ -36,9 +36,6 @@ public class UserController {
 
     @RequestMapping(value = "/", method = {RequestMethod.GET, RequestMethod.POST})
     public String main(HttpSession session) {
-        if(StringUtils.isNoneBlank(String.valueOf(SessionUtil.getLoginMemberIdn(session)))) {
-            return "/category";
-        }
         return "user/login";
     }
 
