@@ -152,8 +152,7 @@ public class StoreController {
                 e.printStackTrace();
             }
 
-            storeService.insertStore(storeName, storeAddress, storeIntro, storePhonenum, Integer.valueOf(minDelevery), Integer.valueOf(deleveryTip), Integer.valueOf(deleveryTime)
-            , Integer.valueOf(categoryNum), newFileName);
+            storeService.insertStore(storeName, storeAddress, storeIntro, storePhonenum, Integer.valueOf(minDelevery), Integer.valueOf(deleveryTip), Integer.valueOf(deleveryTime), Integer.valueOf(categoryNum), newFileName);
         }
 
         return resultObj.toString();
