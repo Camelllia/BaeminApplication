@@ -45,6 +45,7 @@ public class StoreDAO {
         param.put("storeAddress", storeAddress);
         param.put("storeIntro", storeIntro);
         param.put("storePhonenum", storePhonenum);
+        param.put("minDelevery", minDelevery);
         param.put("deleveryTip", deleveryTip);
         param.put("deleveryTime", deleveryTime);
         param.put("categoryNum", categoryNum);

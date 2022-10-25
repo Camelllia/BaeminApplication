@@ -17,7 +17,6 @@ public class ReviewDAO {
     public int insertReview(String reviewTitle, String reviewContent, int reviewScore, String imgPath,
                             int storeIdn, int userIdn, String userNickname) {
         String sqlId = "insertReview";
-
         HashMap<String, Object> param = new HashMap<>();
         param.put("reviewTitle", reviewTitle);
         param.put("reviewContent", reviewContent);
@@ -26,34 +25,27 @@ public class ReviewDAO {
         param.put("storeIdn", storeIdn);
         param.put("userIdn", userIdn);
         param.put("userNickname", userNickname);
-
         return sqlSession.insert(sqlId, param);
     }
 
     public List<HashMap> selectStoreReviewList(int storeIdn) {
         String sqlId= "selectStoreReviewList";
-
         HashMap<String, Integer> param = new HashMap<>();
         param.put("storeIdn", storeIdn);
-
         return sqlSession.selectList(sqlId, param);
     }
 
     public List<HashMap> selectUserReviewList(int userIdn) {
         String sqlId = "selectUserReviewList";
-
         HashMap<String, Integer> param = new HashMap<>();
         param.put("userIdn", userIdn);
-
         return sqlSession.selectList(sqlId, param);
     }
 
     public int deleteTargetReview(int reviewIdn) {
         String sqlId = "deleteTargetReview";
-
         HashMap<String, Integer> param = new HashMap<>();
         param.put("reviewIdn", reviewIdn);
-
         return sqlSession.delete(sqlId, param);
     }
 }

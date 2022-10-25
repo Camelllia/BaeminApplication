@@ -23,25 +23,16 @@
         var categoryNum = $("#categoryState option:selected").val();
         var imgFile = $("#imgFile")[0].files[0];
 
-        alert(storeName);
-        alert(storeAddress);
-        alert(storePhonenum);
-        alert(storeIntro);
-        alert(deleveryTime);
-        alert(deleveryTip);
-        alert(minDelevery);
-        alert(categoryNum);
-        alert(imgFile);
+        
+        if(storeName == "" || storeAddress == "" || storePhonenum == "" || storeIntro == "" || deleveryTime == "" || deleveryTip == "" || minDelevery == "" || categoryNum == "") {
+            alert("입력되지 않은 내용이 있습니다.");
+            return;
+        }
 
-        // if(reviewTitle == "" || reviewContent == "" || reviewScore == "") {
-        //     alert("입력되지 않은 내용이 있습니다.");
-        //     return;
-        // }
-
-        // if(imgFile == undefined) {
-        //     alert("매장 사진을 등록해주세요");
-        //     return;
-        // }
+        if(imgFile == undefined) {
+            alert("매장 사진을 등록해주세요");
+            return;
+        }
 
         var formData = new FormData();
 
@@ -68,8 +59,12 @@
 
                 if(result.resultCode == "1") {
                     alert("정상적으로 등록되었습니다.");
-                    return;
-                }				
+                    location.href = location.href;
+                } else if(result.resultCode == "-20") {
+                    alert("입력되지 않은 내용이 있습니다.");
+                } else if(result.resultCode == "-30") {
+                    alert("유효하지 않은 파일 확장자입니다.");
+                }
             },
             error:function (err) {
                 console.log(err);
@@ -118,15 +113,15 @@
                 </div>
     
                 <div class="input_aera">
-                    <input type="text" name="email" class="email" id="minDelevery" placeholder="최소주문금액을 입력해 주세요" >
+                    <input type="number" name="email" class="email" id="minDelevery" placeholder="최소주문금액을 입력해 주세요" >
                 </div>
     
                 <div class="input_aera">
-                    <input type="text" class="password1" name="password" id="deleveryTip" placeholder="배달팁을 입력해 주세요">
+                    <input type="number" class="password1" name="password" id="deleveryTip" placeholder="배달팁을 입력해 주세요">
                 </div>
     
                 <div class="input_aera">
-                    <input type="text" class="password1" name="password" id="deleveryTime" placeholder="예상배달시간을 입력해 주세요">
+                    <input type="number" class="password1" name="password" id="deleveryTime" placeholder="예상배달시간을 입력해 주세요">
                 </div>
     
                 <div class="input_aera">

@@ -35,7 +35,7 @@ public class UserController {
     AES256 aes256;
 
     @RequestMapping(value = "/", method = {RequestMethod.GET, RequestMethod.POST})
-    public String main(HttpSession session) {
+    public String main() {
         return "user/login";
     }
 
