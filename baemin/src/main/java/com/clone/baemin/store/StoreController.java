@@ -119,6 +119,11 @@ public class StoreController {
         return "store/insert";
     }
 
+    @RequestMapping(value = "/store/menu", method = {RequestMethod.GET, RequestMethod.POST})
+    public String menu() {
+        return "store/menu";
+    }
+
     @RequestMapping(value = "/createStore", method = RequestMethod.POST)
     @ResponseBody
     public String createStore(@RequestParam("storeName") String storeName, @RequestParam("storeAddress") String storeAddress,

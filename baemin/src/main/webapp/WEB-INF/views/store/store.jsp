@@ -60,6 +60,7 @@
                     <li data-sort="배달 빠른 순" id="ot_1"><a href="/store/categoryNum=${categoryNum}&orderType=1">배달팁 낮은 순</a></li>
                     <li data-sort="배달팁 낮은 순" id="ot_2"><a href="/store/categoryNum=${categoryNum}&orderType=2">배달 빠른 순</a></li>
                     <li data-sort="최소 주문 금액 순" id="ot_3"><a href="/store/categoryNum=${categoryNum}&orderType=3">최소 주문 금액 순</a></li>
+                    <li data-sort="매장등록" id="ot_4"><a href="/store/insert">매장등록</a></li>
                 </ul> 
            </div>
 

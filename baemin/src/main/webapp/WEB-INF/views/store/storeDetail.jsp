@@ -406,7 +406,9 @@
 		<div class="login_box">
 			<button class="login_btn" onclick="location.href='/review/form/${storeInfo.storeIdn}'" style="width: 100%; height: 50px; font-size: 20px;">리뷰작성</button>
         </div>
-		
+		<div class="login_box">
+			<button class="login_btn" onclick="location.href='/store/menu'" style="width: 100%; height: 50px; font-size: 20px;">메뉴등록</button>
+        </div>
 	</main>
 </div>
 	
