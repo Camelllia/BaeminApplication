@@ -146,7 +146,7 @@
             </form>
 
             <input value="매장등록" class="login_btn" onclick="createStore()" style="text-align: center;">
-            <input value="돌아가기" class="login_btn" onclick="location.href='/myPage'" style="text-align: center;">
+            <input value="돌아가기" class="login_btn" onclick="location.href='/category'" style="text-align: center;">
         </form>
     </div>
 

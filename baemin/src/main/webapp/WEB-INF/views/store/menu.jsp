@@ -104,7 +104,7 @@
             </form>
 
             <input value="메뉴등록" class="login_btn" onclick="createMenu()" style="text-align: center;">
-            <input value="돌아가기" class="login_btn" onclick="location.href='/myPage'" style="text-align: center;">
+            <input value="돌아가기" class="login_btn" onclick="location.href='/category'" style="text-align: center;">
         </form>
     </div>
 
