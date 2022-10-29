@@ -27,4 +27,8 @@ public class StoreService {
     public int insertStore(String storeName, String storeAddress, String storeIntro, String storePhonenum, int minDelevery, int deleveryTip, int deleveryTime, int categoryNum, String imgPath) {
         return storeDAO.insertStore(storeName, storeAddress, storeIntro, storePhonenum, minDelevery, deleveryTip, deleveryTime, categoryNum, imgPath);
     }
+
+    public int insertMenu(String menuName, int menuPrice, int storeIdn, String imgPath) {
+        return storeDAO.insertMenu(menuName, menuPrice, storeIdn, imgPath);
+    }
 }

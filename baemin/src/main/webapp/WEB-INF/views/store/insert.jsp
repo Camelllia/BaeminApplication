@@ -63,7 +63,7 @@
                 } else if(result.resultCode == "-20") {
                     alert("입력되지 않은 내용이 있습니다.");
                 } else if(result.resultCode == "-30") {
-                    alert("유효하지 않은 파일 확장자입니다.");
+                    alert("사진은 PNG 형식으로 등록해주세요.");
                 }
             },
             error:function (err) {

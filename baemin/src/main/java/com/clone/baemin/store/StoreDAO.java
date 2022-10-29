@@ -4,6 +4,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.nio.channels.Pipe;
 import java.util.HashMap;
 import java.util.List;
 
@@ -49,6 +50,16 @@ public class StoreDAO {
         param.put("deleveryTip", deleveryTip);
         param.put("deleveryTime", deleveryTime);
         param.put("categoryNum", categoryNum);
+        param.put("imgPath", imgPath);
+        return sqlSession.insert(sqlId, param);
+    }
+
+    public int insertMenu(String menuName, int menuPrice, int storeIdn, String imgPath) {
+        String sqlId = "insertMenu";
+        HashMap<String, Object> param = new HashMap<>();
+        param.put("menuName", menuName);
+        param.put("menuPrice", menuPrice);
+        param.put("storeIdn", storeIdn);
         param.put("imgPath", imgPath);
         return sqlSession.insert(sqlId, param);
     }

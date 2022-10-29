@@ -87,4 +87,23 @@
             #{imgPath}
         )
     </insert>
+
+    <insert id="insertMenu">
+        INSERT INTO bm_menu
+        (
+            menuName,
+            menuPrice,
+            imgPath,
+            storeIdn,
+            regDate
+        )
+        VALUES
+        (
+            #{menuName},
+            #{menuPrice},
+            #{imgPath},
+            #{storeIdn},
+            NOW()
+        )
+    </insert>
 </mapper>

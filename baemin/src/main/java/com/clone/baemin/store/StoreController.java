@@ -15,7 +15,6 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.File;
-import java.net.URL;
 import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
@@ -119,9 +118,47 @@ public class StoreController {
         return "store/insert";
     }
 
-    @RequestMapping(value = "/store/menu", method = {RequestMethod.GET, RequestMethod.POST})
-    public String menu() {
+    @RequestMapping(value = "/store/menu/{storeIdn}", method = {RequestMethod.GET, RequestMethod.POST})
+    public String menu(@PathVariable("storeIdn") int storeIdn, Model model) {
+        model.addAttribute("storeInfo", storeService.selectTargetStoreInfo(storeIdn));
+        System.out.println(storeService.selectTargetStoreInfo(storeIdn));
         return "store/menu";
+    }
+
+    @RequestMapping(value = "/createMenu", method = RequestMethod.POST)
+    @ResponseBody
+    public String createMenu(@RequestParam("menuName") String menuName, @RequestParam("menuPrice") String menuPrice,
+                              @RequestParam("imgFile") MultipartFile imgFile, @RequestParam("fileName") String fileName,
+                              @RequestParam("storeIdn") String storeIdn, HttpServletRequest request) {
+        JSONObject resultObj = new JSONObject();
+        resultObj.put("resultCode", 1);
+
+        if(!StringUtils.isNoneBlank(menuName, menuPrice, storeIdn, fileName)) {
+            resultObj.put("resultCode", -20);
+        }
+
+        if(imgFile != null) {
+            String extension = fileName.substring(fileName.lastIndexOf("."), fileName.length());
+            if (!CommonUtil.isVaildExtension(extension)) {
+                resultObj.put("resultCode", -30);
+                return resultObj.toString();
+            }
+
+            UUID uuid = UUID.randomUUID();
+            String newFileName = uuid.toString() + extension;
+            ServletContext servletContext = request.getSession().getServletContext();
+            String uploadPath = servletContext.getRealPath("/upload/") + newFileName;
+
+            try {
+                imgFile.transferTo(new File(uploadPath));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            storeService.insertMenu(menuName, Integer.valueOf(menuPrice), Integer.valueOf(storeIdn), newFileName);
+        }
+
+        return resultObj.toString();
     }
 
     @RequestMapping(value = "/createStore", method = RequestMethod.POST)
