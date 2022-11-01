@@ -37,6 +37,25 @@
             (SELECT
                  @ROWNUM := 0
              ) AS B
+        LIMIT
+            #{limit}
+        OFFSET
+            #{offset}
+    </select>
+
+    <select id="selectCouponTotalCount" resultType="int">
+        SELECT
+             COUNT(*)
+        FROM
+            bm_coupon
+        WHERE
+            userIdn = #{userIdn}
+        <if test="stateCode == 1">
+            AND
+                endDate > NOW()
+            AND
+                useYn = 0
+        </if>
     </select>
 
     <select id="selectVaildCouponList" resultType="HashMap">

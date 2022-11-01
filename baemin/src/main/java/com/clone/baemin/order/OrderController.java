@@ -3,6 +3,7 @@ package com.clone.baemin.order;
 import com.clone.baemin.basket.BasketService;
 import com.clone.baemin.coupon.CouponService;
 import com.clone.baemin.point.PointService;
+import com.clone.baemin.util.PageNationUtil;
 import com.clone.baemin.util.SessionUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.json.simple.JSONObject;
@@ -38,6 +39,9 @@ public class OrderController {
     @Autowired
     CouponService couponService;
 
+    @Autowired
+    PageNationUtil pageNationUtil;
+
     @RequestMapping(value = "/order/{storeIdn}", method = {RequestMethod.GET, RequestMethod.POST})
     public String order(@PathVariable("storeIdn") int storeIdn, Model model, HttpSession session) {
 
@@ -55,15 +59,12 @@ public class OrderController {
     @RequestMapping(value = "/orderList/orderType={orderType}&pageNum={pageNum}", method = {RequestMethod.GET, RequestMethod.POST})
     public String list(@PathVariable("orderType") int orderType, @PathVariable("pageNum") int pageNum, Model model, HttpSession session) {
 
-        int totalCount = orderService.selectOrderTotalCount(SessionUtil.getLoginMemberIdn(session));
-        final int displayCount = 15;
-        int totalPageNum = totalCount % displayCount != 0 ? (totalCount / displayCount) + 1 : (totalCount / displayCount);
-        int limit = pageNum * displayCount;
-        int offset = pageNum != 0 ? limit - displayCount : 0;
+
+        HashMap<String, Integer> pageNationParam = pageNationUtil.setPageNation(orderService.selectOrderTotalCount(SessionUtil.getLoginMemberIdn(session)), pageNum);
 
         model.addAttribute("curPageNum", pageNum);
-        model.addAttribute("totalPageNum", totalPageNum);
-        model.addAttribute("orderLists", orderService.selectUserOrderList(SessionUtil.getLoginMemberIdn(session), orderType, limit, offset));
+        model.addAttribute("totalPageNum", pageNationParam.get("totalPageNum"));
+        model.addAttribute("orderLists", orderService.selectUserOrderList(SessionUtil.getLoginMemberIdn(session), orderType, pageNationParam.get("limit"), pageNationParam.get("offset")));
         return "order/list";
     }
 

@@ -1,7 +1,10 @@
 package com.clone.baemin.util;
 
+import org.springframework.stereotype.Component;
+
 import java.util.HashMap;
 
+@Component
 public class PageNationUtil {
 
     public HashMap setPageNation(int totalCount, int pageNum) {
@@ -9,9 +12,10 @@ public class PageNationUtil {
         HashMap<String, Integer> pageNationParam = new HashMap<>();
         final int displayCount = 15;
 
-        int totalPageNum = totalCount % displayCount != 0 ? (totalCount / displayCount) + 1 : (totalCount / displayCount);
-        int limit = pageNum * displayCount;
-        int offset = pageNum != 0 ? limit - displayCount : 0;
+        pageNationParam.put("displayCount", displayCount);
+        pageNationParam.put("totalPageNum", totalCount % displayCount != 0 ? (totalCount / displayCount) + 1 : (totalCount / displayCount));
+        pageNationParam.put("limit", pageNum * displayCount);
+        pageNationParam.put("offset", pageNum != 0 ? (pageNum * displayCount) - displayCount : 0);
 
         return pageNationParam;
     }

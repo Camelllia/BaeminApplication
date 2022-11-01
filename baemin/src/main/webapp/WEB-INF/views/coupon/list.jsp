@@ -16,6 +16,7 @@
 </script>
 <link rel="stylesheet" href="/css/admin/admin.css" >
 <link rel="stylesheet" href="/css/user/login.css">
+<link rel="stylesheet" href="/css/layout/page.css">
 <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
 <%@ include file="/WEB-INF/views/include/header.jsp" %>
 <style>
@@ -61,10 +62,10 @@
 
     <section class="graph_section" onselectstart="return false;" >
         <div class="box">
-            <button class="year_btn"  id="ot_1" onclick="location.href='/couponList/orderType=1&stateCode=0'">지급일순</button>
-            <button class="month_btn" id="ot_2" onclick="location.href='/couponList/orderType=0&stateCode=1'">유효한 쿠폰만</button>
-            <button class="month_btn" id="ot_3" onclick="location.href='/couponList/orderType=0&stateCode=0'">모두 해제</button>
-            <button class="month_btn" id="ot_4" onclick="location.href='/couponList/orderType=1&stateCode=1'">모두 선택</button>
+            <button class="year_btn"  id="ot_1" onclick="location.href='/couponList/orderType=1&stateCode=0&pageNum=1'">지급일순</button>
+            <button class="month_btn" id="ot_2" onclick="location.href='/couponList/orderType=0&stateCode=1&pageNum=1'">유효한 쿠폰만</button>
+            <button class="month_btn" id="ot_3" onclick="location.href='/couponList/orderType=0&stateCode=0&pageNum=1'">모두 해제</button>
+            <button class="month_btn" id="ot_4" onclick="location.href='/couponList/orderType=1&stateCode=1&pageNum=1'">모두 선택</button>
             <!-- <button class="week_btn">이번 주 매출</button>
             <input type="month"name="date" id="date">
             <button class="other_month_search">검색</button> -->
@@ -116,6 +117,24 @@
                 </div>
             </div> 
         </div>
+        <ul class="page_box">
+            <c:if test="${curPageNum ne 1}">
+                <li><a onclick="pagePrev()">이전</a></li>
+            </c:if>
+        
+            <c:forEach begin="1" end="${totalPageNum}" var="i">
+                <c:if test="${i != curPageNum }">
+                    <li><a href="/orderList/orderType=${orderType}&pageNum=${i}">${i}</a></li>
+                </c:if>
+                <c:if test="${i == curPageNum}">
+                    <li><a class="now_page" onclick="return false;" href="orderList/orderType=${orderType}&pageNum=${i}">${i }</a></li>
+                </c:if>
+            </c:forEach>
+        
+            <c:if test="${curPageNum ne totalPageNum}">
+                <li><a onclick="pageNext()">다음</a></li>
+            </c:if>
+        </ul>
         <div class="login_box">
             <input value="돌아가기" class="login_btn" onclick="location.href='/myPage'" style="width: 100%; text-align: center;">
         </div>

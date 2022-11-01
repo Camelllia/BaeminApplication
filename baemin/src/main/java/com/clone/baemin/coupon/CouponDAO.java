@@ -4,6 +4,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.nio.channels.Pipe;
 import java.util.HashMap;
 import java.util.List;
 
@@ -13,12 +14,14 @@ public class CouponDAO {
     @Autowired
     SqlSession sqlSession;
 
-    public List<HashMap> selectCouponList(int orderType, int stateCode, int userIdn) {
+    public List<HashMap> selectCouponList(int orderType, int stateCode, int userIdn, int limit, int offset) {
         String sqlId = "selectCouponList";
         HashMap<String, Integer> param = new HashMap<>();
         param.put("userIdn", userIdn);
         param.put("orderType", orderType);
         param.put("stateCode", stateCode);
+        param.put("limit", limit);
+        param.put("offset", offset);
         return sqlSession.selectList(sqlId, param);
     }
 
@@ -34,5 +37,13 @@ public class CouponDAO {
         HashMap<String, Integer> param = new HashMap<>();
         param.put("couponIdn", couponIdn);
         return sqlSession.update(sqlId, param);
+    }
+
+    public int selectCouponTotalCount(int userIdn, int stateCode) {
+        String sqlId = "selectCouponTotalCount";
+        HashMap<String, Integer> param = new HashMap<>();
+        param.put("userIdn", userIdn);
+        param.put("stateCode", stateCode);
+        return sqlSession.selectOne(sqlId, param);
     }
 }

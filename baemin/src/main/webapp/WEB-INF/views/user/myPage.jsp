@@ -60,7 +60,7 @@
 
 
                 <div>
-                    <a class="updating" href="/couponList/orderType=0&stateCode=0">
+                    <a class="updating" href="/couponList/orderType=0&stateCode=0&pageNum=1">
 	               		  	<span class="img_box">
 	                			<img src="/img/icon22.png" alt="쿠폰함">
 	               			</span>
