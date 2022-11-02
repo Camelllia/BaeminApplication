@@ -1,6 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/include/link.jsp" %>
+
+<link rel="stylesheet" href="/css/modal.css">
+<link rel="stylesheet" href="/css/admin/admin.css" >
+<link rel="stylesheet" href="/css/store/detail.css">
+<link rel="stylesheet" href="/css/user/login.css">
+<link rel="stylesheet" href="/css/layout/page.css">
+
+<script type="text/javascript" src="/js/review/review.js"></script>
 <script type="text/javascript">
     window.onload = function () {
         var orderType = $("#orderType").val();
@@ -12,45 +20,7 @@
             $("#ot_2").css('background', 'rgba(163, 159, 159, 0.425)');
         }
     }
-
-    var deleteReview = function(reviewIdn) {
-        
-        if(reviewIdn == "") {
-            alert("미확인된 리뷰입니다.");
-            location.href = location.href;
-        }
-
-        var param = {
-            reviewIdn : reviewIdn
-        } 
-
-        $.ajax({
-            type:"POST",
-            url:"/deleteReview",
-            data:param,
-            success:function(response) {
-			
-                const result = JSON.parse(response);
-				
-                if(result.resultCode == "1") {
-                	alert("삭제되었습니다.");
-                    location.href = location.href;
-				} else if(result.resultCode == "-50"){
-					alert("미확인된 리뷰입니다.");
-                    location.href = location.href;
-				}
-            },
-            error:function (err) {
-                alert("리뷰 삭제에 실패하였습니다.");
-            }
-        })
-    }
 </script>
-<link rel="stylesheet" href="/css/modal.css">
-<link rel="stylesheet" href="/css/admin/admin.css" >
-<link rel="stylesheet" href="/css/store/detail.css">
-<link rel="stylesheet" href="/css/user/login.css">
-<link rel="stylesheet" href="/css/layout/page.css">
 <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
 <%@ include file="/WEB-INF/views/include/header.jsp" %>
 <style>

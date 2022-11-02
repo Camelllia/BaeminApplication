@@ -2,6 +2,7 @@
          pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/include/link.jsp" %>
 <script type="text/javascript" src="/js/util/cookie.js"></script>
+<script type="text/javascript" src="/js/user/user.js"></script>
 <script type="text/javascript">
 
     window.onload = function () {
@@ -9,53 +10,6 @@
         if (saved_email != "" && saved_email != 'undefined' && saved_email != "" && saved_email != 'undefined') {
             $("#userEmail").val(saved_email);
         }
-    }
-
-    var login = function() {
-
-        var userEmail = $("#userEmail").val();
-        var userPw = $("#userPw").val();
-
-        if($("#save_email").is(":checked")) {
-            setCookie("saved_email", userEmail);
-        } else {
-            deleteCookie("saved_email");
-        }
-    
-        if(userEmail == '') {
-            alert("이메일을 입력해주세요.");
-            return;
-        }
-
-        if(userPw == '') {
-            alert("비밀번호를 입력해주세요.");
-            return;
-        }
-
-        var param = {
-            userEmail : userEmail,
-            userPw : userPw,
-        }
-
-        $.ajax({
-            type:"POST",
-            url:"/login",
-            data:param,
-            success:function(response) {
-			
-                const result = JSON.parse(response);
-				
-                if(result.resultCode == "1") {
-                	location.href = "/category";
-				} else if(result.resultCode == "-50"){
-					alert("이메일과 비밀번호를 확인해주세요.");
-                    return;
-				}
-            },
-            error:function (err) {
-                alert("로그인에 실패하였습니다.");
-            }
-        })
     }
 </script>
 <link rel="stylesheet" href="/css/user/login.css">

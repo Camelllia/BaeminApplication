@@ -1,26 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/include/link.jsp" %>
+
 <link rel="stylesheet" href="/css/layout/nav.css">
 <link rel="stylesheet" href="/css/user/myPage.css">
-<script type="text/javascript">
 
-    $(".updating").click(function () {
-        swal("업데이트 준비 중 입니다");
-    })
-
-    $("#logoutBtn").click(function () {
-        location.href = "/logout";
-    })
-
-    var ready = function() {
-        alert("준비중입니다.");
-    }
-
-    var logout = function() {
-        location.href = "/logout";
-    }
-</script>
+<script type="text/javascript" src="/js/user/user.js"></script>
 
 <%@ include file="/WEB-INF/views/include/header.jsp" %>
 

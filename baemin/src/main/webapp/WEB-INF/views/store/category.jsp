@@ -3,9 +3,6 @@
 <%@ include file="/WEB-INF/views/include/link.jsp" %>
 <link rel="stylesheet" href="/css/layout/nav.css">
 <link rel="stylesheet" href="/css/store/home.css">
-<script>
-   
-</script>
 
 <%@ include file="/WEB-INF/views/include/header.jsp" %>
 <!-- 콘텐츠 -->

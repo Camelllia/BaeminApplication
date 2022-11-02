@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/include/link.jsp" %>
+
+<script type="text/javascript" src="/js/basket/basket.js"></script>
 <script type="text/javascript">
     window.onload = function () {
         var orderType = $("#orderType").val();
@@ -11,39 +13,6 @@
         } else if(orderType == 2) {
             $("#ot_2").css('background', 'rgba(163, 159, 159, 0.425)');
         }
-    }
-
-    var deleteBasket = function(basketIdn) {
-        
-        if(basketIdn == "") {
-            alert("미확인된 상품입니다.");
-            location.href = location.href;
-        }
-
-        var param = {
-            basketIdn : basketIdn
-        } 
-
-        $.ajax({
-            type:"POST",
-            url:"/deleteBasket",
-            data:param,
-            success:function(response) {
-			
-                const result = JSON.parse(response);
-				
-                if(result.resultCode == "1") {
-                	alert("삭제되었습니다.");
-                    location.href = location.href;
-				} else if(result.resultCode == "-20"){
-					alert("미확인된 상품입니다.");
-                    location.href = location.href;
-				}
-            },
-            error:function (err) {
-                alert("상품 삭제에 실패하였습니다.");
-            }
-        })
     }
 </script>
 <link rel="stylesheet" href="/css/modal.css">
