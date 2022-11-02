@@ -59,6 +59,19 @@
             userIdn = #{userIdn}
         ORDER BY
             A.regDate DESC
+        LIMIT
+            #{limit}
+        OFFSET
+            #{offset}
+    </select>
+
+    <select id="selectUserReviewListTotalCount" resultType="int">
+        SELECT
+            COUNT(*)
+        FROM
+            bm_review
+        WHERE
+            userIdn = #{userIdn}
     </select>
 
     <delete id="deleteTargetReview">

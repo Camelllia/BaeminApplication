@@ -1,6 +1,7 @@
 package com.clone.baemin.review;
 
 import com.clone.baemin.util.CommonUtil;
+import com.clone.baemin.util.PageNationUtil;
 import com.clone.baemin.util.SessionUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.json.simple.JSONObject;
@@ -14,6 +15,7 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.File;
+import java.util.HashMap;
 import java.util.UUID;
 
 /*
@@ -34,6 +36,9 @@ public class ReviewController {
     @Autowired
     ReviewService reviewService;
 
+    @Autowired
+    PageNationUtil pageNationUtil;
+
     @RequestMapping(value = "/review/form/{storeIdn}", method = {RequestMethod.GET, RequestMethod.POST})
     public String form(@PathVariable("storeIdn") int storeIdn, Model model, HttpSession session) {
         if(SessionUtil.getLoginMemberNickname(session) == null) {
@@ -43,9 +48,14 @@ public class ReviewController {
         return "review/form";
     }
 
-    @RequestMapping(value = "/reviewList", method = {RequestMethod.GET, RequestMethod.POST})
-    public String list(Model model, HttpSession session) {
-        model.addAttribute("reviewLists", reviewService.selectUserReviewList(SessionUtil.getLoginMemberIdn(session)));
+    @RequestMapping(value = "/reviewList/pageNum={pageNum}", method = {RequestMethod.GET, RequestMethod.POST})
+    public String list(@PathVariable("pageNum") int pageNum, Model model, HttpSession session) {
+
+        HashMap<String, Integer> pageNationParam = pageNationUtil.setPageNation(reviewService.selectUserReviewListTotalCount(SessionUtil.getLoginMemberIdn(session)), pageNum);
+
+        model.addAttribute("curPageNum", pageNum);
+        model.addAttribute("totalPageNum", pageNationParam.get("totalPageNum"));
+        model.addAttribute("reviewLists", reviewService.selectUserReviewList(SessionUtil.getLoginMemberIdn(session), pageNationParam.get("limit"), pageNationParam.get("offset")));
         return "review/list";
     }
 

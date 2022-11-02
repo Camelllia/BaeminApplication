@@ -21,8 +21,12 @@ public class ReviewService {
         return reviewDAO.selectStoreReviewList(storeIdn);
     }
 
-    public List<HashMap> selectUserReviewList(int userIdn) {
-        return reviewDAO.selectUserReviewList(userIdn);
+    public List<HashMap> selectUserReviewList(int userIdn, int limit, int offset) {
+        return reviewDAO.selectUserReviewList(userIdn, limit, offset);
+    }
+
+    public int selectUserReviewListTotalCount(int userIdn) {
+        return reviewDAO.selectUserReviewListTotalCount(userIdn);
     }
 
     public int deleteTargetReview(int reviewIdn) {

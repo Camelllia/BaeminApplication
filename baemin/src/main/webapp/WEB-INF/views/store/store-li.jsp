@@ -12,9 +12,9 @@
 
 		<div class="info_box">
 		
-			<h2><a href="#">${storeList.storeName }</a></h2>
+			<h2><a href="/store/detail/${storeList.storeIdn}">${storeList.storeName }</a></h2>
 			
-			<a href="#">
+			<a href="/store/detail/${storeList.storeIdn}">
 				<span>
 <%--					<span>평점 ${storeList.score}</span>--%>
 <%--					--%>

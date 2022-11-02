@@ -35,11 +35,20 @@ public class ReviewDAO {
         return sqlSession.selectList(sqlId, param);
     }
 
-    public List<HashMap> selectUserReviewList(int userIdn) {
+    public List<HashMap> selectUserReviewList(int userIdn, int limit, int offset) {
         String sqlId = "selectUserReviewList";
         HashMap<String, Integer> param = new HashMap<>();
         param.put("userIdn", userIdn);
+        param.put("limit", limit);
+        param.put("offset", offset);
         return sqlSession.selectList(sqlId, param);
+    }
+
+    public int selectUserReviewListTotalCount(int userIdn) {
+        String sqlId = "selectUserReviewListTotalCount";
+        HashMap<String, Integer> param = new HashMap<>();
+        param.put("userIdn", userIdn);
+        return sqlSession.selectOne(sqlId, param);
     }
 
     public int deleteTargetReview(int reviewIdn) {

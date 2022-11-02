@@ -39,15 +39,11 @@
                     <c:if test="${empty userNickname}">
                         <a href="/"><span>로그인을 해주세요</span></a>
                     </c:if>
-
-
                     <c:if test="${!empty userNickname}">
-                        <c:set var="nickname" value="${SPRING_SECURITY_CONTEXT.authentication.principal.user.nickname }" />
-                        <a href="#"><span class="nickname" data-nickname=${nickname} >${userNickname} 님</span></a>
+                        <a href="#"><span class="nickname" data-nickname=${userNickname} >${userNickname} 님</span></a>
                         <button type="button" class="logout" onclick="logout()">로그아웃</button>
                     </c:if>
                 </div>
-
 
                 <div>
                     <a href="/point">
@@ -100,7 +96,7 @@
 
 
                 <div>
-                    <a href="/reviewList">
+                    <a href="/reviewList/pageNum=1">
 							<span class="img_box">
 								<img src="/img/icon66.png" alt="리뷰관리">
 							</span>
