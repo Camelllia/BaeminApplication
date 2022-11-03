@@ -51,11 +51,11 @@
 
 
                 <div>
-                    <a class="updating" href="#" onclick="ready()">
+                    <a class="updating" href="/coupon/insert">
 	                 		<span class="img_box">
-	                 			<img src="/img/icon33.png" alt="선물함">
+	                 			<img src="/img/icon33.png" alt="쿠폰발급">
 	                 		</span>
-                        <span>선물함</span>
+                        <span>쿠폰발급</span>
                     </a>
                 </div>
 

@@ -25,6 +25,10 @@ public class CouponService {
     }
 
     public int selectCouponTotalCount(int userIdn, int stateCode) {
-        return  couponDAO.selectCouponTotalCount(userIdn, stateCode);
+        return couponDAO.selectCouponTotalCount(userIdn, stateCode);
+    }
+
+    public int insertCoupon(String couponName, int discountAmount, int userIdn) {
+        return couponDAO.insertCoupon(couponName, discountAmount, userIdn);
     }
 }

@@ -2,15 +2,22 @@ package com.clone.baemin.coupon;
 
 import com.clone.baemin.util.PageNationUtil;
 import com.clone.baemin.util.SessionUtil;
+import org.apache.commons.lang3.StringUtils;
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;
+
+/*
+ *
+ * ResultCode
+ * 1 : 성공
+ * -10 : 파라미터 공백 에러
+ * */
 
 @Controller
 public class CouponController {
@@ -34,5 +41,25 @@ public class CouponController {
         model.addAttribute("orderType", orderType);
         model.addAttribute("stateCode", stateCode);
         return "coupon/list";
+    }
+
+    @RequestMapping(value = "/coupon/insert", method = {RequestMethod.GET, RequestMethod.POST})
+    public String insert() {
+        return "coupon/insert";
+    }
+
+    @RequestMapping(value = "/createCoupon", method = {RequestMethod.POST})
+    @ResponseBody
+    public String createCoupon(@RequestParam("couponName") String couponName, @RequestParam("discountAmount") String discountAmount, HttpSession session) {
+        JSONObject resultObj = new JSONObject();
+        resultObj.put("resultCode", 1);
+
+        if(!StringUtils.isNoneBlank(couponName, discountAmount)) {
+            resultObj.put("resultCode", -10);
+        }
+
+        couponService.insertCoupon(couponName, Integer.valueOf(discountAmount), SessionUtil.getLoginMemberIdn(session));
+
+        return resultObj.toString();
     }
 }

@@ -46,4 +46,13 @@ public class CouponDAO {
         param.put("stateCode", stateCode);
         return sqlSession.selectOne(sqlId, param);
     }
+
+    public int insertCoupon(String couponName, int discountAmount, int userIdn) {
+        String sqlId = "insertCoupon";
+        HashMap<String, Object> param = new HashMap<>();
+        param.put("couponName", couponName);
+        param.put("discountAmount", discountAmount);
+        param.put("userIdn", userIdn);
+        return sqlSession.insert(sqlId, param);
+    }
 }

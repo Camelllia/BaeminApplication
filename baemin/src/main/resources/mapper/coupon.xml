@@ -83,5 +83,24 @@
         WHERE
             couponIdn = #{couponIdn}
     </update>
+
+    <insert id="insertCoupon">
+        INSERT INTO bm_coupon
+        (
+            couponName,
+            discountAmount,
+            userIdn,
+            regDate,
+            endDate
+        )
+        VALUES
+        (
+            #{couponName},
+            #{discountAmount},
+            #{userIdn},
+            NOW(),
+            DATE_ADD(NOW(), INTERVAL 7 DAY)
+        )
+    </insert>
 </mapper>
 

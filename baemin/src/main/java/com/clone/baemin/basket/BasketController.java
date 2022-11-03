@@ -17,10 +17,6 @@ import java.util.HashMap;
  * ResultCode
  * 1 : 성공
  * -10 : 파라미터 공백 에러
- * -20 :
- * -30 :
- * -40 :
- * -50 :
  * */
 
 @Controller
