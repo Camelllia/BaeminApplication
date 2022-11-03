@@ -104,7 +104,7 @@ var join = function() {
 
     $.ajax({
         type:"POST",
-        url:"/insertUserAccount",
+        url:"/createAccount",
         data:param,
         success:function(response) {
 

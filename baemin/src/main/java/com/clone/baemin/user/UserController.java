@@ -74,9 +74,9 @@ public class UserController {
         return "/user/list";
     }
 
-    @RequestMapping(value = "/insertUserAccount", method = RequestMethod.POST)
+    @RequestMapping(value = "/createAccount", method = RequestMethod.POST)
     @ResponseBody
-    public String insertUserAccount(@RequestParam("userEmail") String userEmail, @RequestParam("userPw") String userPw,
+    public String createAccount(@RequestParam("userEmail") String userEmail, @RequestParam("userPw") String userPw,
                                        @RequestParam("userNickname") String userNickname, @RequestParam("userPwCheck") String userPwCheck,
                                        @RequestParam("userPhonenum") String userPhonenum) {
         JSONObject resultObj = new JSONObject();
