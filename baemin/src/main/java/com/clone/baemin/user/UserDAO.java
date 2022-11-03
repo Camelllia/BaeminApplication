@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
+import java.util.List;
 
 @Component
 public class UserDAO {
@@ -19,7 +20,6 @@ public class UserDAO {
         param.put("userPw", userPw);
         param.put("userNickname", userNickname);
         param.put("userPhonenum", userPhonenum);
-
         return sqlSession.insert(sqlId, param);
     }
 
@@ -27,7 +27,6 @@ public class UserDAO {
         String sqlId = "selectEmailCount";
         HashMap<String, String> param = new HashMap<>();
         param.put("userEmail", userEmail);
-
         return sqlSession.selectOne(sqlId, param);
     }
 
@@ -36,7 +35,6 @@ public class UserDAO {
         HashMap<String, String> param = new HashMap<>();
         param.put("userEmail", userEmail);
         param.put("userPw", userPw);
-
         return sqlSession.selectOne(sqlId, param);
     }
 
@@ -45,7 +43,6 @@ public class UserDAO {
         HashMap<String, String> param = new HashMap<>();
         param.put("userEmail", userEmail);
         param.put("userPw", userPw);
-
         return sqlSession.selectOne(sqlId, param);
     }
 
@@ -54,7 +51,13 @@ public class UserDAO {
         HashMap<String, String> param = new HashMap<>();
         param.put("userEmail", userEmail);
         param.put("regIp", regIp);
-
         return sqlSession.insert(sqlId, param);
+    }
+
+    public List<HashMap> selectMemberList(int orderType) {
+        String sqlId = "selectMemberList";
+        HashMap<String, Integer> param = new HashMap<>();
+        param.put("orderType", orderType);
+        return sqlSession.selectList(sqlId, param);
     }
 }

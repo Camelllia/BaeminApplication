@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
+import java.util.List;
 
 @Service
 public class UserService {
@@ -29,5 +30,9 @@ public class UserService {
 
     public int insertLoginLog(String userEmail, String regIp) {
         return userDAO.insertLoginLog(userEmail, regIp);
+    }
+
+    public List<HashMap> selectMemberList(int orderType) {
+        return userDAO.selectMemberList(orderType);
     }
 }

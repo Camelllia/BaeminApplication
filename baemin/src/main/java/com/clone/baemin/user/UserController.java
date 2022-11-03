@@ -59,6 +59,12 @@ public class UserController {
         return "redirect:/";
     }
 
+    @RequestMapping("/memberList/orderType={orderType}")
+    public String list(@PathVariable("orderType") int orderType, Model model) {
+        model.addAttribute("memberLists", userService.selectMemberList(orderType));
+        return "/admin/list";
+    }
+
     @RequestMapping(value = "/insertUserAccount", method = RequestMethod.POST)
     @ResponseBody
     public String insertUserAccount(@RequestParam("userEmail") String userEmail, @RequestParam("userPw") String userPw,

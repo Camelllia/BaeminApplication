@@ -71,4 +71,35 @@
         AND
             userPw = #{userPw}
     </select>
+
+    <select id="selectMemberList" resultType="HashMap">
+        SELECT
+            A.*,
+            FORMAT(@ROWNUM := @ROWNUM+1, 0) AS rowNum
+        FROM
+            (SELECT
+                userNickname,
+                userEmail,
+                userPhonenum,
+                userPoint,
+                DATE_FORMAT(regDate, '%Y-%m-%d') AS regDate
+            FROM
+                user_info
+            ORDER BY
+                <if test="orderType == 0">
+                    userIdn
+                </if>
+                <if test="orderType == 1">
+                    userNickname
+                </if>
+                <if test="orderType == 2">
+                    regDate DESC
+                </if>
+            LIMIT
+                18446744073709551615
+            ) AS A,
+            (SELECT
+                @ROWNUM := 0
+            ) AS B
+    </select>
 </mapper>
