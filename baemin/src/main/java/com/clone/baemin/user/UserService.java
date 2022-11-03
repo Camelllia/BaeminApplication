@@ -32,7 +32,11 @@ public class UserService {
         return userDAO.insertLoginLog(userEmail, regIp);
     }
 
-    public List<HashMap> selectMemberList(int orderType) {
-        return userDAO.selectMemberList(orderType);
+    public List<HashMap> selectMemberList(int orderType, int limit, int offset) {
+        return userDAO.selectMemberList(orderType, limit, offset);
+    }
+
+    public int selectMemberListTotalCount() {
+        return userDAO.selectMemberListTotalCount();
     }
 }

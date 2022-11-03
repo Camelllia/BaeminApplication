@@ -102,4 +102,11 @@
                 @ROWNUM := 0
             ) AS B
     </select>
+
+    <select id="selectMemberListTotalCount" resultType="int">
+        SELECT
+            COUNT(*)
+        FROM
+            user_info
+    </select>
 </mapper>

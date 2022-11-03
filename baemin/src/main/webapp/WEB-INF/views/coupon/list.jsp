@@ -124,10 +124,10 @@
         
             <c:forEach begin="1" end="${totalPageNum}" var="i">
                 <c:if test="${i != curPageNum }">
-                    <li><a href="/orderList/orderType=${orderType}&pageNum=${i}">${i}</a></li>
+                    <li><a href="/couponList/orderType=${orderType}&stateCode=0&pageNum=${i}">${i}</a></li>
                 </c:if>
                 <c:if test="${i == curPageNum}">
-                    <li><a class="now_page" onclick="return false;" href="orderList/orderType=${orderType}&pageNum=${i}">${i }</a></li>
+                    <li><a class="now_page" onclick="return false;" href="/couponList/orderType=${orderType}&stateCode=0&pageNum=${i}">${i}</a></li>
                 </c:if>
             </c:forEach>
         

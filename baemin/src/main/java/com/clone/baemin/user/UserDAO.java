@@ -54,10 +54,17 @@ public class UserDAO {
         return sqlSession.insert(sqlId, param);
     }
 
-    public List<HashMap> selectMemberList(int orderType) {
+    public List<HashMap> selectMemberList(int orderType, int limit, int offset) {
         String sqlId = "selectMemberList";
         HashMap<String, Integer> param = new HashMap<>();
         param.put("orderType", orderType);
+        param.put("limit", limit);
+        param.put("offset", offset);
         return sqlSession.selectList(sqlId, param);
+    }
+
+    public int selectMemberListTotalCount() {
+        String sqlId = "selectMemberListTotalCount";
+        return sqlSession.selectOne(sqlId);
     }
 }

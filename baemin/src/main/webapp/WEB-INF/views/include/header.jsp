@@ -31,7 +31,7 @@ header .admin_page_btn a {
 			<div class="admin_page_btn">
 				<div>
 					${userNickname} 님
-					<a href="/memberList/orderType=0">회원관리</a>
+					<a href="/memberList/orderType=0&pageNum=1">회원관리</a>
 				</div>
 			</div>
 			<div class="menu_tab_box active">

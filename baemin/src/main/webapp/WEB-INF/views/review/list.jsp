@@ -20,6 +20,18 @@
             $("#ot_2").css('background', 'rgba(163, 159, 159, 0.425)');
         }
     }
+
+    var pagePrev = function() {
+        var curPageNum = parseInt($("#curPageNum").val());
+        var prevPageNum = curPageNum - 1;
+        location.href = '/reviewList/pageNum=' + prevPageNum;
+    }
+
+    var pageNext = function() {
+        var curPageNum = parseInt($("#curPageNum").val());
+        var nextPageNum = curPageNum + 1;
+        location.href = '/reviewList/pageNum=' + nextPageNum;
+    }
 </script>
 <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
 <%@ include file="/WEB-INF/views/include/header.jsp" %>
@@ -35,7 +47,7 @@
     }
 </style>
 <main>
-    <input type="hidden" value="${orderType}" id="orderType"/>
+    <input type="hidden" value="${curPageNum}" id="curPageNum"/>
     <section>
         <div class="today">
   				<span>
@@ -134,10 +146,10 @@
             
                 <c:forEach begin="1" end="${totalPageNum}" var="i">
                     <c:if test="${i != curPageNum }">
-                        <li><a href="/orderList/orderType=${orderType}&pageNum=${i}">${i}</a></li>
+                        <li><a href="/reviewList/pageNum=${i}">${i}</a></li>
                     </c:if>
                     <c:if test="${i == curPageNum}">
-                        <li><a class="now_page" onclick="return false;" href="orderList/orderType=${orderType}&pageNum=${i}">${i }</a></li>
+                        <li><a class="now_page" onclick="return false;" href="/reviewList/pageNum=${i}">${i}</a></li>
                     </c:if>
                 </c:forEach>
             

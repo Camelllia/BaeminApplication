@@ -3,6 +3,7 @@ package com.clone.baemin.user;
 import com.clone.baemin.coupon.CouponService;
 import com.clone.baemin.util.AES256;
 import com.clone.baemin.util.CommonUtil;
+import com.clone.baemin.util.PageNationUtil;
 import com.clone.baemin.util.SessionUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.json.simple.JSONObject;
@@ -32,6 +33,9 @@ public class UserController {
     CouponService couponService;
 
     @Autowired
+    PageNationUtil pageNationUtil;
+
+    @Autowired
     AES256 aes256;
 
     @RequestMapping(value = "/", method = {RequestMethod.GET, RequestMethod.POST})
@@ -59,10 +63,15 @@ public class UserController {
         return "redirect:/";
     }
 
-    @RequestMapping("/memberList/orderType={orderType}")
-    public String list(@PathVariable("orderType") int orderType, Model model) {
-        model.addAttribute("memberLists", userService.selectMemberList(orderType));
-        return "/admin/list";
+    @RequestMapping("/memberList/orderType={orderType}&pageNum={pageNum}")
+    public String list(@PathVariable("orderType") int orderType, @PathVariable("pageNum") int pageNum, Model model) {
+
+        HashMap<String,Integer> pageNationParam = pageNationUtil.setPageNation(userService.selectMemberListTotalCount(), pageNum);
+
+        model.addAttribute("curPageNum", pageNum);
+        model.addAttribute("totalPageNum", pageNationParam.get("totalPageNum"));
+        model.addAttribute("memberLists", userService.selectMemberList(orderType, pageNationParam.get("limit"), pageNationParam.get("offset")));
+        return "/user/list";
     }
 
     @RequestMapping(value = "/insertUserAccount", method = RequestMethod.POST)
