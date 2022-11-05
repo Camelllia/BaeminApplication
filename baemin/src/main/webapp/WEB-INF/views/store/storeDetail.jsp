@@ -92,10 +92,10 @@
 
 	<main style=" margin-left: auto; margin-right: auto;">
 		<div class="offset"></div>
-        <ul class="tab ">
-            <li class="select">메뉴</li>
-            <li>정보</li>
-            <li>리뷰</li>
+        <ul class="tab">
+            <li id="menu" class="select" onclick="changeTabMenu()" >메뉴</li>
+            <li id="info" onclick="changeTabInfo()">정보</li>
+            <li id="comment" onclick="changeTabComment()">리뷰</li>
         </ul>
 	
 			
@@ -135,7 +135,7 @@
 		<!-- 메뉴 탭 -->	
 
 		<!-- 정보 탭 -->
-	    <ul class="info" >
+	    <ul class="info">
 			<li>
 				<div>
 					<h2>찾아 오시는 길</h2>
@@ -209,10 +209,8 @@
 	    </ul>
 		<!-- 메뉴 탭 -->    
 	
-		
-		
 		<!-- 리뷰 탭 -->        
-		<ul class="comment" >
+		<ul class="comment" style="display: none;">
 			<li>
 				<div class="score_info">
 					<div>
@@ -401,10 +399,10 @@
 			</c:if>
 		</ul>
 		<div class="login_box">
-            <button class="login_btn" onclick="location.href='/basketList/${storeInfo.storeIdn}'" style="width: 32.333%; height: 50px; font-size: 20px;">장바구니</button>
-			<button class="login_btn" onclick="location.href='/review/form/${storeInfo.storeIdn}'" style="width: 32.333%; height: 50px; font-size: 20px;">리뷰작성</button>
-			<button class="login_btn" onclick="location.href='/store/menu/${storeInfo.storeIdn}'" style="width: 32.333%; height: 50px; font-size: 20px;">메뉴등록</button>
-        </div>
+            <button class="login_btn" onclick="location.href='/basketList/${storeInfo.storeIdn}'" style="width: 32%; height: 50px; font-size: 20px;">장바구니</button>
+			<button class="login_btn" onclick="location.href='/review/form/${storeInfo.storeIdn}'" style="width: 32%; height: 50px; font-size: 20px;">리뷰작성</button>
+			<button class="login_btn" onclick="location.href='/store/menu/${storeInfo.storeIdn}'" style="width: 32%; height: 50px; font-size: 20px;">메뉴등록</button>
+		</div>
 	</main>
 </div>
 	

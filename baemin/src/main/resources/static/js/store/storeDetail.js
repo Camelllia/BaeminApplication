@@ -34,3 +34,30 @@ var insertBasket = function(index) {
 		}
 	})
 }
+
+var changeTabMenu = function() {
+	$(".menu").show();
+	$(".info").show();
+	$(".comment").show();
+	$("#comment").removeClass('select');
+	$("#info").removeClass('select');
+	$("#menu").addClass('select');
+}
+
+var changeTabInfo = function() {
+	$(".menu").hide();
+	$(".info").show();
+	$(".comment").hide();
+	$("#menu").removeClass('select');
+	$("#comment").removeClass('select');
+	$("#info").addClass('select');
+}
+
+var changeTabComment = function() {
+	$(".menu").hide();
+	$(".info").hide();
+	$(".comment").show();
+	$("#menu").removeClass('select');
+	$("#info").removeClass('select');
+	$("#comment").addClass('select');
+}

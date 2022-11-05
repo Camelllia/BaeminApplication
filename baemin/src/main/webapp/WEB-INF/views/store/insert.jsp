@@ -20,7 +20,7 @@
 <body>
 <main>
     <div class="login_box">
-        <a href="/"><img src="/img/bamin2.png" alt="이미지" class="bm_img"></a>
+        <a href="#"><img src="/img/bamin2.png" alt="이미지" class="bm_img"></a>
         <form id="reviewForm" enctype="multipart/form-data" name="reviewForm">
             <input type="hidden" id="storeIdn" value="${storeIdn}"/>
 

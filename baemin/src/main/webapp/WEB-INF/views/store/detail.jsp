@@ -23,6 +23,11 @@
 <script type="text/javascript" src="/js/store/storeDetail.js"></script>
 
 <script type="text/javascript">
+
+	window.onload = function() {
+		$(".info").attr('style', 'display: none');
+	}
+
 	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 		mapOption = { 
 			center: new kakao.maps.LatLng(37.4502008011333, 127.12986505883454), // 지도의 중심좌표

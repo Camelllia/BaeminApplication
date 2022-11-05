@@ -13,7 +13,7 @@
 <body>
     <main>
         <div class="login_box">
-            <a href="/"><img src="/img/bamin2.png" alt="이미지" class="bm_img"></a>
+            <a href="#"><img src="/img/bamin2.png" alt="이미지" class="bm_img"></a>
                 <input type="hidden" value="${userIdn}" id="userIdn">
                 <div class="input_aera"><input type="number" id="chargePoint" name="chargePoint"  value="" required placeholder="충전할 금액을 입력해 주세요" maxlength="30" ></div>
                 <input value="포인트 충전하기" class="login_btn" onclick="charge_point()" style="text-align: center;">

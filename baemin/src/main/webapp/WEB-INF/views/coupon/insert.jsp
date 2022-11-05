@@ -12,7 +12,7 @@
 <body>
     <main>
         <div class="login_box">
-            <a href="/"><img src="/img/bamin2.png" alt="이미지" class="bm_img"></a>
+            <a href="#"><img src="/img/bamin2.png" alt="이미지" class="bm_img"></a>
                 <h2>배달의 민족 쿠폰발급</h2>
                 <div class="input_aera">
                     <input type="text" id="couponName" name="couponName"  value="" required placeholder="쿠폰 이름을 입력해 주세요" maxlength="30" >
