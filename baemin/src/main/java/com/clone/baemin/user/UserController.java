@@ -63,7 +63,7 @@ public class UserController {
         return "redirect:/";
     }
 
-    @RequestMapping("/memberList/orderType={orderType}&pageNum={pageNum}")
+    @RequestMapping(value = "/memberList/orderType={orderType}&pageNum={pageNum}", method = {RequestMethod.GET, RequestMethod.POST})
     public String list(@PathVariable("orderType") int orderType, @PathVariable("pageNum") int pageNum, Model model) {
 
         HashMap<String,Integer> pageNationParam = pageNationUtil.setPageNation(userService.selectMemberListTotalCount(), pageNum);
