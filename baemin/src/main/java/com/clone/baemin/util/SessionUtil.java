@@ -11,7 +11,6 @@ public class SessionUtil {
     private static final String LOGIN_MEMBER_NICKNAME = "userNickname";
     private static final String LOGIN_MEMBER_EMAIL = "userEmail";
     private static final String LOGIN_MEMBER_IP= "ip";
-
     private static final String LOGIN_MEMBER_IDN= "userIdn";
 
     // 인스턴스화 방지

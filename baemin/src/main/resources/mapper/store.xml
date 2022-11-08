@@ -41,6 +41,12 @@
             deleveryTime,
             deleveryTip,
             (SELECT COUNT(*) FROM bm_review WHERE storeIdn = #{storeIdn}) AS reviewCount,
+            (SELECT COUNT(*) FROM bm_review WHERE storeIdn = #{storeIdn} AND reviewScore = 5) AS fiveScore,
+            (SELECT COUNT(*) FROM bm_review WHERE storeIdn = #{storeIdn} AND reviewScore = 4) AS fourScore,
+            (SELECT COUNT(*) FROM bm_review WHERE storeIdn = #{storeIdn} AND reviewScore = 3) AS threeScore,
+            (SELECT COUNT(*) FROM bm_review WHERE storeIdn = #{storeIdn} AND reviewScore = 2) AS twoScore,
+            (SELECT COUNT(*) FROM bm_review WHERE storeIdn = #{storeIdn} AND reviewScore = 1) AS oneScore,
+            (SELECT (SUM(reviewScore) / COUNT(*)) FROM bm_review WHERE storeIdn = #{storeIdn}) AS reviewAverage,
             (SELECT COUNT(*) FROM bm_order WHERE storeIdn = #{storeIdn}) AS orderCount
         FROM
             bm_store

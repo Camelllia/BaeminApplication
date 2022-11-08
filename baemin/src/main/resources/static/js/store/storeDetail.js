@@ -37,8 +37,8 @@ var insertBasket = function(index) {
 
 var changeTabMenu = function() {
 	$(".menu").show();
-	$(".info").show();
-	$(".comment").show();
+	$(".info").hide();
+	$(".comment").hide();
 	$("#comment").removeClass('select');
 	$("#info").removeClass('select');
 	$("#menu").addClass('select');

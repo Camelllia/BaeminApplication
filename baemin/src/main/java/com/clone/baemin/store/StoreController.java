@@ -1,5 +1,6 @@
 package com.clone.baemin.store;
 
+import com.clone.baemin.aop.UserLoginCheck;
 import com.clone.baemin.review.ReviewService;
 import com.clone.baemin.util.CommonUtil;
 import com.clone.baemin.util.SessionUtil;
@@ -37,12 +38,9 @@ public class StoreController {
     @Autowired
     ReviewService reviewService;
 
+    @UserLoginCheck
     @RequestMapping(value = "/category", method = {RequestMethod.GET, RequestMethod.POST})
     public String category(Model model, HttpSession session) {
-        if(SessionUtil.getLoginMemberNickname(session) == null) {
-            return "redirect:/";
-        }
-
         model.addAttribute("userNickname", SessionUtil.getLoginMemberNickname(session));
         return "store/category";
     }
@@ -56,52 +54,7 @@ public class StoreController {
         model.addAttribute("storeIdn", storeIdn);
         model.addAttribute("storeInfo", storeService.selectTargetStoreInfo(storeIdn));
         model.addAttribute("menuLists", storeService.selectStoreMenuList(storeIdn));
-
-        List<HashMap> reviewLists = reviewService.selectStoreReviewList(storeIdn);
-
-        int totalScore = 0;
-        int oneScore = 0;
-        int twoScore = 0;
-        int threeScore = 0;
-        int fourScore = 0;
-        int fiveScore = 0;
-
-        for(int i = 0; i < reviewLists.size(); i++) {
-            int curScore = (Integer) reviewLists.get(i).get("reviewScore");
-            totalScore += curScore;
-            switch (curScore) {
-                case 1:
-                    oneScore++;
-                    break;
-                case 2:
-                    twoScore++;
-                    break;
-                case 3:
-                    threeScore++;
-                    break;
-                case 4:
-                    fourScore++;
-                    break;
-                case 5:
-                    fiveScore++;
-                    break;
-            }
-        }
-
-        HashMap<String, Integer> scoreMap = new HashMap<>();
-        if(reviewLists.size() == 0) {
-            scoreMap.put("averageScore", 0);
-        } else {
-            scoreMap.put("averageScore", totalScore / reviewLists.size());
-        }
-        scoreMap.put("oneScore", oneScore);
-        scoreMap.put("twoScore", twoScore);
-        scoreMap.put("threeScore", threeScore);
-        scoreMap.put("fourScore", fourScore);
-        scoreMap.put("fiveScore", fiveScore);
-
-        model.addAttribute("scoreMap", scoreMap);
-        model.addAttribute("reviewLists", reviewLists);
+        model.addAttribute("reviewLists", reviewService.selectStoreReviewList(storeIdn));
         return "store/detail";
     }
 

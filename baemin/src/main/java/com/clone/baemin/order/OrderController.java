@@ -1,5 +1,6 @@
 package com.clone.baemin.order;
 
+import com.clone.baemin.aop.UserLoginCheck;
 import com.clone.baemin.basket.BasketService;
 import com.clone.baemin.coupon.CouponService;
 import com.clone.baemin.point.PointService;
@@ -25,6 +26,7 @@ import java.util.HashMap;
 
 
 @Controller
+@UserLoginCheck
 public class OrderController {
 
     @Autowired

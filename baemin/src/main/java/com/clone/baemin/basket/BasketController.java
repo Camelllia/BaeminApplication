@@ -1,6 +1,6 @@
 package com.clone.baemin.basket;
 
-import com.clone.baemin.user.UserDAO;
+import com.clone.baemin.aop.UserLoginCheck;
 import com.clone.baemin.util.SessionUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.json.simple.JSONObject;
@@ -10,7 +10,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
-import java.util.HashMap;
 
 /*
  *
