@@ -1,6 +1,5 @@
 package com.clone.baemin.basket;
 
-import com.clone.baemin.aop.UserLoginCheck;
 import com.clone.baemin.util.SessionUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.json.simple.JSONObject;

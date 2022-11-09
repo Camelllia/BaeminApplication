@@ -1,7 +1,6 @@
 package com.clone.baemin.aop;
 
 import com.clone.baemin.util.SessionUtil;
-import org.apache.commons.lang3.StringUtils;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
