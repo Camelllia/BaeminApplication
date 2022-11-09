@@ -45,11 +45,9 @@ public class StoreController {
         return "store/category";
     }
 
+    @UserLoginCheck
     @RequestMapping(value = "/store/detail/{storeIdn}", method = {RequestMethod.GET, RequestMethod.POST})
     public String detail(@PathVariable("storeIdn") int storeIdn, Model model, HttpSession session) {
-        if(SessionUtil.getLoginMemberNickname(session) == null) {
-            return "user/login";
-        }
 
         model.addAttribute("storeIdn", storeIdn);
         model.addAttribute("storeInfo", storeService.selectTargetStoreInfo(storeIdn));
@@ -74,7 +72,6 @@ public class StoreController {
     @RequestMapping(value = "/store/menu/{storeIdn}", method = {RequestMethod.GET, RequestMethod.POST})
     public String menu(@PathVariable("storeIdn") int storeIdn, Model model) {
         model.addAttribute("storeInfo", storeService.selectTargetStoreInfo(storeIdn));
-        System.out.println(storeService.selectTargetStoreInfo(storeIdn));
         return "store/menu";
     }
 

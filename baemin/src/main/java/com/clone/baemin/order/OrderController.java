@@ -47,12 +47,12 @@ public class OrderController {
     @RequestMapping(value = "/order/{storeIdn}", method = {RequestMethod.GET, RequestMethod.POST})
     public String order(@PathVariable("storeIdn") int storeIdn, Model model, HttpSession session) {
 
-        HashMap<String, String> baksetInfoMap = basketService.selectBasketTotalPrice(SessionUtil.getLoginMemberIdn(session), storeIdn);
-        if(baksetInfoMap != null) {
-            baksetInfoMap.put("paymentPrice", String.valueOf(Integer.parseInt(String.valueOf(baksetInfoMap.get("totalPrice"))) + Integer.parseInt(String.valueOf(baksetInfoMap.get("deleveryTip")))));
+        HashMap<String, String> basketInfoMap = basketService.selectBasketTotalPrice(SessionUtil.getLoginMemberIdn(session), storeIdn);
+        if(basketInfoMap != null) {
+            basketInfoMap.put("paymentPrice", String.valueOf(Integer.parseInt(String.valueOf(basketInfoMap.get("totalPrice"))) + Integer.parseInt(String.valueOf(basketInfoMap.get("deleveryTip")))));
         }
 
-        model.addAttribute("basketInfo", baksetInfoMap);
+        model.addAttribute("basketInfo", basketInfoMap);
         model.addAttribute("couponLists", couponService.selectVaildCouponList(SessionUtil.getLoginMemberIdn(session)));
         model.addAttribute("storeIdn", storeIdn);
         return "/order/order";
