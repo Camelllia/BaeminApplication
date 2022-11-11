@@ -9,7 +9,7 @@ var createCoupon = function() {
     }
 
     var param = {
-        couponName : couponName,
+        couponName : XSSCheck(couponName, 1),
         discountAmount : discountAmount
     }
 

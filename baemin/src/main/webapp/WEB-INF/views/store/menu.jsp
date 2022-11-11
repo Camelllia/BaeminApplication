@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/include/link.jsp" %>
+<script type="text/javascript" src="/js/util/XSSCheck.js"></script>
 <script type="text/javascript">
 
     $(document).ready(function() {
@@ -30,7 +31,7 @@
 
         var formData = new FormData();
 
-        formData.append("menuName", menuName);
+        formData.append("menuName", XSSCheck(menuName, 1));
         formData.append("menuPrice", menuPrice);
         formData.append("storeIdn", storeIdn);
         formData.append("imgFile", imgFile);

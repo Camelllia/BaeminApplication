@@ -6,6 +6,7 @@
 <link rel="stylesheet" href="/css/user/login.css">
 
 <script type="text/javascript" src="/js/review/review.js"></script>
+<script type="text/javascript" src="/js/util/XSSCheck.js"></script>
 <script type="text/javascript">
 
     $(document).ready(function() {

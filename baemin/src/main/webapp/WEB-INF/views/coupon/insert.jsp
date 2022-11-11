@@ -5,6 +5,7 @@
 <link rel="stylesheet" href="/css/user/login.css">
 
 <script type="text/javascript" src="/js/util/cookie.js"></script>
+<script type="text/javascript" src="/js/util/XSSCheck.js"></script>
 <script type="text/javascript" src="/js/coupon/coupon.js"></script>
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
 

@@ -23,10 +23,10 @@ var createStore = function() {
 
     var formData = new FormData();
 
-    formData.append("storeName", storeName);
-    formData.append("storeAddress", storeAddress);
-    formData.append("storePhonenum", storePhonenum);
-    formData.append("storeIntro", storeIntro);
+    formData.append("storeName", XSSCheck(storeName, 1));
+    formData.append("storeAddress", XSSCheck(storeAddress, 1));
+    formData.append("storePhonenum", XSSCheck(storePhonenum, 1));
+    formData.append("storeIntro", XSSCheck(storeIntro, 1));
     formData.append("deleveryTime", deleveryTime);
     formData.append("deleveryTip", deleveryTip);
     formData.append("minDelevery", minDelevery);

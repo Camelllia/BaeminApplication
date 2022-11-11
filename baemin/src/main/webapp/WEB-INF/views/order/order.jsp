@@ -3,6 +3,7 @@
 <%@ include file="/WEB-INF/views/include/link.jsp" %>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script type="text/javascript" src="/js/order/order.js"></script>
+<script type="text/javascript" src="/js/util/XSSCheck.js"></script>
 <script type="text/javascript">
 
     var paymentCode = 0;

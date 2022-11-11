@@ -17,8 +17,8 @@ var review = function() {
 
     var formData = new FormData();
 
-    formData.append("reviewTitle", reviewTitle);
-    formData.append("reviewContent", reviewContent);
+    formData.append("reviewTitle", XSSCheck(reviewTitle, 1));
+    formData.append("reviewContent", XSSCheck(reviewContent, 1));
     formData.append("reviewScore", reviewScore);
     formData.append("storeIdn", storeIdn);
     if(imgFile != undefined) {

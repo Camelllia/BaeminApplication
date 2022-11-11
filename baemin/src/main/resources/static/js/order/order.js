@@ -31,7 +31,7 @@ var order = function() {
 
     var param = {
         kakaoAddress : kakaoAddress,
-        detailAddress : detailAddress,
+        detailAddress : XSSCheck(detailAddress, 1),
         paymentPoint : paymentPoint,
         orderPrice : orderPrice,
         paymentType : paymentType,

@@ -3,6 +3,7 @@
 <%@ include file="/WEB-INF/views/include/link.jsp" %>
 
 <script type="text/javascript" src="/js/store/insert.js"></script>
+<script type="text/javascript" src="/js/util/XSSCheck.js"></script>
 <script type="text/javascript">
 
     $(document).ready(function() {
