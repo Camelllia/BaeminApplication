@@ -89,21 +89,22 @@ public class StoreController {
             String extension = fileName.substring(fileName.lastIndexOf("."), fileName.length());
             if (!CommonUtil.isVaildExtension(extension)) {
                 resultObj.put("resultCode", -30);
-                return resultObj.toString();
             }
 
-            UUID uuid = UUID.randomUUID();
-            String newFileName = uuid.toString() + extension;
-            ServletContext servletContext = request.getSession().getServletContext();
-            String uploadPath = servletContext.getRealPath("/upload/") + newFileName;
+            if(resultObj.get("resultCode").equals(1)) {
+                UUID uuid = UUID.randomUUID();
+                String newFileName = uuid.toString() + extension;
+                ServletContext servletContext = request.getSession().getServletContext();
+                String uploadPath = servletContext.getRealPath("/upload/") + newFileName;
 
-            try {
-                imgFile.transferTo(new File(uploadPath));
-            } catch (Exception e) {
-                e.printStackTrace();
+                try {
+                    imgFile.transferTo(new File(uploadPath));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+                storeService.insertMenu(menuName, Integer.valueOf(menuPrice), Integer.valueOf(storeIdn), newFileName);
             }
-
-            storeService.insertMenu(menuName, Integer.valueOf(menuPrice), Integer.valueOf(storeIdn), newFileName);
         }
 
         return resultObj.toString();
@@ -128,21 +129,22 @@ public class StoreController {
             String extension = fileName.substring(fileName.lastIndexOf("."), fileName.length());
             if (!CommonUtil.isVaildExtension(extension)) {
                 resultObj.put("resultCode", -30);
-                return resultObj.toString();
             }
 
-            UUID uuid = UUID.randomUUID();
-            String newFileName = uuid.toString() + extension;
-            ServletContext servletContext = request.getSession().getServletContext();
-            String uploadPath = servletContext.getRealPath("/upload/") + newFileName;
+            if(resultObj.get("resultCode").equals(1)) {
+                UUID uuid = UUID.randomUUID();
+                String newFileName = uuid.toString() + extension;
+                ServletContext servletContext = request.getSession().getServletContext();
+                String uploadPath = servletContext.getRealPath("/upload/") + newFileName;
 
-            try {
-                imgFile.transferTo(new File(uploadPath));
-            } catch (Exception e) {
-                e.printStackTrace();
+                try {
+                    imgFile.transferTo(new File(uploadPath));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+                storeService.insertStore(storeName, storeAddress, storeIntro, storePhonenum, Integer.valueOf(minDelevery), Integer.valueOf(deleveryTip), Integer.valueOf(deleveryTime), Integer.valueOf(categoryNum), newFileName);
             }
-
-            storeService.insertStore(storeName, storeAddress, storeIntro, storePhonenum, Integer.valueOf(minDelevery), Integer.valueOf(deleveryTip), Integer.valueOf(deleveryTime), Integer.valueOf(categoryNum), newFileName);
         }
 
         return resultObj.toString();

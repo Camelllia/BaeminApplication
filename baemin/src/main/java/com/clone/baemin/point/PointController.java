@@ -12,6 +12,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
 
+/*
+ *
+ * ResultCode
+ * 1 : 성공
+ * -10 : 파라미터 공백 에러
+ * */
+
 @Controller
 public class PointController {
 
@@ -31,10 +38,11 @@ public class PointController {
 
         if(StringUtils.isBlank(String.valueOf(chargePoint))) {
             resultObj.put("resultCode", -10);
-            return resultObj.toString();
         }
 
-        pointService.chargeUserPoint(chargePoint, userIdn);
+        if(resultObj.get("resultCode").equals(1)) {
+            pointService.chargeUserPoint(chargePoint, userIdn);
+        }
 
         return resultObj.toString();
     }

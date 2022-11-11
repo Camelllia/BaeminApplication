@@ -21,6 +21,7 @@ var createCoupon = function() {
             const result = JSON.parse(response);
             if(result.resultCode == "1") {
                 alert("쿠폰이 발급되었습니다. (유효기간은 일주일입니다)");
+                location.href='/myPage';
             } else if(result.resultCode == "-10"){
                 alert("입력값이 유효하지 않습니다.");
                 return;

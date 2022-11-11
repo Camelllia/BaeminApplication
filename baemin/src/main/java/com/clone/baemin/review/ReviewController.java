@@ -70,38 +70,38 @@ public class ReviewController {
 
         if(Integer.valueOf(reviewScore) > 5 || Integer.valueOf(reviewScore) < 0) {
             resultObj.put("resultCode", -10);
-            resultObj.toString();
         }
         if(StringUtils.isBlank(reviewTitle) || StringUtils.isBlank(reviewContent)) {
             resultObj.put("resultCode", -20);
-            return resultObj.toString();
         }
         if(StringUtils.isBlank(storeIdn)) {
             resultObj.put("resultCode", -30);
-            return resultObj.toString();
         }
 
         if(imgFile != null) {
             String extension = fileName.substring(fileName.lastIndexOf("."), fileName.length());
             if(!CommonUtil.isVaildExtension(extension)) {
                 resultObj.put("resultCode", -40);
-                return resultObj.toString();
             }
 
-            UUID uuid = UUID.randomUUID();
-            String newFileName = uuid.toString() + extension;
-            ServletContext servletContext = request.getSession().getServletContext();
-            String uploadPath = servletContext.getRealPath("/upload/") + newFileName;
+            if(resultObj.get("resultCode").equals(1)) {
+                UUID uuid = UUID.randomUUID();
+                String newFileName = uuid.toString() + extension;
+                ServletContext servletContext = request.getSession().getServletContext();
+                String uploadPath = servletContext.getRealPath("/upload/") + newFileName;
 
-            try {
-                imgFile.transferTo(new File(uploadPath));
-            } catch (Exception e) {
-                e.printStackTrace();
+                try {
+                    imgFile.transferTo(new File(uploadPath));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+                reviewService.insertReview(reviewTitle, reviewContent, Integer.valueOf(reviewScore), newFileName, Integer.valueOf(storeIdn), SessionUtil.getLoginMemberIdn(session), SessionUtil.getLoginMemberNickname(session));
             }
-
-            reviewService.insertReview(reviewTitle, reviewContent, Integer.valueOf(reviewScore), newFileName, Integer.valueOf(storeIdn), SessionUtil.getLoginMemberIdn(session), SessionUtil.getLoginMemberNickname(session));
         } else {
-            reviewService.insertReview(reviewTitle, reviewContent, Integer.valueOf(reviewScore), "", Integer.valueOf(storeIdn), SessionUtil.getLoginMemberIdn(session), SessionUtil.getLoginMemberNickname(session));
+            if(resultObj.get("resultCode").equals(1)) {
+                reviewService.insertReview(reviewTitle, reviewContent, Integer.valueOf(reviewScore), "", Integer.valueOf(storeIdn), SessionUtil.getLoginMemberIdn(session), SessionUtil.getLoginMemberNickname(session));
+            }
         }
         return resultObj.toString();
     }
@@ -114,10 +114,11 @@ public class ReviewController {
 
         if(Integer.valueOf(reviewIdn) == null) {
             resultObj.put("resultCode", -50);
-            resultObj.toString();
         }
 
-        reviewService.deleteTargetReview(reviewIdn);
+        if(resultObj.get("resultCode").equals(1)) {
+            reviewService.deleteTargetReview(reviewIdn);
+        }
 
         return resultObj.toString();
     }

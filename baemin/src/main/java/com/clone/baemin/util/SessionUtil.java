@@ -33,9 +33,10 @@ public class SessionUtil {
         return (int) session.getAttribute(LOGIN_MEMBER_IDN);
     }
 
-    public static void setLoginInfo(HttpSession session, String userNickname, int userIdn) {
+    public static void setLoginInfo(HttpSession session, String userNickname, int userIdn, String userEmail) {
         session.setAttribute(LOGIN_MEMBER_NICKNAME, userNickname);
         session.setAttribute(LOGIN_MEMBER_IDN, userIdn);
+        session.setAttribute(LOGIN_MEMBER_EMAIL, userEmail);
         session.setMaxInactiveInterval(60 * 60 * 3);
     }
 

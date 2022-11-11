@@ -43,7 +43,9 @@ public class BasketController {
             resultObj.put("resultCode", -10);
         }
 
-        basketService.insertBasket(menuName, menuPrice, storeIdn, SessionUtil.getLoginMemberIdn(session));
+        if(resultObj.get("resultCode").equals(1)) {
+            basketService.insertBasket(menuName, menuPrice, storeIdn, SessionUtil.getLoginMemberIdn(session));
+        }
 
         return resultObj.toString();
     }
@@ -56,10 +58,11 @@ public class BasketController {
 
         if(StringUtils.isBlank(Integer.toString(basketIdn))) {
             resultObj.put("resultCode", -20);
-            return resultObj.toString();
         }
 
-        basketService.deleteBasket(basketIdn);
+        if(resultObj.get("resultCode").equals(1)) {
+            basketService.deleteBasket(basketIdn);
+        }
 
         return resultObj.toString();
     }

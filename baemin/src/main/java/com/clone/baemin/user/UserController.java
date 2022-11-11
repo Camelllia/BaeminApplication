@@ -84,26 +84,24 @@ public class UserController {
 
         if(!CommonUtil.isValidEmailAddress(userEmail)) {
             resultObj.put("resultCode", -10);
-            return resultObj.toString();
         }
 
         if(!CommonUtil.isValidPhoneNumber(userPhonenum)) {
             resultObj.put("resultCode", -40);
-            return resultObj.toString();
         }
 
         if(!StringUtils.equals(userPw, userPwCheck)) {
             resultObj.put("resultCode", -20);
-            return resultObj.toString();
         }
 
         if(userService.selectEmailCount(userEmail) > 0) {
             resultObj.put("resultCode", -30);
-            return resultObj.toString();
         }
 
         try {
-            userService.insertUserAccount(userEmail, aes256.encrypt(userPw), userNickname, userPhonenum);
+            if(resultObj.get("resultCode").equals(1)) {
+                userService.insertUserAccount(userEmail, aes256.encrypt(userPw), userNickname, userPhonenum);
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -122,7 +120,7 @@ public class UserController {
                 resultObj.put("resultCode", -50);
             } else {
                 HashMap userInfoMap = userService.selectUserInfo(userEmail, aes256.encrypt(userPw));
-                SessionUtil.setLoginInfo(session, (String) userInfoMap.get("userNickname"), (int) userInfoMap.get("userIdn"));
+                SessionUtil.setLoginInfo(session, (String) userInfoMap.get("userNickname"), (int) userInfoMap.get("userIdn"), userEmail);
                 userService.insertLoginLog(userEmail, SessionUtil.getIp());
             }
         } catch (Exception e) {

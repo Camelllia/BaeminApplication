@@ -84,35 +84,37 @@ public class OrderController {
                               @RequestParam("discountAmount") int discountAmount, @RequestParam("couponIdn") int couponIdn,
                               HttpSession session) {
         JSONObject resultObj = new JSONObject();
-        resultObj.put("resultCode", -10);
+        resultObj.put("resultCode", 1);
 
         if(StringUtils.isNoneBlank(kakaoAddress, detailAddress, String.valueOf(orderPrice),String.valueOf(paymentType), String.valueOf(paymentPoint), String.valueOf(storeIdn))) {
             if(paymentPoint > pointService.selectUserPoint(SessionUtil.getLoginMemberIdn(session))) {
                 resultObj.put("resultCode", -20);
-                return resultObj.toString();
             }
             if((paymentPoint - (orderPrice - discountAmount)) < 0) {
                 resultObj.put("resultCode", -20);
-                return resultObj.toString();
             }
-            resultObj.put("resultCode", 1);
-            int paymentPrice = (orderPrice - discountAmount) > 0 ? (orderPrice - discountAmount) : 0;
-            if(paymentType == 1) {
-                paymentPrice = 0;
+
+            if(resultObj.get("resultCode").equals(1)) {
+                int paymentPrice = (orderPrice - discountAmount) > 0 ? (orderPrice - discountAmount) : 0;
+                if(paymentType == 1) {
+                    paymentPrice = 0;
+                }
+                couponService.updateCouponUseYn(couponIdn);
+                pointService.updateUserPoint(paymentPrice, SessionUtil.getLoginMemberIdn(session));
+
+                HashMap<String, Object> param = new HashMap<>();
+                param.put("orderAddress", kakaoAddress + detailAddress);
+                param.put("orderPrice", orderPrice);
+                param.put("paymentType", paymentType);
+                param.put("storeIdn", storeIdn);
+                param.put("userIdn", SessionUtil.getLoginMemberIdn(session));
+
+                int orderIdn = orderService.insertOrder(param);
+
+                resultObj.put("orderIdn", orderIdn);
             }
-            couponService.updateCouponUseYn(couponIdn);
-            pointService.updateUserPoint(paymentPrice, SessionUtil.getLoginMemberIdn(session));
-
-            HashMap<String, Object> param = new HashMap<>();
-            param.put("orderAddress", kakaoAddress + detailAddress);
-            param.put("orderPrice", orderPrice);
-            param.put("paymentType", paymentType);
-            param.put("storeIdn", storeIdn);
-            param.put("userIdn", SessionUtil.getLoginMemberIdn(session));
-
-            int orderIdn = orderService.insertOrder(param);
-
-            resultObj.put("orderIdn", orderIdn);
+        } else {
+            resultObj.put("resultCode", -10);
         }
 
         return resultObj.toString();

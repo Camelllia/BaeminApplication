@@ -48,11 +48,13 @@
 
                 if(result.resultCode == "1") {
                     alert("정상적으로 등록되었습니다.");
-                    location.href = location.href;
+                    location.href = '/store/detail/' + storeIdn;
                 } else if(result.resultCode == "-20") {
                     alert("입력되지 않은 내용이 있습니다.");
+                    return;
                 } else if(result.resultCode == "-30") {
                     alert("사진은 PNG 형식으로 등록해주세요.");
+                    return;
                 }
             },
             error:function (err) {

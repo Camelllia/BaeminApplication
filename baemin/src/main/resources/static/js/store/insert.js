@@ -46,7 +46,7 @@ var createStore = function() {
 
             if(result.resultCode == "1") {
                 alert("정상적으로 등록되었습니다.");
-                location.href = location.href;
+                location.href = "/category";
             } else if(result.resultCode == "-20") {
                 alert("입력되지 않은 내용이 있습니다.");
             } else if(result.resultCode == "-30") {

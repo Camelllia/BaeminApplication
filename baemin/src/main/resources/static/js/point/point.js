@@ -40,8 +40,9 @@ var charge_point = function () {
         } else {
             var msg = '결제에 실패하였습니다.';
             msg += '에러내용 : ' + rsp.error_msg;
+            return;
         }
-        //alert(msg);
-        document.location.href= location.href;
+        alert(msg);
+        document.location.href= "/myPage";
     });
 };

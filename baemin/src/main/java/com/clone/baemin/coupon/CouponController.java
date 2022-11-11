@@ -58,7 +58,9 @@ public class CouponController {
             resultObj.put("resultCode", -10);
         }
 
-        couponService.insertCoupon(couponName, Integer.valueOf(discountAmount), SessionUtil.getLoginMemberIdn(session));
+        if(resultObj.get("resultCode").equals(1)) {
+            couponService.insertCoupon(couponName, Integer.valueOf(discountAmount), SessionUtil.getLoginMemberIdn(session));
+        }
 
         return resultObj.toString();
     }
