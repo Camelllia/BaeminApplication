@@ -98,7 +98,6 @@
             <li id="comment" onclick="changeTabComment()">리뷰</li>
         </ul>
 	
-			
 		<!-- 메뉴 탭 -->	
         <ul class="menu">
 			<c:if test="${not empty menuLists}">

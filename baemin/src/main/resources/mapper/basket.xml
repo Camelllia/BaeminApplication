@@ -68,4 +68,13 @@
             userIdn = #{userIdn}
     </select>
 
+    <delete id="deleteOrderedBasket">
+        DELETE
+            FROM
+                bm_basket
+        WHERE
+            storeIdn = #{storeIdn}
+        AND
+            userIdn = #{userIdn}
+    </delete>
 </mapper>

@@ -110,6 +110,7 @@ public class OrderController {
                 param.put("userIdn", SessionUtil.getLoginMemberIdn(session));
 
                 int orderIdn = orderService.insertOrder(param);
+                basketService.deleteOrderedBasket(SessionUtil.getLoginMemberIdn(session), storeIdn);
 
                 resultObj.put("orderIdn", orderIdn);
             }

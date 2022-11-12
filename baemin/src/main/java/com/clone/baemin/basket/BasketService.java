@@ -27,4 +27,8 @@ public class BasketService {
     public HashMap<String, String> selectBasketTotalPrice(int userIdn, int storeIdn) {
         return basketDAO.selectBasketTotalPrice(userIdn, storeIdn);
     }
+
+    public int deleteOrderedBasket(int userIdn, int storeIdn) {
+        return basketDAO.deleteOrderedBasket(userIdn, storeIdn);
+    }
 }
