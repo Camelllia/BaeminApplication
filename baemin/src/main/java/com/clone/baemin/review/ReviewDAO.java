@@ -56,4 +56,11 @@ public class ReviewDAO {
         param.put("reviewIdn", reviewIdn);
         return sqlSession.delete(sqlId, param);
     }
+
+    public List<HashMap> selectStoreReviewScoreList(int storeIdn) {
+        String sqlId = "selectStoreReviewScoreList";
+        HashMap<String, Integer> param = new HashMap<>();
+        param.put("storeIdn", storeIdn);
+        return sqlSession.selectList(sqlId, param);
+    }
 }

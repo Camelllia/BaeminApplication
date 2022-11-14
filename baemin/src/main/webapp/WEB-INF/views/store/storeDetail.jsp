@@ -98,6 +98,7 @@
             <li id="comment" onclick="changeTabComment()">리뷰</li>
         </ul>
 	
+			
 		<!-- 메뉴 탭 -->	
         <ul class="menu">
 			<c:if test="${not empty menuLists}">
@@ -238,7 +239,35 @@
 					</div>
 						
 					<div class="score_count">
-						<div> 
+
+						<c:forEach items="${reviewScoreLists}" var="reviewScoreList">
+							<div> 
+								<div>${reviewScoreList.reviewScore}점</div>
+								<div class="">
+									<div class="graph_background"></div>
+									<c:forEach begin="0" end="4" var="i">
+										<c:choose>
+											   <c:when test="${reviewScoreList.reviewScore > i }">
+												   <i class="far fas fa-star"></i>
+											   </c:when>
+											   <c:otherwise>
+												   <i class="far fa-star"></i>
+											   </c:otherwise>
+										 </c:choose>
+									</c:forEach>
+								</div>
+								<div class="review_count">
+									<c:if test="${empty reviewScoreList.reviewCnt}">
+										0
+									</c:if>
+									<c:if test="${not empty reviewScoreList.reviewCnt}">
+										${reviewScoreList.reviewCnt}
+									</c:if>
+								</div>
+							</div>
+						</c:forEach>
+
+						<!-- <div> 
 							<div>5점</div>
 							<div class="">
 								<div class="graph_background"></div>
@@ -253,7 +282,6 @@
 									 </c:choose>
 								</c:forEach>
 							</div>
-							<!-- 5점짜리 평균 -->
 							<div class="review_count">${storeInfo.fiveScore}</div>
 						</div>
 						
@@ -328,7 +356,7 @@
 							</div>
 							<div class="review_count">${storeInfo.oneScore}</div>
 						</div>
-					</div>
+					</div> -->
 				
 				</div>
 			</li>

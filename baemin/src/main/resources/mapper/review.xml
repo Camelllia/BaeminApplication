@@ -74,6 +74,39 @@
             userIdn = #{userIdn}
     </select>
 
+    <select id="selectStoreReviewScoreList" resultType="HashMap">
+        WITH RECURSIVE scoreBoard AS (
+            SELECT
+                1 AS score
+            UNION ALL
+            SELECT
+                score + 1
+            FROM
+                scoreBoard
+            WHERE
+                5 > score
+        )
+        SELECT
+            A.score AS reviewScore,
+            B.cnt AS reviewCnt
+        FROM
+            scoreBoard AS A LEFT OUTER JOIN (
+                SELECT
+                    reviewScore,
+                    COUNT(*) AS cnt
+                FROM
+                    bm_review
+                WHERE
+                    storeIdn = #{storeIdn}
+                GROUP BY
+                    reviewScore
+        ) AS B on (A.score = B.reviewScore)
+        GROUP BY
+            A.score
+        ORDER BY
+            A.score DESC
+    </select>
+
     <delete id="deleteTargetReview">
         DELETE FROM
             bm_review

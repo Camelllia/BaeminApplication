@@ -32,4 +32,8 @@ public class ReviewService {
     public int deleteTargetReview(int reviewIdn) {
         return reviewDAO.deleteTargetReview(reviewIdn);
     }
+
+    public List<HashMap> selectStoreReviewScoreList(int storeIdn) {
+        return reviewDAO.selectStoreReviewScoreList(storeIdn);
+    }
 }

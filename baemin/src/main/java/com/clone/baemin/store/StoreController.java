@@ -50,6 +50,7 @@ public class StoreController {
         model.addAttribute("storeIdn", storeIdn);
         model.addAttribute("storeInfo", storeService.selectTargetStoreInfo(storeIdn));
         model.addAttribute("menuLists", storeService.selectStoreMenuList(storeIdn));
+        model.addAttribute("reviewScoreLists", reviewService.selectStoreReviewScoreList(storeIdn));
         model.addAttribute("reviewLists", reviewService.selectStoreReviewList(storeIdn));
         return "store/detail";
     }
