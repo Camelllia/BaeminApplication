@@ -88,7 +88,7 @@
         )
         SELECT
             A.score AS reviewScore,
-            B.cnt AS reviewCnt
+            IFNULL(B.cnt, 0) AS reviewCnt
         FROM
             scoreBoard AS A LEFT OUTER JOIN (
                 SELECT

@@ -257,12 +257,7 @@
 									</c:forEach>
 								</div>
 								<div class="review_count">
-									<c:if test="${empty reviewScoreList.reviewCnt}">
-										0
-									</c:if>
-									<c:if test="${not empty reviewScoreList.reviewCnt}">
-										${reviewScoreList.reviewCnt}
-									</c:if>
+									${reviewScoreList.reviewCnt}
 								</div>
 							</div>
 						</c:forEach>
