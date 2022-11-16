@@ -256,103 +256,10 @@
 										 </c:choose>
 									</c:forEach>
 								</div>
-								<div class="review_count">
-									${reviewScoreList.reviewCnt}
-								</div>
+								<div class="review_count">${reviewScoreList.reviewCnt}</div>
 							</div>
 						</c:forEach>
-
-						<!-- <div> 
-							<div>5점</div>
-							<div class="">
-								<div class="graph_background"></div>
-								<c:forEach begin="0" end="4" var="i">
-									<c:choose>
-										   <c:when test="${5 > i }">
-											   <i class="far fas fa-star"></i>
-										   </c:when>
-										   <c:otherwise>
-											   <i class="far fa-star"></i>
-										   </c:otherwise>
-									 </c:choose>
-								</c:forEach>
-							</div>
-							<div class="review_count">${storeInfo.fiveScore}</div>
-						</div>
-						
-						<div> 
-							<div>4점</div>
-							<div class="">
-								<div class="graph_background"></div>
-								<c:forEach begin="0" end="4" var="i">
-									<c:choose>
-										   <c:when test="${4 > i }">
-											   <i class="far fas fa-star"></i>
-										   </c:when>
-										   <c:otherwise>
-											   <i class="far fa-star"></i>
-										   </c:otherwise>
-									 </c:choose>
-								</c:forEach>
-							</div>
-							<div class="review_count">${storeInfo.fourScore}</div>
-						</div>
-							
-						<div> 
-							<div>3점</div>
-							<div class="">
-								<div class="graph_background"></div>
-								<c:forEach begin="0" end="4" var="i">
-									<c:choose>
-										   <c:when test="${3 > i }">
-											   <i class="far fas fa-star"></i>
-										   </c:when>
-										   <c:otherwise>
-											   <i class="far fa-star"></i>
-										   </c:otherwise>
-									 </c:choose>
-								</c:forEach>
-							</div>
-							<div class="review_count">${storeInfo.threeScore}</div>
-						</div>
-						
-						<div> 
-							<div>2점</div>
-							<div class="">
-								<div class="graph_background"></div>
-								<c:forEach begin="0" end="4" var="i">
-									<c:choose>
-										   <c:when test="${2 > i }">
-											   <i class="far fas fa-star"></i>
-										   </c:when>
-										   <c:otherwise>
-											   <i class="far fa-star"></i>
-										   </c:otherwise>
-									 </c:choose>
-								</c:forEach>
-							</div>
-							<div class="review_count">${storeInfo.twoScore}</div>
-						</div>
-						
-						<div> 
-							<div>1점</div>
-							<div class="">
-								<div class="graph_background"></div>
-								<c:forEach begin="0" end="4" var="i">
-									<c:choose>
-										   <c:when test="${1 > i }">
-											   <i class="far fas fa-star"></i>
-										   </c:when>
-										   <c:otherwise>
-											   <i class="far fa-star"></i>
-										   </c:otherwise>
-									 </c:choose>
-								</c:forEach>
-							</div>
-							<div class="review_count">${storeInfo.oneScore}</div>
-						</div>
-					</div> -->
-				
+					</div>
 				</div>
 			</li>
 			 
