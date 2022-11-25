@@ -139,7 +139,7 @@
                     </c:if>
                 </c:forEach>
 
-                <c:if test="${curPageNum ne totalPageNum}">
+                <c:if test="${curPageNum ne totalPageNum && totalPageNum != 0}">
                     <li><a onclick="pageNext()">다음</a></li>
                 </c:if>
             </ul>
