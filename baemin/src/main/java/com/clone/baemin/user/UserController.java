@@ -39,7 +39,7 @@ public class UserController {
     AES256 aes256;
 
     @RequestMapping(value = "/", method = {RequestMethod.GET, RequestMethod.POST})
-    public String main(HttpSession session) {
+    public String main(HttpSession session) throws Exception {
         if(SessionUtil.getLoginMemberEmail(session) != null) {
             return "redirect:/category";
         }
