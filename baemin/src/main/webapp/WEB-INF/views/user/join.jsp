@@ -34,6 +34,7 @@
             </div>
 
             <input value="회원가입" class="login_btn" onclick="join()">
+            <input value="취소" class="login_btn" onclick="cancel()">
         </form>
     </div>
 

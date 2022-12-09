@@ -135,3 +135,7 @@ var join = function() {
         }
     })
 }
+
+var cancel = function() {
+    location.href = '/';
+}
